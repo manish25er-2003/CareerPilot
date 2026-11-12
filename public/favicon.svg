@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="CareerPilot AI">
+  <defs>
+    <linearGradient id="g" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#f8fafc"/>
+  <path d="M34 92V40h24c10.5 0 18 7.5 18 17.5S68.5 75 58 75H48v17H34zm14-12h8c5.2 0 8.5-3.2 8.5-8.5S61.2 53 56 53h-8v27z" fill="url(#g)"/>
+  <path d="M74 92l18-52h10l-18 52H74zm5-30h18v10H79v-10z" fill="#0f172a"/>
+</svg>
