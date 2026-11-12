@@ -15,17 +15,17 @@ class ProfileSeeder extends Seeder
             Profile::updateOrCreate(
                 ['user_id' => $user->id],
                 [
-                    'full_name' => 'Demo User',
+                    'full_name' => 'Rayden Carter',
                     'phone' => '+91 98765 43210',
-                    'professional_headline' => 'Laravel Developer & Career Growth Specialist',
+                    'professional_headline' => 'Product Designer & Career Growth Specialist',
                     'location' => 'Bengaluru, India',
-                    'education' => 'B.Tech in Computer Science',
-                    'experience_years' => 3,
-                    'bio' => 'Full-stack Laravel developer with strong experience in PHP, MySQL, and API-driven product work.',
-                    'linkedin_url' => 'https://www.linkedin.com/in/demouser',
-                    'github_url' => 'https://github.com/demouser',
-                    'portfolio_url' => 'https://demouser.dev',
-                    'profile_score' => 88,
+                    'education' => 'B.Design in Interaction Design',
+                    'experience_years' => 4,
+                    'bio' => 'Design-minded product professional focused on user experience, portfolio storytelling, and career momentum.',
+                    'linkedin_url' => 'https://www.linkedin.com/in/rayden',
+                    'github_url' => 'https://github.com/rayden',
+                    'portfolio_url' => 'https://rayden.design',
+                    'profile_score' => 85,
                 ]
             );
         }

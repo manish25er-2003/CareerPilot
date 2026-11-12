@@ -3,13 +3,50 @@
 namespace Tests\Feature;
 
 use App\Models\JobApplication;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class UserModulesTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_dashboard_page_uses_authenticated_user_identity(): void
+    {
+        $user = User::factory()->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+        ]);
+
+        $this->actingAs($user)
+            ->get('/dashboard')
+            ->assertOk()
+            ->assertSee('Jane Doe')
+            ->assertSee('jane@example.com');
+    }
+
+    public function test_user_can_update_profile_image(): void
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+        ]);
+
+        $this->actingAs($user)
+            ->patch('/profile', [
+                'name' => 'Jane Doe',
+                'email' => 'jane@example.com',
+                'profile_image' => UploadedFile::fake()->image('avatar.jpg', 300, 300),
+            ])
+            ->assertRedirect('/profile');
+
+        $this->assertCount(1, Storage::disk('public')->allFiles('profile-images'));
+    }
 
     public function test_dashboard_page_is_accessible(): void
     {

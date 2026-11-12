@@ -1,26 +1,26 @@
 :root {
-    --page-bg: #f5efe9;
-    --page-bg-strong: #efe7df;
-    --surface: #fffdfb;
-    --surface-alt: #f4f0eb;
-    --surface-strong: #1b2331;
-    --primary: #7c4dff;
-    --primary-strong: #5f39d8;
-    --primary-soft: rgba(124, 77, 255, 0.12);
+    --page-bg: #f4f7ff;
+    --page-bg-strong: #edf2ff;
+    --surface: #ffffff;
+    --surface-alt: #f7f9ff;
+    --surface-strong: #1a2340;
+    --primary: #7c5cff;
+    --primary-strong: #5047e5;
+    --primary-soft: rgba(124, 92, 255, 0.12);
     --deep-slate: #111827;
-    --navy: #192332;
-    --navy-soft: #2c3a4d;
-    --muted: #5d6879;
-    --line: rgba(17, 24, 39, 0.12);
-    --shadow-soft: 0 18px 45px rgba(16, 24, 40, 0.08);
-    --shadow-card: 0 22px 48px rgba(17, 24, 39, 0.08);
+    --navy: #1a2334;
+    --navy-soft: #2c3a5f;
+    --muted: #59657c;
+    --line: rgba(15, 23, 42, 0.10);
+    --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.06);
+    --shadow-card: 0 22px 52px rgba(17, 24, 39, 0.06);
     --success: #1ea97c;
     --warning: #d37d2f;
     --danger: #d24f5f;
     --white: #ffffff;
     --text: #101828;
     --secondary: #5f6f82;
-    --border: rgba(17, 24, 39, 0.12);
+    --border: rgba(15, 23, 42, 0.10);
     --radius-xl: 28px;
     --radius-lg: 22px;
     --radius-md: 16px;
@@ -33,12 +33,27 @@ html {
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--page-bg);
+    background: linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-strong) 100%);
     color: var(--text);
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.55;
+}
+
+.card,
+.card-body,
+.card-header,
+.card-footer,
+.list-group-item {
+    background: var(--surface) !important;
+    border-color: var(--line) !important;
+}
+
+.card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
 }
 
 .container {
@@ -110,7 +125,9 @@ img {
 
 .text-primary-custom { color: var(--primary); }
 .bg-primary-custom { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%); }
-.bg-soft-blue { background: rgba(124, 77, 255, 0.06); }
+.bg-soft-blue {
+    background: linear-gradient(180deg, rgba(124, 92, 255, 0.08), rgba(79, 70, 229, 0.03));
+}
 .text-secondary-custom { color: var(--muted); }
 .border-soft { border-color: var(--line); }
 
@@ -188,7 +205,7 @@ img {
 .process-card,
 .auth-card,
 .stat-card {
-    background: rgba(255,255,255,0.9);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,255,0.96));
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
@@ -822,6 +839,36 @@ img {
     .hero-title {
         font-size: clamp(2.2rem, 12vw, 3.1rem);
     }
+
+    .nav-actions {
+        width: 100%;
+        display: grid !important;
+        gap: 0.65rem;
+    }
+
+    .premium-navbar .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .public-home-hero .row {
+        gap: 2rem;
+    }
+
+    .hero-panel .row {
+        gap: 0.75rem;
+    }
+
+    .hero-panel .col-4 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .hero-metrics {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .auth-submit,
@@ -1032,6 +1079,963 @@ body .alert-success {
 
     .auth-footer {
         font-size: 0.88rem;
+    }
+}
+
+.jobflow-dashboard-shell {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    width: min(1180px, calc(100vw - 64px));
+    min-height: 960px;
+    margin: 48px auto;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--line);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15,23,42,0.08);
+}
+
+.jobflow-sidebar {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,255,0.96));
+    border-right: 1px solid var(--line);
+    padding: 26px 18px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.jobflow-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1d1d1f;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.jobflow-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #8e63ff, #5b49e6);
+    color: white;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 20px rgba(124,77,255,0.28);
+}
+
+.jobflow-menu-label {
+    color: #7b7d81;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 12px;
+    margin-bottom: 10px;
+}
+
+.jobflow-menu-label.bottom-menu {
+    margin-top: 28px;
+}
+
+.jobflow-nav {
+    display: grid;
+    gap: 8px;
+}
+
+.jobflow-nav a {
+    text-decoration: none;
+    color: #2d2f35;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 12px 12px;
+    transition: all 0.2s ease;
+}
+
+.jobflow-nav a.active,
+.jobflow-nav a:hover {
+    background: rgba(255,255,255,0.9);
+    box-shadow: inset 0 0 0 1px rgba(17,24,39,0.04);
+}
+
+.jobflow-user-chip {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px 0;
+    border-top: 1px solid rgba(17,24,39,0.06);
+    color: #1b1f2a;
+}
+
+.jobflow-user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #1d1d1f, #414659);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.jobflow-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.jobflow-user-avatar.small {
+    width: 34px;
+    height: 34px;
+}
+
+.jobflow-user-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(17,24,39,0.08);
+    border-radius: 16px;
+    padding: 8px 10px;
+}
+
+.jobflow-notification-btn {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 10px;
+    background: rgba(17,24,39,0.04);
+    font-size: 0.9rem;
+}
+
+.jobflow-user-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.jobflow-user-mini-card strong,
+.jobflow-user-mini-card small {
+    display: block;
+}
+
+.jobflow-user-mini-card strong {
+    font-size: 0.75rem;
+    color: #1b1f2a;
+}
+
+.jobflow-user-mini-card small {
+    font-size: 0.62rem;
+    color: #7b8190;
+}
+
+.jobflow-user-chip strong {
+    display: block;
+    font-size: 0.75rem;
+}
+
+.jobflow-user-chip small {
+    display: block;
+    color: #85899a;
+    font-size: 0.62rem;
+}
+
+.jobflow-main-panel {
+    background: linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-strong) 100%);
+    padding: 22px 24px 18px;
+}
+
+.jobflow-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.jobflow-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.jobflow-icon-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: rgba(124,77,255,0.12);
+    color: var(--primary-strong);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.jobflow-title-wrap h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    letter-spacing: -0.05em;
+    color: #171b22;
+    font-weight: 800;
+}
+
+.jobflow-title-wrap p {
+    margin: 4px 0 0;
+    color: #6f7785;
+    font-size: 0.78rem;
+}
+
+.jobflow-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.jobflow-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(17,24,39,0.08);
+    border-radius: 16px;
+    padding: 0 14px;
+    height: 44px;
+    min-width: 220px;
+    color: #7e8697;
+}
+
+.jobflow-search input {
+    border: 0;
+    background: transparent;
+    flex: 1;
+    font-size: 0.85rem;
+    color: #7a8192;
+    outline: none;
+}
+
+.jobflow-cta-button,
+.jobflow-link-button,
+.jobflow-primary-button,
+.jobflow-mini-icon,
+.jobflow-next-icon,
+.jobflow-pagination button {
+    border: none;
+    cursor: pointer;
+}
+
+.jobflow-cta-button {
+    background: linear-gradient(135deg, #8b5cf6, #5b47e7);
+    color: white;
+    padding: 0.75rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 14px 28px rgba(124,77,255,0.22);
+}
+
+.jobflow-upper-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.9fr);
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.jobflow-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.jobflow-stat-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,255,0.96));
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 18px 18px 16px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 12px 24px rgba(15,23,42,0.04);
+}
+
+.jobflow-stat-card.is-primary {
+    background: linear-gradient(135deg, #8d62ff 0%, #6d58eb 100%);
+    color: white;
+    box-shadow: 0 18px 30px rgba(124,77,255,0.25);
+}
+
+.jobflow-stat-card.is-primary .jobflow-stat-header,
+.jobflow-stat-card.is-primary .jobflow-stat-meta {
+    color: rgba(255,255,255,0.82);
+}
+
+.jobflow-stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4a535f;
+}
+
+.jobflow-arrow {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgba(17,24,39,0.04);
+    font-weight: 700;
+}
+
+.jobflow-stat-card.is-primary .jobflow-arrow {
+    background: rgba(255,255,255,0.18);
+}
+
+.jobflow-stat-value {
+    font-size: clamp(2.2rem, 3vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 1;
+    margin: 12px 0 8px;
+}
+
+.jobflow-stat-meta {
+    font-size: 0.72rem;
+    color: #6d7685;
+}
+
+.jobflow-schedule-card,
+.jobflow-donut-card,
+.jobflow-table-card,
+.jobflow-recommendation-panel,
+.jobflow-purple-cta {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,255,0.96));
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 12px 24px rgba(15,23,42,0.04);
+}
+
+.jobflow-schedule-card {
+    padding: 16px 14px 14px;
+}
+
+.jobflow-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.jobflow-card-header h3,
+.jobflow-card-title-row h3 {
+    margin: 0;
+    color: #1b1f2b;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.jobflow-mini-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    background: rgba(17,24,39,0.04);
+    color: #49515f;
+}
+
+.jobflow-calendar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #2c3039;
+    font-weight: 700;
+    padding: 0 4px 12px;
+}
+
+.jobflow-calendar-head span {
+    color: #7f8794;
+}
+
+.jobflow-schedule-item {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 28px;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 4px;
+    border-top: 1px solid rgba(17,24,39,0.05);
+}
+
+.jobflow-date-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(124,77,255,0.08);
+    color: var(--primary-strong);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+
+.jobflow-schedule-text {
+    min-width: 0;
+}
+
+.jobflow-schedule-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #1d2330;
+}
+
+.jobflow-schedule-meta {
+    font-size: 0.68rem;
+    color: #778191;
+}
+
+.jobflow-next-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(17,24,39,0.04);
+    color: #4a535f;
+    font-weight: 700;
+}
+
+.jobflow-link-button {
+    margin-top: 12px;
+    width: 100%;
+    border-radius: 999px;
+    background: rgba(17,24,39,0.03);
+    color: #232a34;
+    padding: 0.7rem 1rem;
+    font-weight: 700;
+}
+
+.jobflow-link-button.subtle {
+    width: auto;
+    background: none;
+    color: #5d6372;
+    padding: 0.25rem 0.5rem;
+}
+
+.jobflow-lower-grid {
+    display: grid;
+    grid-template-columns: minmax(270px, 0.9fr) minmax(0, 1.7fr);
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.jobflow-donut-card {
+    padding: 18px 18px 16px;
+}
+
+.jobflow-card-title-row {
+    margin-bottom: 10px;
+}
+
+.jobflow-donut-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.jobflow-donut-ring {
+    position: relative;
+    width: 196px;
+    height: 196px;
+    border-radius: 50%;
+    background: conic-gradient(#8b5cf6 0 85%, rgba(139,92,246,0.12) 85% 100%);
+    display: grid;
+    place-items: center;
+}
+
+.jobflow-donut-ring::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    background: rgba(255,255,255,0.98);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(17,24,39,0.06);
+}
+
+.jobflow-donut-center {
+    position: relative;
+    z-index: 1;
+    font-size: 2.2rem;
+    letter-spacing: -0.06em;
+    font-weight: 800;
+    color: #171c23;
+}
+
+.jobflow-score-list {
+    margin-top: 18px;
+    display: grid;
+    gap: 10px;
+}
+
+.jobflow-score-row {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr) 36px;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.72rem;
+    color: #566074;
+}
+
+.jobflow-score-bar {
+    height: 8px;
+    background: rgba(139,92,246,0.12);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.jobflow-score-bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #5b47e7);
+    border-radius: inherit;
+}
+
+.jobflow-primary-button {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #8b5cf6, #5f48e7);
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+}
+
+.jobflow-table-card {
+    padding: 16px 14px 12px;
+}
+
+.jobflow-table-header {
+    padding: 0 6px;
+}
+
+.jobflow-table-tools {
+    display: flex;
+    gap: 8px;
+    color: #6d7683;
+}
+
+.jobflow-table-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jobflow-table-card th,
+.jobflow-table-card td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(17,24,39,0.05);
+    vertical-align: middle;
+}
+
+.jobflow-table-card th {
+    color: #7d8595;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: 700;
+}
+
+.jobflow-table-card td {
+    font-size: 0.78rem;
+    color: #1b1f2a;
+}
+
+.jobflow-company-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jobflow-company-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, rgba(124,77,255,0.18), rgba(91,73,231,0.08));
+    color: var(--primary-strong);
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.jobflow-company-cell strong,
+.jobflow-company-cell small {
+    display: block;
+}
+
+.jobflow-company-cell small {
+    color: #778197;
+    font-size: 0.62rem;
+}
+
+.jobflow-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.38rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.jobflow-badge-success {
+    color: #246b4d;
+    background: rgba(30,169,124,0.12);
+    border-color: rgba(30,169,124,0.15);
+}
+
+.jobflow-badge-warning {
+    color: #8e5b18;
+    background: rgba(211,125,47,0.14);
+    border-color: rgba(211,125,47,0.18);
+}
+
+.jobflow-badge-info {
+    color: #3b5d96;
+    background: rgba(80,120,255,0.12);
+    border-color: rgba(80,120,255,0.16);
+}
+
+.jobflow-badge-danger {
+    color: #9a3d48;
+    background: rgba(210,79,95,0.12);
+    border-color: rgba(210,79,95,0.18);
+}
+
+.jobflow-action-cell {
+    color: #556074;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.jobflow-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 4px;
+    color: #697484;
+    font-size: 0.72rem;
+}
+
+.jobflow-pagination div {
+    display: flex;
+    gap: 8px;
+}
+
+.jobflow-pagination button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(17,24,39,0.04);
+    color: #404b5c;
+    font-weight: 700;
+}
+
+.jobflow-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.9fr);
+    gap: 18px;
+}
+
+.jobflow-purple-cta {
+    background: linear-gradient(135deg, rgba(139,92,246,0.96), rgba(108,88,232,0.94));
+    padding: 22px 18px 16px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.jobflow-purple-cta::before {
+    content: "";
+    position: absolute;
+    inset: -60px -60px auto auto;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+}
+
+.jobflow-purple-cta::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -54px -32px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+}
+
+.jobflow-cta-label,
+.jobflow-purple-cta h3,
+.jobflow-purple-cta button {
+    position: relative;
+    z-index: 1;
+}
+
+.jobflow-cta-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.86);
+}
+
+.jobflow-purple-cta h3 {
+    margin: 10px 0 18px;
+    font-size: 1.8rem;
+    line-height: 1.08;
+    letter-spacing: -0.06em;
+    max-width: 200px;
+}
+
+.jobflow-purple-cta button {
+    align-self: flex-start;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: white;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    font-weight: 700;
+}
+
+.jobflow-recommendation-panel {
+    padding: 16px 14px;
+}
+
+.jobflow-recommend-header {
+    padding: 0 4px;
+}
+
+.jobflow-job-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.jobflow-job-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,255,0.96));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 12px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 24px rgba(15,23,42,0.03);
+}
+
+.jobflow-job-card-purple {
+    background: linear-gradient(180deg, rgba(124,77,255,0.04), rgba(255,255,255,0.95));
+}
+
+.jobflow-job-card-light {
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,246,249,0.95));
+}
+
+.jobflow-job-card-soft {
+    background: linear-gradient(180deg, rgba(109,210,255,0.05), rgba(255,255,255,0.95));
+}
+
+.jobflow-job-meta {
+    font-size: 0.72rem;
+    color: #6d7787;
+}
+
+.jobflow-job-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.jobflow-job-title-row strong {
+    display: block;
+    font-size: 1rem;
+    letter-spacing: -0.03em;
+    color: #1b1f2a;
+}
+
+.jobflow-job-title-row small {
+    display: block;
+    color: #6c7584;
+    font-size: 0.72rem;
+}
+
+.jobflow-job-bookmark {
+    font-size: 0.9rem;
+    color: #697589;
+    padding-top: 4px;
+}
+
+.jobflow-job-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #677282;
+    font-size: 0.7rem;
+}
+
+.jobflow-job-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(17,24,39,0.04);
+    display: grid;
+    place-items: center;
+}
+
+@media (max-width: 1200px) {
+    .jobflow-upper-grid,
+    .jobflow-lower-grid,
+    .jobflow-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jobflow-job-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .jobflow-dashboard-shell {
+        display: block;
+        margin: 16px auto;
+        width: min(100vw - 18px, 700px);
+    }
+
+    .jobflow-sidebar {
+        border-right: none;
+        border-bottom: 1px solid rgba(17,24,39,0.06);
+        padding: 18px 14px 14px;
+    }
+
+    .jobflow-main-panel {
+        padding: 14px;
+    }
+
+    .jobflow-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .jobflow-header-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .jobflow-search {
+        flex: 1;
+        min-width: 0;
+        height: 40px;
+    }
+
+    .jobflow-user-panel {
+        width: auto;
+    }
+
+    .jobflow-title-wrap p {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .jobflow-stat-grid,
+    .jobflow-job-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jobflow-score-row {
+        grid-template-columns: 80px minmax(0, 1fr) 30px;
+    }
+
+    .jobflow-table-card {
+        overflow-x: auto;
+    }
+
+    .jobflow-table-card table {
+        min-width: 620px;
+    }
+
+    .jobflow-header-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .jobflow-user-panel {
+        width: 100%;
+        justify-content: space-between;
+        padding: 6px 8px;
+    }
+
+    .jobflow-search {
+        width: 100%;
+    }
+
+    .jobflow-cta-button {
+        width: 100%;
+        padding: 0.8rem 1rem;
+    }
+
+    .jobflow-title-wrap {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .jobflow-title-wrap h2 {
+        font-size: 1.35rem;
+    }
+
+    .jobflow-user-mini-card {
+        min-width: 0;
+    }
+
+    .jobflow-user-mini-card strong,
+    .jobflow-user-mini-card small {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .jobflow-user-chip {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .jobflow-nav a {
+        padding: 10px 10px;
+    }
+
+    .jobflow-schedule-item {
+        grid-template-columns: 38px minmax(0, 1fr) 24px;
+        gap: 8px;
+    }
+
+    .jobflow-date-box {
+        width: 38px;
+        height: 38px;
     }
 }
 

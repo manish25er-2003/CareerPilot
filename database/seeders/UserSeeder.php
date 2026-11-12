@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'user@careerpilot.test'],
             [
-                'name' => 'Demo User',
+                'name' => 'Rayden',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
                 'role' => 'user',
