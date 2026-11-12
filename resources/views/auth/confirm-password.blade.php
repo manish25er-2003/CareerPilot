@@ -1,27 +1,24 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+    <div class="auth-header">
+        <div class="eyebrow">Secure action</div>
+        <h1>Confirm your password</h1>
+        <p>Please enter your password to continue to this secure area.</p>
     </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
+    <form method="POST" action="{{ route('password.confirm') }}" class="auth-form">
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="auth-field">
+            <label for="password" class="auth-label">Password</label>
+            <div class="password-wrap">
+                <input id="password" class="auth-input" type="password" name="password" required autocomplete="current-password">
+                <button type="button" class="pass-toggle" data-password-toggle data-target="password">Show</button>
+            </div>
+            @error('password')
+                <span class="text-danger small">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="auth-submit">Confirm</button>
     </form>
 </x-guest-layout>

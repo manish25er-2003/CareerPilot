@@ -97,21 +97,21 @@
         <div class="row g-4">
             <div class="col-md-6 col-lg-4">
                 <div class="card-soft p-4 h-100">
-                    <div class="fs-2 mb-3">📄</div>
+                    <div class="feature-icon">AI</div>
                     <h5 class="fw-bold">AI Resume Analysis</h5>
                     <p class="text-secondary-custom mb-0">Get match scores, ATS suggestions, skills gaps, and action items to improve every resume version.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="card-soft p-4 h-100">
-                    <div class="fs-2 mb-3">🧠</div>
+                    <div class="feature-icon">SK</div>
                     <h5 class="fw-bold">Skill Tracking</h5>
                     <p class="text-secondary-custom mb-0">Organize your strengths by category and monitor growth with live professional profile progress.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="card-soft p-4 h-100">
-                    <div class="fs-2 mb-3">🎯</div>
+                    <div class="feature-icon">IP</div>
                     <h5 class="fw-bold">Interview Practice</h5>
                     <p class="text-secondary-custom mb-0">Generate mock questions, capture answers, and receive scored feedback to sharpen your delivery.</p>
                 </div>

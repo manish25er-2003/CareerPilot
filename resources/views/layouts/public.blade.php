@@ -27,7 +27,8 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-white border-bottom border-soft py-3 sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block; box-shadow: 0 0 0 6px rgba(124, 77, 255, 0.12);"></span>
                 <span class="text-primary-custom">Career</span>Pilot AI
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">

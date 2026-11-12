@@ -72,7 +72,7 @@
         <div class="card-soft p-4 h-100">
             <h5 class="fw-bold mb-3">Upcoming interview reminders</h5>
             @forelse($upcomingInterviews as $interview)
-                <div class="border rounded-3 p-3 mb-3">
+                <div class="dashboard-mini-card mb-3">
                     <div class="fw-semibold">{{ $interview->company_name }}</div>
                     <div class="small text-secondary-custom">{{ $interview->job_title }}</div>
                     <div class="small text-primary-custom mt-2">{{ $interview->interview_date ? \Carbon\Carbon::parse($interview->interview_date)->format('M d, Y h:i A') : 'No date set' }}</div>
@@ -89,7 +89,7 @@
         <div class="card-soft p-4">
             <h5 class="fw-bold mb-3">Recent AI analysis</h5>
             @forelse($recentAnalyses as $analysis)
-                <div class="d-flex justify-content-between border-bottom py-2">
+                <div class="analysis-item d-flex justify-content-between align-items-center">
                     <div>
                         <div class="fw-semibold">{{ $analysis->job_title }}</div>
                         <div class="small text-secondary-custom">{{ $analysis->created_at->diffForHumans() }}</div>
@@ -107,12 +107,12 @@
             <h5 class="fw-bold mb-3">Career progress</h5>
             <div class="d-grid gap-2">
                 @foreach($statusCounts as $status => $count)
-                    <div>
+                    <div class="progress-row">
                         <div class="d-flex justify-content-between small text-secondary-custom mb-1">
                             <span>{{ $status }}</span>
                             <span>{{ $count }}</span>
                         </div>
-                        <div class="progress" style="height: 8px;">
+                        <div class="progress" style="height: 8px; background: rgba(124,77,255,0.08);">
                             <div class="progress-bar bg-primary-custom" role="progressbar" style="width: {{ $count ? min(100, ($count / max(1, array_sum($statusCounts))) * 100) : 0 }}%"></div>
                         </div>
                     </div>

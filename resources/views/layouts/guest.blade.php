@@ -5,31 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="Login to CareerPilot AI and manage your job search, resume, and interview progress with AI-powered insights.">
-        <meta name="theme-color" content="#0f172a">
+        <meta name="theme-color" content="#111827">
         <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
         <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-
         <title>{{ config('app.name', 'CareerPilot AI') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}">
     </head>
-    <body class="font-sans text-gray-900 antialiased premium-shell premium-auth-shell">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+    <body class="auth-shell">
+        <div class="auth-page">
+            <div class="auth-card">
+                <div class="auth-brand">
+                    <div class="brand-mark">CP</div>
+                    <div><span>Career</span>Pilot AI</div>
+                </div>
+                <div class="auth-body">
+                    {{ $slot }}
+                </div>
             </div>
         </div>
+
+        <script>
+            document.querySelectorAll('[data-password-toggle]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const input = document.getElementById(button.getAttribute('data-target'));
+                    if (!input) return;
+                    const isPassword = input.type === 'password';
+                    input.type = isPassword ? 'text' : 'password';
+                    button.textContent = isPassword ? 'Hide' : 'Show';
+                });
+            });
+        </script>
     </body>
 </html>

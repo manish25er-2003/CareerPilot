@@ -13,7 +13,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <form method="POST" action="{{ route('contact.submit') }}">
+            <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
                 <div class="row g-3">
                     <div class="col-md-6">

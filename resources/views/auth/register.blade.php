@@ -1,52 +1,64 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <div class="auth-header">
+        <div class="eyebrow">Create account</div>
+        <h1>Start your career growth plan</h1>
+        <p>Build your profile, track applications, and prepare for interviews with AI-powered insights.</p>
+    </div>
+
+    <form method="POST" action="{{ route('register') }}" class="auth-form">
         @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <div class="auth-field">
+            <label for="name" class="auth-label">Full name</label>
+            <input id="name" class="auth-input" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+            @error('name')
+                <span class="text-danger small">{{ $message }}</span>
+            @enderror
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="auth-field">
+            <label for="email" class="auth-label">Email address</label>
+            <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
+            @error('email')
+                <span class="text-danger small">{{ $message }}</span>
+            @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="auth-field">
+            <label for="password" class="auth-label">Password</label>
+            <div class="password-wrap">
+                <input id="password" class="auth-input" type="password" name="password" required autocomplete="new-password">
+                <button type="button" class="pass-toggle" data-password-toggle data-target="password">Show</button>
+            </div>
+            @error('password')
+                <span class="text-danger small">{{ $message }}</span>
+            @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="auth-field">
+            <label for="password_confirmation" class="auth-label">Confirm password</label>
+            <div class="password-wrap">
+                <input id="password_confirmation" class="auth-input" type="password" name="password_confirmation" required autocomplete="new-password">
+                <button type="button" class="pass-toggle" data-password-toggle data-target="password_confirmation">Show</button>
+            </div>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+        <label for="terms" class="auth-check" style="margin-top: 0.25rem;">
+            <input id="terms" type="checkbox" required>
+            <span>I agree to the <a href="{{ route('terms-and-conditions') }}" class="auth-link">terms and conditions</a></span>
+        </label>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <button type="submit" class="auth-submit">Create account</button>
+
+        <div class="auth-divider">or</div>
+
+        <button type="button" class="btn-google" aria-label="Continue with Google">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.3-1.6 3.9-5.4 3.9-3.3 0-5.9-2.7-5.9-6s2.6-6 5.9-6c1.9 0 3.2.8 3.9 1.5l2.6-2.6C16.7 3.5 14.6 2.7 12 2.7 6.8 2.7 2.7 6.8 2.7 12s4.1 9.3 9.3 9.3c5.4 0 9-3.8 9-9.1 0-.6-.1-1.3-.2-1.9H12z"/><path fill="#34A853" d="M3.7 7.4l3.4 2.5c.9-1.8 2.9-3.1 4.9-3.1 1.9 0 3.2.8 3.9 1.5l2.6-2.6C16.7 3.5 14.6 2.7 12 2.7c-3.9 0-7.2 2.3-8.3 5.7z"/><path fill="#FBBC05" d="M3.7 16.6c1.1 3.4 4.4 5.7 8.3 5.7 2.5 0 4.6-.8 6.1-2.2l-3-2.6c-.8.5-1.8.9-3.1.9-2.8 0-5.2-1.9-6.1-4.5l-2.2 1.7z"/><path fill="#4285F4" d="M12 21.3c2.6 0 4.7-.9 6.3-2.4l-2.9-2.5c-.8.6-1.9 1-3.4 1-2.9 0-5.3-2.1-5.9-4.9L.9 11.8C1.9 17 6.4 21.3 12 21.3z"/></svg>
+            Continue with Google
+        </button>
+
+        <div class="auth-footer">
+            Already have an account? <a href="{{ route('login') }}" class="auth-link">Log in</a>
         </div>
     </form>
 </x-guest-layout>

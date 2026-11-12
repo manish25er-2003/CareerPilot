@@ -12,10 +12,56 @@
 </head>
 <body class="app-shell">
     <div class="container-fluid p-0">
+        <div class="d-flex d-lg-none align-items-center justify-content-between px-3 py-3 border-bottom" style="background: rgba(255,255,255,0.7);">
+            <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold text-dark">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block;"></span>
+                CareerPilot AI
+            </a>
+            <button class="btn btn-outline-custom" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+                Menu
+            </button>
+        </div>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="mobileSidebarLabel">CareerPilot AI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <aside class="sidebar h-100">
+                    <div class="d-flex align-items-center justify-content-between mb-4 px-2">
+                        <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold fs-5" style="color: #ffffff;">
+                            <span style="width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block;"></span>
+                            CareerPilot AI
+                        </a>
+                    </div>
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('profile.index') }}">My Profile</a>
+                        <a class="nav-link" href="{{ route('skills.index') }}">My Skills</a>
+                        <a class="nav-link" href="{{ route('resumes.index') }}">My Resumes</a>
+                        <a class="nav-link" href="{{ route('ai-analysis.index') }}">AI Resume Analysis</a>
+                        <a class="nav-link" href="{{ route('jobs.index') }}">Job Applications</a>
+                        <a class="nav-link" href="{{ route('interviews.index') }}">Interview Practice</a>
+                        <a class="nav-link" href="{{ route('reports.overview') }}">Progress Reports</a>
+                        <a class="nav-link" href="{{ route('contact') }}">Notifications</a>
+                        <a class="nav-link" href="{{ route('home') }}">Settings</a>
+                        <form method="POST" action="{{ route('logout') }}" class="mt-4">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light w-100">Logout</button>
+                        </form>
+                    </nav>
+                </aside>
+            </div>
+        </div>
+
         <div class="row g-0">
-            <aside class="col-lg-2 sidebar">
+            <aside class="col-lg-2 sidebar d-none d-lg-block">
                 <div class="d-flex align-items-center justify-content-between mb-4 px-2">
-                    <a href="{{ route('home') }}" class="text-decoration-none text-white fw-bold fs-5">CareerPilot AI</a>
+                    <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold fs-5" style="color: #ffffff;">
+                        <span style="width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block;"></span>
+                        CareerPilot AI
+                    </a>
                 </div>
                 <nav class="nav flex-column">
                     <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard</a>
