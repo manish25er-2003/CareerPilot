@@ -7,14 +7,21 @@
     <meta name="description" content="CareerPilot AI helps job seekers track applications, improve resumes, practice interviews, and grow faster with AI-powered insights.">
     <meta name="keywords" content="AI resume builder, job tracking, interview prep, career growth, career dashboard, AI career assistant">
     <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CareerPilot AI">
     <meta property="og:title" content="CareerPilot AI | AI Career Growth Platform">
     <meta property="og:description" content="Track applications, improve your resume, practice interviews, and stay organized with CareerPilot AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ asset('favicon.svg') }}">
+    <meta property="og:image" content="{{ asset('favicon-512.png') }}">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('favicon-512.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon-192.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
     <title>@yield('title', 'CareerPilot AI | AI Career Growth Platform')</title>
@@ -25,10 +32,10 @@
     <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom border-soft py-3 sticky-top">
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
-                <span style="width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block; box-shadow: 0 0 0 6px rgba(124, 77, 255, 0.12);"></span>
+                <span class="brand-dot"></span>
                 <span class="text-primary-custom">Career</span>Pilot AI
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
@@ -42,7 +49,7 @@
                     <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('how-it-works') }}">How It Works</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 nav-actions">
                     @auth
                         <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
                     @else
@@ -58,7 +65,7 @@
         @yield('content')
     </main>
 
-    <footer class="bg-navy text-white py-5 mt-5">
+    <footer class="bg-navy text-white py-5 mt-5 premium-footer">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
