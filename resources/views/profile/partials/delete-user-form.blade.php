@@ -21,7 +21,7 @@
                         <label for="password" class="form-label fw-semibold">Password</label>
                         <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                         @error('password')
-                            <div class="text-danger small mt-2">{{ $message }}</div>
+                        <div class="text-danger small mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 

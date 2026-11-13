@@ -15,7 +15,7 @@
                 <button type="button" class="pass-toggle" data-password-toggle data-target="password">Show</button>
             </div>
             @error('password')
-                <span class="text-danger small">{{ $message }}</span>
+            <span class="text-danger small">{{ $message }}</span>
             @enderror
         </div>
 

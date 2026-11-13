@@ -35,15 +35,15 @@
         <div class="card-soft p-4 h-100">
             <h5 class="fw-bold mb-3">Application status breakdown</h5>
             @foreach($statusBreakdown as $status => $count)
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between small text-secondary-custom mb-1">
-                        <span>{{ $status }}</span>
-                        <span>{{ $count }}</span>
-                    </div>
-                    <div class="progress" style="height: 10px;">
-                        <div class="progress-bar bg-primary-custom" style="width: {{ min(100, (($count / max(1, $statusBreakdown->sum())) * 100)) }}%"></div>
-                    </div>
+            <div class="mb-3">
+                <div class="d-flex justify-content-between small text-secondary-custom mb-1">
+                    <span>{{ $status }}</span>
+                    <span>{{ $count }}</span>
                 </div>
+                <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-primary-custom" style="width: {{ min(100, (($count / max(1, $statusBreakdown->sum())) * 100)) }}%"></div>
+                </div>
+            </div>
             @endforeach
         </div>
     </div>

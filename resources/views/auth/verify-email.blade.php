@@ -6,9 +6,9 @@
     </div>
 
     @if (session('status') == 'verification-link-sent')
-        <div class="alert alert-success mb-4">
-            A new verification link has been sent to the email address provided during registration.
-        </div>
+    <div class="alert alert-success mb-4">
+        A new verification link has been sent to the email address provided during registration.
+    </div>
     @endif
 
     <form method="POST" action="{{ route('verification.send') }}" class="auth-form">

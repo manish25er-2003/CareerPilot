@@ -14,7 +14,7 @@
             <label for="email" class="auth-label">Email address</label>
             <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autofocus>
             @error('email')
-                <span class="text-danger small">{{ $message }}</span>
+            <span class="text-danger small">{{ $message }}</span>
             @enderror
         </div>
 

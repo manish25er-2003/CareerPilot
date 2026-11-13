@@ -71,17 +71,17 @@
             </thead>
             <tbody>
                 @forelse($jobs as $job)
-                    <tr>
-                        <td class="fw-semibold">{{ $job->company_name }}</td>
-                        <td>{{ $job->job_title }}</td>
-                        <td>{{ $job->location ?? '—' }}</td>
-                        <td><span class="badge bg-soft-blue text-primary-custom">{{ $job->status }}</span></td>
-                        <td>{{ $job->applied_at ? \Carbon\Carbon::parse($job->applied_at)->format('M d, Y') : '—' }}</td>
-                    </tr>
+                <tr>
+                    <td class="fw-semibold">{{ $job->company_name }}</td>
+                    <td>{{ $job->job_title }}</td>
+                    <td>{{ $job->location ?? '—' }}</td>
+                    <td><span class="badge bg-soft-blue text-primary-custom">{{ $job->status }}</span></td>
+                    <td>{{ $job->applied_at ? \Carbon\Carbon::parse($job->applied_at)->format('M d, Y') : '—' }}</td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="5" class="text-center text-secondary-custom py-4">No applications yet.</td>
-                    </tr>
+                <tr>
+                    <td colspan="5" class="text-center text-secondary-custom py-4">No applications yet.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

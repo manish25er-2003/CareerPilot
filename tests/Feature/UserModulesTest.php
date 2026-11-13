@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Models\AiAnalysis;
+use App\Models\InterviewSession;
 use App\Models\JobApplication;
 use App\Models\Profile;
+use App\Models\Resume;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -46,6 +49,51 @@ class UserModulesTest extends TestCase
             ->assertRedirect('/profile');
 
         $this->assertCount(1, Storage::disk('public')->allFiles('profile-images'));
+    }
+
+    public function test_dashboard_shows_database_based_counts_for_user_records(): void
+    {
+        $user = User::factory()->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+        ]);
+
+        JobApplication::factory()->count(2)->create([
+            'user_id' => $user->id,
+            'status' => 'Applied',
+        ]);
+        Resume::factory()->count(1)->create(['user_id' => $user->id]);
+        InterviewSession::factory()->count(1)->create([
+            'user_id' => $user->id,
+            'status' => 'completed',
+            'total_score' => 90,
+        ]);
+        AiAnalysis::factory()->count(1)->create([
+            'user_id' => $user->id,
+            'overall_score' => 82,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/dashboard')
+            ->assertOk()
+            ->assertSeeInOrder(['Total Applications Sent', '2']);
+    }
+
+    public function test_admin_dashboard_shows_application_wide_statistics(): void
+    {
+        $admin = User::factory()->create(['role' => 'admin', 'email' => 'admin@example.com']);
+        $user = User::factory()->create(['role' => 'user', 'email' => 'user@example.com']);
+
+        JobApplication::factory()->count(3)->create(['user_id' => $user->id]);
+        Resume::factory()->count(2)->create(['user_id' => $user->id]);
+        InterviewSession::factory()->count(1)->create(['user_id' => $user->id]);
+        AiAnalysis::factory()->count(1)->create(['user_id' => $user->id]);
+
+        $this->actingAs($admin)
+            ->get('/admin/dashboard')
+            ->assertOk()
+            ->assertSeeInOrder(['Total users', '3'])
+            ->assertSeeInOrder(['Total resumes', '2']);
     }
 
     public function test_dashboard_page_is_accessible(): void

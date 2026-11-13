@@ -36,7 +36,7 @@ class InterviewService
 
         $selected = array_slice($base, 0, 3);
 
-        return array_map(fn ($question) => [
+        return array_map(fn($question) => [
             'question' => $question,
             'category' => $category,
             'difficulty' => $difficulty,
@@ -46,7 +46,7 @@ class InterviewService
     public function evaluateAnswer(string $answer): array
     {
         $wordCount = str_word_count(strip_tags($answer));
-        $score = min(100, max(50, 50 + ($wordCount / 10))); 
+        $score = min(100, max(50, 50 + ($wordCount / 10)));
 
         $strengths = [
             'Clear explanation of the situation and decision-making process.',

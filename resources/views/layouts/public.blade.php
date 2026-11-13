@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
         <div class="container">
@@ -51,10 +53,10 @@
                 </ul>
                 <div class="d-flex gap-2 nav-actions">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-custom">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-primary-custom text-white">Get Started</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-custom">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white">Get Started</a>
                     @endauth
                 </div>
             </div>
@@ -101,4 +103,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

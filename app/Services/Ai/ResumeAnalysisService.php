@@ -84,7 +84,7 @@ class ResumeAnalysisService
     {
         $resumeWords = $this->tokenize($resumeText);
         $jobWords = $this->tokenize($jobDescription);
-        $common = array_values(array_unique(array_intersect($resumeWords, $jobWords))); 
+        $common = array_values(array_unique(array_intersect($resumeWords, $jobWords)));
         $missing = array_values(array_diff(array_slice($jobWords, 0, 8), $resumeWords));
 
         $match = min(100, max(40, (int) round((count($common) / max(1, count($jobWords))) * 100)));

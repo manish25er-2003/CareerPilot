@@ -23,7 +23,9 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 mt-2">
                             <li><a class="dropdown-item" href="{{ route('profile.index') }}">Account Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

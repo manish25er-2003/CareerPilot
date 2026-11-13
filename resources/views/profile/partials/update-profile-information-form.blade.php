@@ -22,7 +22,7 @@
             <label for="name" class="form-label fw-semibold">Full name</label>
             <input id="name" name="name" type="text" class="form-control" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
             @error('name')
-                <div class="text-danger small mt-2">{{ $message }}</div>
+            <div class="text-danger small mt-2">{{ $message }}</div>
             @enderror
         </div>
 
@@ -30,7 +30,7 @@
             <label for="email" class="form-label fw-semibold">Email</label>
             <input id="email" name="email" type="email" class="form-control" value="{{ old('email', $user->email) }}" required autocomplete="username">
             @error('email')
-                <div class="text-danger small mt-2">{{ $message }}</div>
+            <div class="text-danger small mt-2">{{ $message }}</div>
             @enderror
         </div>
 
@@ -88,11 +88,11 @@
             <button type="submit" class="btn btn-primary-custom text-white">Save changes</button>
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <button form="send-verification" class="btn btn-outline-custom">Verify email</button>
+            <button form="send-verification" class="btn btn-outline-custom">Verify email</button>
             @endif
 
             @if (session('status') === 'profile-updated')
-                <span class="text-success small fw-semibold">Saved.</span>
+            <span class="text-success small fw-semibold">Saved.</span>
             @endif
         </div>
     </form>

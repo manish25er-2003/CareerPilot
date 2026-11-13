@@ -61,4 +61,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/users/{id}/toggle', [AdminController::class, 'toggleUserStatus'])->name('admin.users.toggle');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

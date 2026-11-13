@@ -61,7 +61,7 @@ class InterviewController extends Controller
         ]);
 
         $session = $question->session;
-        $average = (int) round($session->questions()->with('answer')->get()->avg(fn ($question) => $question->answer?->score ?? 0));
+        $average = (int) round($session->questions()->with('answer')->get()->avg(fn($question) => $question->answer?->score ?? 0));
         $session->update(['total_score' => $average, 'summary' => 'Interview evaluated.']);
 
         return redirect()->route('interviews.show', $session->id)->with('success', 'Your answer was evaluated successfully.');
