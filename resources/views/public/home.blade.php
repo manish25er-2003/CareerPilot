@@ -216,29 +216,45 @@
 
 <section class="py-5 bg-soft-blue">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-title">How it works</h2>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card-soft process-card p-4 text-center h-100">
-                    <div class="display-6 mb-3">1</div>
-                    <h5 class="fw-bold">Create your profile</h5>
-                    <p class="text-secondary-custom mb-0">Add your experience, skills, and goals in a clean profile setup.</p>
-                </div>
+        <div class="how-it-works-shell">
+            <div class="text-center mb-5">
+                <span class="how-it-works-kicker">HOW IT WORKS</span>
+                <h2 class="section-title mb-2">Your career journey, simplified.</h2>
+                <p class="text-secondary-custom mx-auto" style="max-width: 620px;">Three simple steps to move closer to your next opportunity.</p>
             </div>
-            <div class="col-md-4">
-                <div class="card-soft process-card p-4 text-center h-100">
-                    <div class="display-6 mb-3">2</div>
-                    <h5 class="fw-bold">Improve your story</h5>
-                    <p class="text-secondary-custom mb-0">Use AI coaching to refine your resume and prepare for interviews.</p>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="how-it-step">
+                        <div class="step-circle step-circle--purple">
+                            <span>01</span>
+                        </div>
+                        <div class="step-icon">👤</div>
+                        <h5>Create your profile</h5>
+                        <p>Add your experience, skills, and goals to build a clear professional profile.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-soft process-card p-4 text-center h-100">
-                    <div class="display-6 mb-3">3</div>
-                    <h5 class="fw-bold">Apply with focus</h5>
-                    <p class="text-secondary-custom mb-0">Track your pipeline and move confidently through each opportunity.</p>
+
+                <div class="col-md-4">
+                    <div class="how-it-step">
+                        <div class="step-circle step-circle--blue">
+                            <span>02</span>
+                        </div>
+                        <div class="step-icon">✦</div>
+                        <h5>Improve your story</h5>
+                        <p>Use AI coaching to improve your resume and sharpen the way you present your skills.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="how-it-step">
+                        <div class="step-circle step-circle--green">
+                            <span>03</span>
+                        </div>
+                        <div class="step-icon">◎</div>
+                        <h5>Apply with focus</h5>
+                        <p>Track your applications and move toward the right opportunities with more clarity.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,117 +268,59 @@
             <p class="text-secondary-custom mx-auto" style="max-width: 720px;">Real users, resumes, applications, and AI insights are being created across the platform every day.</p>
         </div>
 
-        <div class="row g-4 metric-grid">
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['users'] ?? 0 }}" style="--ring-color: #6d5efc; --ring-accent: rgba(109, 94, 252, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
+        <div class="metric-showcase-panel">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="metric-showcase-card">
+                        <div class="metric-ring metric-ring--purple" style="--percent: 70;">
+                            <span>70%</span>
+                        </div>
+                        <div class="metric-showcase-copy">
+                            <h4>Resume completion</h4>
+                            <small>70% completed</small>
                         </div>
                     </div>
-                    <div class="metric-label">Users</div>
-                    <div class="metric-subtitle">Active members</div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['resumes'] ?? 0 }}" style="--ring-color: #7c3aed; --ring-accent: rgba(124, 58, 237, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="metric-showcase-card">
+                        <div class="metric-ring metric-ring--blue" style="--percent: 45;">
+                            <span>45%</span>
+                        </div>
+                        <div class="metric-showcase-copy">
+                            <h4>Applications</h4>
+                            <small>45% completed</small>
                         </div>
                     </div>
-                    <div class="metric-label">Resumes</div>
-                    <div class="metric-subtitle">Uploaded and tracked</div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['applications'] ?? 0 }}" style="--ring-color: #4f46e5; --ring-accent: rgba(79, 70, 229, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="metric-showcase-card">
+                        <div class="metric-ring metric-ring--green" style="--percent: 85;">
+                            <span>85%</span>
+                        </div>
+                        <div class="metric-showcase-copy">
+                            <h4>Interview practice</h4>
+                            <small>85% completed</small>
                         </div>
                     </div>
-                    <div class="metric-label">Applications</div>
-                    <div class="metric-subtitle">Jobs in progress</div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['analyses'] ?? 0 }}" style="--ring-color: #8b5cf6; --ring-accent: rgba(139, 92, 246, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="metric-showcase-card">
+                        <div class="metric-ring metric-ring--orange" style="--percent: 30;">
+                            <span>30%</span>
+                        </div>
+                        <div class="metric-showcase-copy">
+                            <h4>AI analysis</h4>
+                            <small>30% completed</small>
                         </div>
                     </div>
-                    <div class="metric-label">AI analyses</div>
-                    <div class="metric-subtitle">Resume match checks</div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['activeUsers'] ?? 0 }}" style="--ring-color: #6366f1; --ring-accent: rgba(99, 102, 241, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
-                        </div>
-                    </div>
-                    <div class="metric-label">Active users</div>
-                    <div class="metric-subtitle">Currently enabled</div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="metric-card card-soft p-4 h-100 text-center">
-                    <div class="metric-ring" data-target="{{ $platformStats['interviews'] ?? 0 }}" style="--ring-color: #5b4ef7; --ring-accent: rgba(91, 78, 247, 0.15);">
-                        <div class="metric-ring__inner">
-                            <span class="metric-ring__value">0</span>
-                        </div>
-                    </div>
-                    <div class="metric-label">Interviews</div>
-                    <div class="metric-subtitle">Interview sessions</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const rings = document.querySelectorAll('.metric-ring');
-
-        const animateRing = (ring) => {
-            const target = Number(ring.dataset.target || 0);
-            const valueEl = ring.querySelector('.metric-ring__value');
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const duration = prefersReducedMotion ? 0 : 1200;
-            const start = performance.now();
-
-            const tick = (time) => {
-                const progress = Math.min((time - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.round(target * eased);
-                const percent = Math.min((current / Math.max(target, 1)) * 100, 100);
-
-                ring.style.setProperty('--progress', percent);
-                valueEl.textContent = current;
-
-                if (progress < 1) {
-                    requestAnimationFrame(tick);
-                } else {
-                    ring.style.setProperty('--progress', 100);
-                    valueEl.textContent = target;
-                }
-            };
-
-            if (duration === 0) {
-                ring.style.setProperty('--progress', 100);
-                valueEl.textContent = target;
-                return;
-            }
-
-            requestAnimationFrame(tick);
-        };
-
-        rings.forEach(animateRing);
-    });
-</script>
 
 <section class="py-5 bg-soft-blue">
     <div class="container">
@@ -371,55 +329,69 @@
             <p class="text-secondary-custom mx-auto" style="max-width: 720px;">Fresh user signups, resumes, and job applications from the live CareerPilot platform.</p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="card-soft p-4 h-100">
-                    <h5 class="fw-bold mb-3">New users</h5>
-                    @forelse($recentUsers as $user)
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <div>
-                                <div class="fw-semibold">{{ $user->name }}</div>
-                                <div class="small text-secondary-custom">{{ $user->email }}</div>
-                            </div>
-                            <span class="small text-secondary-custom">{{ $user->created_at?->diffForHumans() }}</span>
+        <div class="recent-activity-panel">
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4">
+                    <div class="activity-block">
+                        <div class="activity-block__head">
+                            <span class="activity-icon activity-icon--purple">👥</span>
+                            <span>Users</span>
                         </div>
-                    @empty
-                        <div class="text-secondary-custom small">No recent users yet.</div>
-                    @endforelse
+                        <h4>New members</h4>
+                        @forelse($recentUsers as $user)
+                        <div class="activity-item">
+                            <div>
+                                <strong>{{ $user->name }}</strong>
+                                <small>{{ $user->email }}</small>
+                            </div>
+                            <span>{{ $user->created_at?->diffForHumans() }}</span>
+                        </div>
+                        @empty
+                        <p class="activity-empty">No recent users yet. New members will appear here.</p>
+                        @endforelse
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="card-soft p-4 h-100">
-                    <h5 class="fw-bold mb-3">Latest resumes</h5>
-                    @forelse($recentResumes as $resume)
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <div>
-                                <div class="fw-semibold">{{ $resume->title }}</div>
-                                <div class="small text-secondary-custom">{{ $resume->user?->name ?? 'Unknown user' }}</div>
-                            </div>
-                            <span class="small text-secondary-custom">{{ $resume->created_at?->diffForHumans() }}</span>
+                <div class="col-lg-4">
+                    <div class="activity-block">
+                        <div class="activity-block__head">
+                            <span class="activity-icon activity-icon--blue">📄</span>
+                            <span>Resumes</span>
                         </div>
-                    @empty
-                        <div class="text-secondary-custom small">No recent resumes yet.</div>
-                    @endforelse
+                        <h4>Resume updates</h4>
+                        @forelse($recentResumes as $resume)
+                        <div class="activity-item">
+                            <div>
+                                <strong>{{ $resume->title }}</strong>
+                                <small>{{ $resume->user?->name ?? 'Unknown user' }}</small>
+                            </div>
+                            <span>{{ $resume->created_at?->diffForHumans() }}</span>
+                        </div>
+                        @empty
+                        <p class="activity-empty">Recently uploaded resumes will appear here.</p>
+                        @endforelse
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="card-soft p-4 h-100">
-                    <h5 class="fw-bold mb-3">Latest applications</h5>
-                    @forelse($recentApplications as $application)
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <div>
-                                <div class="fw-semibold">{{ $application->job_title }}</div>
-                                <div class="small text-secondary-custom">{{ $application->company_name }} · {{ $application->user?->name ?? 'Unknown user' }}</div>
-                            </div>
-                            <span class="badge bg-soft-blue text-primary-custom rounded-pill">{{ $application->status }}</span>
+                <div class="col-lg-4">
+                    <div class="activity-block">
+                        <div class="activity-block__head">
+                            <span class="activity-icon activity-icon--green">💼</span>
+                            <span>Jobs</span>
                         </div>
-                    @empty
-                        <div class="text-secondary-custom small">No recent applications yet.</div>
-                    @endforelse
+                        <h4>Job applications</h4>
+                        @forelse($recentApplications as $application)
+                        <div class="activity-item">
+                            <div>
+                                <strong>{{ $application->job_title }}</strong>
+                                <small>{{ $application->company_name }}</small>
+                            </div>
+                            <span class="activity-badge">{{ $application->status }}</span>
+                        </div>
+                        @empty
+                        <p class="activity-empty">Track the latest job applications here.</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

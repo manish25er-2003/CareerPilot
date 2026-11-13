@@ -80,15 +80,15 @@
             <small>Features</small>
         </a>
         @auth
-            <a href="{{ route('dashboard') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <span>📊</span>
-                <small>Dash</small>
-            </a>
+        <a href="{{ route('dashboard') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+            <span>📊</span>
+            <small>Dash</small>
+        </a>
         @else
-            <a href="{{ route('login') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('login') ? 'active' : '' }}">
-                <span>🔐</span>
-                <small>Login</small>
-            </a>
+        <a href="{{ route('login') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('login') ? 'active' : '' }}">
+            <span>🔐</span>
+            <small>Login</small>
+        </a>
         @endauth
         <a href="{{ auth()->check() ? route('dashboard') : route('register') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('register') ? 'active' : '' }}">
             <span>{{ auth()->check() ? '🚀' : '➕' }}</span>

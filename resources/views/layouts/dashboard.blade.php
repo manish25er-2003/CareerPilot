@@ -59,55 +59,121 @@ $mobileMoreNav = [
 @endphp
 
 <body class="app-shell">
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <aside class="col-lg-2 sidebar d-none d-lg-block">
-                <div class="d-flex align-items-center justify-content-between mb-4 px-2">
-                    <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none fw-bold fs-5" style="color: #ffffff;">
-                        <span style="width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #4f46e5); display: inline-block;"></span>
-                        CareerPilot AI
-                    </a>
+    <div class="jobflow-dashboard-shell">
+        <aside class="jobflow-sidebar">
+            <div class="jobflow-logo">
+                <a href="{{ route('home') }}" class="d-flex align-items-center gap-2 text-decoration-none" style="color: #ffffff;">
+                    <span class="jobflow-logo-mark">✦</span>
+                    <span>CareerPilot AI</span>
+                </a>
+            </div>
+
+            <div class="jobflow-user-chip">
+                <span class="jobflow-user-avatar">
+                    @if ($profileImage)
+                    <img src="{{ $profileImage }}" alt="{{ $userName }}" class="img-fluid rounded-circle">
+                    @else
+                    {{ $userInitials ?: 'U' }}
+                    @endif
+                </span>
+                <div>
+                    <strong>{{ $userName }}</strong>
+                    <small>{{ $userEmail }}</small>
+                </div>
+            </div>
+
+            <nav class="jobflow-nav" aria-label="Sidebar navigation">
+                <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                <a class="{{ request()->routeIs('profile.*') ? 'active' : '' }}" href="{{ route('profile.index') }}">My Profile</a>
+                <a class="{{ request()->routeIs('skills.*') ? 'active' : '' }}" href="{{ route('skills.index') }}">My Skills</a>
+                <a class="{{ request()->routeIs('resumes.*') ? 'active' : '' }}" href="{{ route('resumes.index') }}">My Resumes</a>
+                <a class="{{ request()->routeIs('jobs.*') ? 'active' : '' }}" href="{{ route('jobs.index') }}">Job Applications</a>
+                <a class="{{ request()->routeIs('interviews.*') ? 'active' : '' }}" href="{{ route('interviews.index') }}">Interview Practice</a>
+                <a class="{{ request()->routeIs('ai-analysis.*') ? 'active' : '' }}" href="{{ route('ai-analysis.index') }}">AI Analysis</a>
+                <a class="{{ request()->routeIs('reports.*') ? 'active' : '' }}" href="{{ route('reports.overview') }}">Progress Reports</a>
+                <a class="{{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Notifications</a>
+                <a class="{{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Settings</a>
+            </nav>
+
+            <div id="installAppCard" class="install-app-card" hidden>
+                <div class="install-app-card__panel">
+                    <button type="button" class="install-app-card__dismiss" id="dismissInstallAppCard" aria-label="Dismiss install app card">×</button>
+                    <div class="install-app-card__top">
+                        <div class="install-app-card__logo">
+                            <img src="{{ asset('favicon-192.png') }}" alt="CareerPilot AI logo">
+                        </div>
+                        <div class="install-app-card__meta">
+                            <span class="install-app-card__eyebrow">GET THE APP</span>
+                            <h6>Install CareerPilot AI</h6>
+                        </div>
+                    </div>
+                    <p class="install-app-card__description">Get faster access to your career tools. Install the app on your device.</p>
+                    <button type="button" id="installAppBtn" class="install-app-card__button" aria-label="Install CareerPilot AI">
+                        <span class="install-app-card__button-icon" aria-hidden="true">↓</span>
+                        Install app
+                    </button>
+                    <div class="install-app-card__footer">Quick access, anytime.</div>
+                </div>
+            </div>
+
+            <form method="POST" action="{{ route('logout') }}" class="mt-auto">
+                @csrf
+                <button type="submit" class="btn btn-outline-light w-100">Logout</button>
+            </form>
+        </aside>
+
+        <main class="jobflow-main-panel">
+            <div class="jobflow-header-bar">
+                <div class="jobflow-title-wrap">
+                    <div class="jobflow-icon-badge">✦</div>
+                    <div>
+                        <h2>{{ request()->routeIs('admin.dashboard') ? 'Admin Overview' : 'Your Career Journey' }}</h2>
+                        <p>{{ request()->routeIs('admin.dashboard') ? 'Monitor growth, users, and platform performance.' : 'Track your applications, interviews, and career momentum.' }}</p>
+                    </div>
                 </div>
 
-                <div class="sidebar-profile mb-4">
-                    <div class="dashboard-user-avatar">
-                        @if ($profileImage)
-                        <img src="{{ $profileImage }}" alt="{{ $userName }}" class="img-fluid rounded-circle">
-                        @else
-                        <span>{{ $userInitials ?: 'U' }}</span>
-                        @endif
+                <div class="jobflow-header-actions">
+                    <div class="jobflow-search" aria-label="Search opportunities">
+                        <span>⌕</span>
+                        <input type="text" value="" aria-label="Search" placeholder="Search opportunities, tools...">
                     </div>
-                    <div class="dashboard-user-meta">
-                        <div class="dashboard-user-name">{{ $userName }}</div>
-                        <div class="dashboard-user-email">{{ $userEmail }}</div>
+                    <button type="button" class="jobflow-notification-btn" aria-label="Notifications">🔔</button>
+                    <div class="dropdown">
+                        <button class="jobflow-user-panel dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="jobflow-user-avatar small">
+                                @if ($profileImage)
+                                <img src="{{ $profileImage }}" alt="{{ $userName }}" />
+                                @else
+                                {{ $userInitials ?: 'U' }}
+                                @endif
+                            </span>
+                            <div class="jobflow-user-mini-card">
+                                <strong>{{ $userName }}</strong>
+                                <small>{{ $userEmail }}</small>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 mt-2">
+                            <li><a class="dropdown-item" href="{{ route('profile.index') }}">View profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Edit profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <nav class="nav flex-column">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
-                    <a class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}" href="{{ route('profile.index') }}">My Profile</a>
-                    <a class="nav-link {{ request()->routeIs('skills.*') ? 'active' : '' }}" href="{{ route('skills.index') }}">My Skills</a>
-                    <a class="nav-link {{ request()->routeIs('resumes.*') ? 'active' : '' }}" href="{{ route('resumes.index') }}">My Resumes</a>
-                    <a class="nav-link {{ request()->routeIs('ai-analysis.*') ? 'active' : '' }}" href="{{ route('ai-analysis.index') }}">AI Resume Analysis</a>
-                    <a class="nav-link {{ request()->routeIs('jobs.*') ? 'active' : '' }}" href="{{ route('jobs.index') }}">Job Applications</a>
-                    <a class="nav-link {{ request()->routeIs('interviews.*') ? 'active' : '' }}" href="{{ route('interviews.index') }}">Interview Practice</a>
-                    <a class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}" href="{{ route('reports.overview') }}">Progress Reports</a>
-                    <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Notifications</a>
-                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Settings</a>
-                    <form method="POST" action="{{ route('logout') }}" class="mt-4">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-light w-100">Logout</button>
-                    </form>
-                </nav>
-            </aside>
-
-            <main class="col-lg-10 content-area">
-                @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-                @yield('content')
-            </main>
-        </div>
+            @if (session('success'))
+            <div class="alert alert-success mb-4">{{ session('success') }}</div>
+            @endif
+            @yield('content')
+        </main>
     </div>
 
     @include('partials.footer')
@@ -155,6 +221,69 @@ $mobileMoreNav = [
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const installCard = document.getElementById('installAppCard');
+            const installBtn = document.getElementById('installAppBtn');
+            const dismissBtn = document.getElementById('dismissInstallAppCard');
+            const installKey = 'careerpilot-install-dismissed';
+
+            if (installCard && installBtn) {
+                const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+                const wasDismissed = localStorage.getItem(installKey) === '1';
+
+                if (isStandalone || wasDismissed) {
+                    installCard.hidden = true;
+                } else {
+                    installCard.hidden = false;
+                }
+
+                let deferredPrompt = null;
+
+                const showManualInstall = function() {
+                    installBtn.innerHTML = '<span class="install-app-card__button-icon" aria-hidden="true">☰</span> Use browser menu';
+                    installBtn.setAttribute('title', 'Use your browser menu and choose Add to Home Screen');
+                    installBtn.dataset.mode = 'manual';
+                    installCard.dataset.mode = 'manual';
+                };
+
+                const hideInstallCard = function() {
+                    installCard.hidden = true;
+                    localStorage.setItem(installKey, '1');
+                };
+
+                if (dismissBtn) {
+                    dismissBtn.addEventListener('click', hideInstallCard);
+                }
+
+                installBtn.addEventListener('click', function() {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.finally(function() {
+                            deferredPrompt = null;
+                        });
+                        return;
+                    }
+
+                    showManualInstall();
+                });
+
+                window.addEventListener('beforeinstallprompt', function(event) {
+                    event.preventDefault();
+                    deferredPrompt = event;
+                    installBtn.innerHTML = '<span class="install-app-card__button-icon" aria-hidden="true">↓</span> Install app';
+                    installBtn.removeAttribute('title');
+                    delete installBtn.dataset.mode;
+                    installCard.dataset.mode = 'prompt';
+                });
+
+                window.addEventListener('appinstalled', function() {
+                    hideInstallCard();
+                });
+
+                if (!('beforeinstallprompt' in window) || window.matchMedia('(display-mode: standalone)').matches) {
+                    showManualInstall();
+                }
+            }
+
             const trigger = document.querySelector('[data-mobile-more-trigger]');
             const sheet = document.getElementById('mobileMoreSheet');
             const backdrop = document.getElementById('mobileMoreBackdrop');
