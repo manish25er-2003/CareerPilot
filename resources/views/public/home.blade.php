@@ -252,52 +252,117 @@
             <p class="text-secondary-custom mx-auto" style="max-width: 720px;">Real users, resumes, applications, and AI insights are being created across the platform every day.</p>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 metric-grid">
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">Users</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['users'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Active members</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['users'] ?? 0 }}" style="--ring-color: #6d5efc; --ring-accent: rgba(109, 94, 252, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">Users</div>
+                    <div class="metric-subtitle">Active members</div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">Resumes</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['resumes'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Uploaded and tracked</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['resumes'] ?? 0 }}" style="--ring-color: #7c3aed; --ring-accent: rgba(124, 58, 237, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">Resumes</div>
+                    <div class="metric-subtitle">Uploaded and tracked</div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">Applications</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['applications'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Jobs in progress</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['applications'] ?? 0 }}" style="--ring-color: #4f46e5; --ring-accent: rgba(79, 70, 229, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">Applications</div>
+                    <div class="metric-subtitle">Jobs in progress</div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">AI analyses</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['analyses'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Resume match checks</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['analyses'] ?? 0 }}" style="--ring-color: #8b5cf6; --ring-accent: rgba(139, 92, 246, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">AI analyses</div>
+                    <div class="metric-subtitle">Resume match checks</div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">Active users</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['activeUsers'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Currently enabled</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['activeUsers'] ?? 0 }}" style="--ring-color: #6366f1; --ring-accent: rgba(99, 102, 241, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">Active users</div>
+                    <div class="metric-subtitle">Currently enabled</div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="card-soft p-4 h-100 text-center">
-                    <div class="small text-secondary-custom">Interviews</div>
-                    <div class="display-6 fw-bold mt-2">{{ $platformStats['interviews'] ?? 0 }}</div>
-                    <div class="small text-secondary-custom">Interview sessions</div>
+                <div class="metric-card card-soft p-4 h-100 text-center">
+                    <div class="metric-ring" data-target="{{ $platformStats['interviews'] ?? 0 }}" style="--ring-color: #5b4ef7; --ring-accent: rgba(91, 78, 247, 0.15);">
+                        <div class="metric-ring__inner">
+                            <span class="metric-ring__value">0</span>
+                        </div>
+                    </div>
+                    <div class="metric-label">Interviews</div>
+                    <div class="metric-subtitle">Interview sessions</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const rings = document.querySelectorAll('.metric-ring');
+
+        const animateRing = (ring) => {
+            const target = Number(ring.dataset.target || 0);
+            const valueEl = ring.querySelector('.metric-ring__value');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const duration = prefersReducedMotion ? 0 : 1200;
+            const start = performance.now();
+
+            const tick = (time) => {
+                const progress = Math.min((time - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(target * eased);
+                const percent = Math.min((current / Math.max(target, 1)) * 100, 100);
+
+                ring.style.setProperty('--progress', percent);
+                valueEl.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    ring.style.setProperty('--progress', 100);
+                    valueEl.textContent = target;
+                }
+            };
+
+            if (duration === 0) {
+                ring.style.setProperty('--progress', 100);
+                valueEl.textContent = target;
+                return;
+            }
+
+            requestAnimationFrame(tick);
+        };
+
+        rings.forEach(animateRing);
+    });
+</script>
 
 <section class="py-5 bg-soft-blue">
     <div class="container">
