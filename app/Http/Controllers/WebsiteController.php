@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AiAnalysis;
 use App\Models\ContactMessage;
+use App\Models\InterviewSession;
+use App\Models\JobApplication;
+use App\Models\Resume;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -11,7 +16,33 @@ class WebsiteController extends Controller
 {
     public function home(): View
     {
-        return view('public.home');
+        $platformStats = [
+            'users' => User::count(),
+            'activeUsers' => User::where('is_active', true)->count(),
+            'resumes' => Resume::count(),
+            'applications' => JobApplication::count(),
+            'analyses' => AiAnalysis::count(),
+            'interviews' => InterviewSession::count(),
+        ];
+
+        $recentUsers = User::query()
+            ->latest('created_at')
+            ->take(5)
+            ->get();
+
+        $recentApplications = JobApplication::query()
+            ->with('user')
+            ->latest('applied_at')
+            ->take(5)
+            ->get();
+
+        $recentResumes = Resume::query()
+            ->with('user')
+            ->latest('created_at')
+            ->take(5)
+            ->get();
+
+        return view('public.home', compact('platformStats', 'recentUsers', 'recentApplications', 'recentResumes'));
     }
 
     public function about(): View

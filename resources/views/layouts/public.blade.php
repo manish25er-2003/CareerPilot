@@ -70,6 +70,32 @@
 
     @include('partials.footer')
 
+    <nav class="public-mobile-bottom-nav" aria-label="Mobile navigation">
+        <a href="{{ route('home') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('home') ? 'active' : '' }}">
+            <span>🏠</span>
+            <small>Home</small>
+        </a>
+        <a href="{{ route('features') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('features') ? 'active' : '' }}">
+            <span>✨</span>
+            <small>Features</small>
+        </a>
+        @auth
+            <a href="{{ route('dashboard') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <span>📊</span>
+                <small>Dash</small>
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('login') ? 'active' : '' }}">
+                <span>🔐</span>
+                <small>Login</small>
+            </a>
+        @endauth
+        <a href="{{ auth()->check() ? route('dashboard') : route('register') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('register') ? 'active' : '' }}">
+            <span>{{ auth()->check() ? '🚀' : '➕' }}</span>
+            <small>{{ auth()->check() ? 'Open' : 'Join' }}</small>
+        </a>
+    </nav>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
