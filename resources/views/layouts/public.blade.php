@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -51,14 +51,15 @@
                     <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('how-it-works') }}">How It Works</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
-                <div class="d-flex gap-2 nav-actions">
-                    @auth
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
-                    @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-custom">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white">Get Started</a>
-                    @endauth
-                </div>
+            </div>
+
+            <div class="d-flex gap-2 nav-actions ms-auto">
+                @auth
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="btn btn-outline-custom">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-primary-custom text-white">Get Started</a>
+                @endauth
             </div>
         </div>
     </nav>

@@ -33,7 +33,7 @@ class WebsiteController extends Controller
     {
         return view('public.contact');
     }
-
+    
     public function developer(): View
     {
         $developer = [
