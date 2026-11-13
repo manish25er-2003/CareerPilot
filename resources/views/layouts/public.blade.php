@@ -67,39 +67,7 @@
         @yield('content')
     </main>
 
-    <footer class="bg-navy text-white py-5 mt-5 premium-footer">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3">CareerPilot AI</h5>
-                    <p class="text-white-50">Your AI career growth partner for smarter resumes, interviews, and applications.</p>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="fw-semibold mb-3">Company</h6>
-                    <div class="d-grid gap-2">
-                        <a href="{{ route('about') }}" class="footer-link text-decoration-none">About</a>
-                        <a href="{{ route('features') }}" class="footer-link text-decoration-none">Features</a>
-                        <a href="{{ route('contact') }}" class="footer-link text-decoration-none">Contact</a>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="fw-semibold mb-3">Resources</h6>
-                    <div class="d-grid gap-2">
-                        <a href="{{ route('how-it-works') }}" class="footer-link text-decoration-none">How it Works</a>
-                        <a href="{{ route('privacy-policy') }}" class="footer-link text-decoration-none">Privacy Policy</a>
-                        <a href="{{ route('terms-and-conditions') }}" class="footer-link text-decoration-none">Terms</a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <h6 class="fw-semibold mb-3">Support</h6>
-                    <p class="text-white-50 mb-1">hello@careerpilot.ai</p>
-                    <p class="text-white-50">+1 (555) 123-4567</p>
-                </div>
-            </div>
-            <hr class="my-4 border-secondary">
-            <div class="text-center text-white-50 small">© {{ date('Y') }} CareerPilot AI. All rights reserved.</div>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

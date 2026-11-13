@@ -145,4 +145,14 @@ class UserModulesTest extends TestCase
             ->get('/jobs')
             ->assertOk();
     }
+
+    public function test_developer_page_and_footer_links_are_visible(): void
+    {
+        $this->get('/')->assertOk()->assertSee('Meet the Developer');
+
+        $this->get('/developer')
+            ->assertOk()
+            ->assertSee('Manish Yadav')
+            ->assertSee('View My Portfolio');
+    }
 }

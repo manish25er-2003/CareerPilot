@@ -17,6 +17,7 @@ Route::get('/about', [WebsiteController::class, 'about'])->name('about');
 Route::get('/features', [WebsiteController::class, 'features'])->name('features');
 Route::get('/how-it-works', [WebsiteController::class, 'howItWorks'])->name('how-it-works');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::get('/developer', [WebsiteController::class, 'developer'])->name('developer');
 Route::post('/contact', [WebsiteController::class, 'storeContact'])->name('contact.store');
 Route::get('/sitemap.xml', [WebsiteController::class, 'sitemap'])->name('sitemap');
 Route::get('/privacy-policy', [WebsiteController::class, 'privacy'])->name('privacy-policy');

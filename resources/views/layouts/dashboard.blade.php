@@ -102,6 +102,8 @@ $mobileMoreNav = [
         </div>
     </div>
 
+    @include('partials.footer')
+
     <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
         @foreach ($mobilePrimaryNav as $item)
             @if ($item['label'] === 'More')
@@ -154,6 +156,9 @@ $mobileMoreNav = [
                 return;
             }
 
+            let startY = 0;
+            let deltaY = 0;
+
             const openSheet = () => {
                 sheet.classList.add('is-open');
                 backdrop.classList.add('is-visible');
@@ -166,6 +171,7 @@ $mobileMoreNav = [
                 backdrop.classList.remove('is-visible');
                 trigger.setAttribute('aria-expanded', 'false');
                 document.body.classList.remove('mobile-more-open');
+                sheet.style.transform = '';
             };
 
             trigger.addEventListener('click', function () {
@@ -184,6 +190,40 @@ $mobileMoreNav = [
                     closeSheet();
                 }
             });
+
+            const pointerStart = function (event) {
+                startY = event.touches ? event.touches[0].clientY : event.clientY;
+                deltaY = 0;
+            };
+
+            const pointerMove = function (event) {
+                if (!sheet.classList.contains('is-open')) {
+                    return;
+                }
+
+                const currentY = event.touches ? event.touches[0].clientY : event.clientY;
+                deltaY = currentY - startY;
+
+                if (deltaY > 0) {
+                    sheet.style.transform = 'translateY(' + deltaY + 'px)';
+                }
+            };
+
+            const pointerEnd = function () {
+                if (deltaY > 90) {
+                    closeSheet();
+                    return;
+                }
+
+                sheet.style.transform = '';
+            };
+
+            sheet.addEventListener('touchstart', pointerStart, { passive: true });
+            sheet.addEventListener('touchmove', pointerMove, { passive: true });
+            sheet.addEventListener('touchend', pointerEnd);
+            sheet.addEventListener('mousedown', pointerStart);
+            sheet.addEventListener('mousemove', pointerMove);
+            sheet.addEventListener('mouseup', pointerEnd);
 
             sheet.querySelectorAll('a, button').forEach(function (element) {
                 element.addEventListener('click', function () {

@@ -34,6 +34,23 @@ class WebsiteController extends Controller
         return view('public.contact');
     }
 
+    public function developer(): View
+    {
+        $developer = [
+            'name' => 'Manish Yadav',
+            'role' => 'Full Stack Web Developer',
+            'intro' => 'I design and build polished digital experiences that help businesses and people move faster, work smarter, and present their work with confidence.',
+            'skills' => ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'Bootstrap', 'Git and GitHub'],
+            'featuredProject' => 'CareerPilot AI',
+            'portfolioUrl' => 'https://manishpro.in',
+            'githubUrl' => null,
+            'linkedinUrl' => null,
+            'email' => null,
+        ];
+
+        return view('public.developer', compact('developer'));
+    }
+
     public function privacy(): View
     {
         return view('public.privacy');
@@ -52,6 +69,7 @@ class WebsiteController extends Controller
             ['loc' => route('features'), 'lastmod' => now()->toDateString()],
             ['loc' => route('how-it-works'), 'lastmod' => now()->toDateString()],
             ['loc' => route('contact'), 'lastmod' => now()->toDateString()],
+            ['loc' => route('developer'), 'lastmod' => now()->toDateString()],
             ['loc' => route('privacy-policy'), 'lastmod' => now()->toDateString()],
             ['loc' => route('terms-and-conditions'), 'lastmod' => now()->toDateString()],
         ];
