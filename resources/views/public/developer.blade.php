@@ -51,7 +51,7 @@
                         <h3>Skills</h3>
                         <div class="skill-list">
                             @foreach($developer['skills'] as $skill)
-                                <span class="skill-pill">{{ $skill }}</span>
+                            <span class="skill-pill">{{ $skill }}</span>
                             @endforeach
                         </div>
                     </div>
@@ -63,13 +63,13 @@
                             <li><strong>Focus:</strong> Product-focused web experiences and scalable Laravel applications</li>
                             <li><strong>Portfolio:</strong> <a href="{{ $developer['portfolioUrl'] }}" target="_blank" rel="noopener noreferrer">{{ $developer['portfolioUrl'] }}</a></li>
                             @if(! empty($developer['email']))
-                                <li><strong>Email:</strong> <a href="mailto:{{ $developer['email'] }}">{{ $developer['email'] }}</a></li>
+                            <li><strong>Email:</strong> <a href="mailto:{{ $developer['email'] }}">{{ $developer['email'] }}</a></li>
                             @endif
                             @if(! empty($developer['githubUrl']))
-                                <li><strong>GitHub:</strong> <a href="{{ $developer['githubUrl'] }}" target="_blank" rel="noopener noreferrer">{{ $developer['githubUrl'] }}</a></li>
+                            <li><strong>GitHub:</strong> <a href="{{ $developer['githubUrl'] }}" target="_blank" rel="noopener noreferrer">{{ $developer['githubUrl'] }}</a></li>
                             @endif
                             @if(! empty($developer['linkedinUrl']))
-                                <li><strong>LinkedIn:</strong> <a href="{{ $developer['linkedinUrl'] }}" target="_blank" rel="noopener noreferrer">{{ $developer['linkedinUrl'] }}</a></li>
+                            <li><strong>LinkedIn:</strong> <a href="{{ $developer['linkedinUrl'] }}" target="_blank" rel="noopener noreferrer">{{ $developer['linkedinUrl'] }}</a></li>
                             @endif
                         </ul>
                     </div>

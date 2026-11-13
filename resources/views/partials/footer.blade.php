@@ -1,18 +1,18 @@
 @php
-    $quickLinks = [
-        ['label' => 'Home', 'route' => route('home')],
-    ];
+$quickLinks = [
+['label' => 'Home', 'route' => route('home')],
+];
 
-    if (auth()->check()) {
-        $quickLinks = [
-            ['label' => 'Home', 'route' => route('home')],
-            ['label' => 'Dashboard', 'route' => route('dashboard')],
-            ['label' => 'My Profile', 'route' => route('profile.index')],
-            ['label' => 'Job Applications', 'route' => route('jobs.index')],
-            ['label' => 'My Resumes', 'route' => route('resumes.index')],
-            ['label' => 'Interview Practice', 'route' => route('interviews.index')],
-        ];
-    }
+if (auth()->check()) {
+$quickLinks = [
+['label' => 'Home', 'route' => route('home')],
+['label' => 'Dashboard', 'route' => route('dashboard')],
+['label' => 'My Profile', 'route' => route('profile.index')],
+['label' => 'Job Applications', 'route' => route('jobs.index')],
+['label' => 'My Resumes', 'route' => route('resumes.index')],
+['label' => 'Interview Practice', 'route' => route('interviews.index')],
+];
+}
 @endphp
 
 <footer class="premium-footer">
@@ -33,7 +33,7 @@
                 <h6 class="footer-title">Quick Links</h6>
                 <div class="footer-links d-grid gap-2">
                     @foreach($quickLinks as $link)
-                        <a href="{{ $link['route'] }}" class="footer-link text-decoration-none">{{ $link['label'] }}</a>
+                    <a href="{{ $link['route'] }}" class="footer-link text-decoration-none">{{ $link['label'] }}</a>
                     @endforeach
                 </div>
             </div>

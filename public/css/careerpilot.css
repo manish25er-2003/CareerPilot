@@ -186,7 +186,9 @@ img {
 }
 
 .footer-link {
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .footer-link:hover {
@@ -247,7 +249,11 @@ img {
 .card-soft {
     border-radius: 22px;
     border: 1px solid rgba(17, 24, 39, 0.06);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 255, 0.95));
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(248, 246, 255, 0.95)
+    );
     box-shadow: 0 18px 34px rgba(15, 23, 42, 0.04);
 }
 
@@ -354,7 +360,11 @@ img {
 .analysis-item,
 .progress-row {
     border: 1px solid rgba(148, 163, 184, 0.18);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.96));
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(247, 250, 255, 0.96)
+    );
     border-radius: 16px;
     box-shadow: 0 10px 22px rgba(17, 24, 39, 0.025);
 }
@@ -388,7 +398,11 @@ img {
 
 .public-home-hero {
     background:
-        radial-gradient(circle at top left, rgba(124, 77, 255, 0.12), transparent 28%),
+        radial-gradient(
+            circle at top left,
+            rgba(124, 77, 255, 0.12),
+            transparent 28%
+        ),
         linear-gradient(180deg, #ffffff 0%, #f6f3ff 100%);
     position: relative;
     overflow: hidden;
@@ -400,7 +414,11 @@ img {
     inset: 10% auto auto -10%;
     width: 42rem;
     height: 42rem;
-    background: radial-gradient(circle, rgba(143, 114, 246, 0.16), transparent 60%);
+    background: radial-gradient(
+        circle,
+        rgba(143, 114, 246, 0.16),
+        transparent 60%
+    );
     pointer-events: none;
 }
 
@@ -411,7 +429,11 @@ img {
     bottom: -18%;
     width: 30rem;
     height: 30rem;
-    background: radial-gradient(circle, rgba(79, 70, 229, 0.08), transparent 60%);
+    background: radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.08),
+        transparent 60%
+    );
     pointer-events: none;
 }
 
@@ -429,7 +451,11 @@ section .card-soft::before {
     position: absolute;
     inset: 0 0 auto 0;
     height: 3px;
-    background: linear-gradient(90deg, rgba(124, 77, 255, 0.9), rgba(79, 70, 229, 0.4));
+    background: linear-gradient(
+        90deg,
+        rgba(124, 77, 255, 0.9),
+        rgba(79, 70, 229, 0.4)
+    );
     opacity: 0.8;
 }
 
@@ -457,7 +483,9 @@ section .form-control:focus,
 section .form-select:focus,
 section textarea.form-control:focus {
     border-color: rgba(124, 77, 255, 0.6) !important;
-    box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.08), inset 0 1px 2px rgba(15, 23, 42, 0.02) !important;
+    box-shadow:
+        0 0 0 4px rgba(124, 77, 255, 0.08),
+        inset 0 1px 2px rgba(15, 23, 42, 0.02) !important;
     outline: none !important;
 }
 
@@ -472,7 +500,11 @@ section .alert-success {
     position: relative;
     border: 1px solid rgba(124, 77, 255, 0.12);
     box-shadow: 0 28px 60px rgba(17, 24, 39, 0.08);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 245, 255, 0.98));
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(247, 245, 255, 0.98)
+    );
     border-radius: 28px;
     transform: translateY(0);
 }
@@ -585,7 +617,11 @@ section .alert-success {
 }
 
 .sidebar {
-    background: linear-gradient(180deg, rgba(249, 247, 255, 0.96), rgba(239, 243, 255, 0.96));
+    background: linear-gradient(
+        180deg,
+        rgba(249, 247, 255, 0.96),
+        rgba(239, 243, 255, 0.96)
+    );
     min-height: 100vh;
     padding: 1.5rem 1rem;
     border-right: 1px solid rgba(148, 163, 184, 0.2);
@@ -681,9 +717,15 @@ section .alert-success {
 
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.1), rgba(79, 70, 229, 0.08));
+    background: linear-gradient(
+        135deg,
+        rgba(124, 77, 255, 0.1),
+        rgba(79, 70, 229, 0.08)
+    );
     color: var(--primary-strong);
-    box-shadow: inset 0 0 0 1px rgba(124, 77, 255, 0.12), 0 8px 18px rgba(124, 77, 255, 0.08);
+    box-shadow:
+        inset 0 0 0 1px rgba(124, 77, 255, 0.12),
+        0 8px 18px rgba(124, 77, 255, 0.08);
 }
 
 .dashboard-header-actions {
@@ -981,10 +1023,16 @@ section .alert-success {
     width: min(100%, 440px);
     max-width: 100%;
     position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 247, 255, 0.96));
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(249, 247, 255, 0.96)
+    );
     border: 1px solid rgba(17, 24, 39, 0.06);
     border-radius: 28px;
-    box-shadow: 0 32px 84px rgba(15, 23, 42, 0.12), 0 12px 28px rgba(124, 77, 255, 0.08);
+    box-shadow:
+        0 32px 84px rgba(15, 23, 42, 0.12),
+        0 12px 28px rgba(124, 77, 255, 0.08);
     padding: 1.15rem 1.15rem 0.95rem;
     backdrop-filter: blur(8px);
 }
@@ -1038,7 +1086,11 @@ section .alert-success {
 
 .auth-header .eyebrow {
     display: inline-block;
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.12), rgba(79, 70, 229, 0.06));
+    background: linear-gradient(
+        135deg,
+        rgba(124, 77, 255, 0.12),
+        rgba(79, 70, 229, 0.06)
+    );
     color: var(--primary-strong);
     border: 1px solid rgba(124, 77, 255, 0.12);
     border-radius: 999px;
@@ -1091,12 +1143,16 @@ section .alert-success {
     padding: 0.8rem 0.9rem !important;
     color: var(--deep-slate) !important;
     font-size: 0.96rem;
-    box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.02), 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow:
+        inset 0 1px 2px rgba(15, 23, 42, 0.02),
+        0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .auth-input:focus {
     border-color: rgba(124, 77, 255, 0.6) !important;
-    box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.08), inset 0 1px 2px rgba(15, 23, 42, 0.02) !important;
+    box-shadow:
+        0 0 0 4px rgba(124, 77, 255, 0.08),
+        inset 0 1px 2px rgba(15, 23, 42, 0.02) !important;
     outline: none !important;
 }
 
@@ -1415,7 +1471,11 @@ body .alert-success {
 }
 
 .mobile-bottom-nav__item.active .mobile-bottom-nav__icon {
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.14), rgba(79, 70, 229, 0.2));
+    background: linear-gradient(
+        135deg,
+        rgba(124, 77, 255, 0.14),
+        rgba(79, 70, 229, 0.2)
+    );
     box-shadow: inset 0 0 0 1px rgba(124, 77, 255, 0.12);
 }
 
@@ -1552,7 +1612,11 @@ body.mobile-more-open {
 }
 
 .developer-page {
-    background: linear-gradient(180deg, rgba(239, 246, 255, 0.35), rgba(255, 255, 255, 0.95));
+    background: linear-gradient(
+        180deg,
+        rgba(239, 246, 255, 0.35),
+        rgba(255, 255, 255, 0.95)
+    );
 }
 
 .developer-card,
@@ -2061,7 +2125,9 @@ body.mobile-more-open {
     padding: 20px 18px 24px;
     border-radius: 28px;
     border: 1px solid rgba(148, 163, 184, 0.18);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 18px 36px rgba(15, 23, 42, 0.04);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+        0 18px 36px rgba(15, 23, 42, 0.04);
 }
 
 .jobflow-top-row {
@@ -2196,7 +2262,9 @@ body.mobile-more-open {
     flex-direction: column;
     justify-content: center;
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .jobflow-stat-card:hover,
@@ -2207,7 +2275,9 @@ body.mobile-more-open {
 .jobflow-recommendation-panel:hover,
 .jobflow-purple-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 18px 28px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    box-shadow:
+        0 18px 28px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .jobflow-stat-card.is-primary {
@@ -2700,7 +2770,9 @@ body.mobile-more-open {
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.025);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .jobflow-job-card-purple {

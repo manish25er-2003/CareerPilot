@@ -5,14 +5,14 @@
 @section('content')
 <div class="row g-4 mb-4">
     @php
-        $adminCards = [
-            ['label' => 'Total users', 'value' => $stats['users'] ?? 0],
-            ['label' => 'Active users', 'value' => $stats['active_users'] ?? 0],
-            ['label' => 'Total resumes', 'value' => $stats['resumes'] ?? 0],
-            ['label' => 'Total applications', 'value' => $stats['applications'] ?? 0],
-            ['label' => 'AI analyses', 'value' => $stats['analyses'] ?? 0],
-            ['label' => 'Completed interviews', 'value' => $stats['completed_interviews'] ?? 0],
-        ];
+    $adminCards = [
+    ['label' => 'Total users', 'value' => $stats['users'] ?? 0],
+    ['label' => 'Active users', 'value' => $stats['active_users'] ?? 0],
+    ['label' => 'Total resumes', 'value' => $stats['resumes'] ?? 0],
+    ['label' => 'Total applications', 'value' => $stats['applications'] ?? 0],
+    ['label' => 'AI analyses', 'value' => $stats['analyses'] ?? 0],
+    ['label' => 'Completed interviews', 'value' => $stats['completed_interviews'] ?? 0],
+    ];
     @endphp
 
     @foreach($adminCards as $card)

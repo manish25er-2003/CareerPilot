@@ -33,20 +33,28 @@ $userInitials = collect(explode(' ', trim($userName)))
 ->implode('');
 
 $mobilePrimaryNav = [
-    ['label' => 'Dashboard', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5Z"/></svg>'],
-    ['label' => 'Jobs', 'route' => route('jobs.index'), 'active' => request()->routeIs('jobs.*'),'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7V5.75A1.75 1.75 0 0 1 10.75 4h2.5A1.75 1.75 0 0 1 15 5.75V7h2.5A1.5 1.5 0 0 1 19 8.5v9A2.5 2.5 0 0 1 16.5 20h-9A2.5 2.5 0 0 1 5 17.5v-9A1.5 1.5 0 0 1 6.5 7H9Zm2-1.25V7h2V5.75a.75.75 0 0 0-.75-.75h-2.5a.75.75 0 0 0-.75.75Z"/></svg>'],
-    ['label' => 'Resume', 'route' => route('resumes.index'), 'active' => request()->routeIs('resumes.*'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5A2.5 2.5 0 0 0 4.5 6v12A2.5 2.5 0 0 0 7 20.5h10A2.5 2.5 0 0 0 19.5 18V8.2a2.2 2.2 0 0 0-.64-1.56L15.36 3.14A2.2 2.2 0 0 0 13.8 2.5H7Zm8 2.2 2.7 2.7H15a1 1 0 0 1-1-1V5.7Zm-6.2 6.1h5.4a.8.8 0 1 1 0 1.6H8.8a.8.8 0 1 1 0-1.6Zm0 3h7.4a.8.8 0 1 1 0 1.6H8.8a.8.8 0 1 1 0-1.6Z"/></svg>'],
-    ['label' => 'More', 'route' => '#', 'active' => request()->routeIs('profile.*','skills.*','ai-analysis.*','interviews.*','reports.*','contact'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/></svg>']
+['label' => 'Dashboard', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5Z" />
+</svg>'],
+['label' => 'Jobs', 'route' => route('jobs.index'), 'active' => request()->routeIs('jobs.*'),'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M9 7V5.75A1.75 1.75 0 0 1 10.75 4h2.5A1.75 1.75 0 0 1 15 5.75V7h2.5A1.5 1.5 0 0 1 19 8.5v9A2.5 2.5 0 0 1 16.5 20h-9A2.5 2.5 0 0 1 5 17.5v-9A1.5 1.5 0 0 1 6.5 7H9Zm2-1.25V7h2V5.75a.75.75 0 0 0-.75-.75h-2.5a.75.75 0 0 0-.75.75Z" />
+</svg>'],
+['label' => 'Resume', 'route' => route('resumes.index'), 'active' => request()->routeIs('resumes.*'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 3.5A2.5 2.5 0 0 0 4.5 6v12A2.5 2.5 0 0 0 7 20.5h10A2.5 2.5 0 0 0 19.5 18V8.2a2.2 2.2 0 0 0-.64-1.56L15.36 3.14A2.2 2.2 0 0 0 13.8 2.5H7Zm8 2.2 2.7 2.7H15a1 1 0 0 1-1-1V5.7Zm-6.2 6.1h5.4a.8.8 0 1 1 0 1.6H8.8a.8.8 0 1 1 0-1.6Zm0 3h7.4a.8.8 0 1 1 0 1.6H8.8a.8.8 0 1 1 0-1.6Z" />
+</svg>'],
+['label' => 'More', 'route' => '#', 'active' => request()->routeIs('profile.*','skills.*','ai-analysis.*','interviews.*','reports.*','contact'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+</svg>']
 ];
 
 $mobileMoreNav = [
-    ['label' => 'My Profile', 'route' => route('profile.index'), 'active' => request()->routeIs('profile.*'), 'icon' => '👤'],
-    ['label' => 'My Skills', 'route' => route('skills.index'), 'active' => request()->routeIs('skills.*'), 'icon' => '✨'],
-    ['label' => 'AI Resume Analysis', 'route' => route('ai-analysis.index'), 'active' => request()->routeIs('ai-analysis.*'), 'icon' => '🧠'],
-    ['label' => 'Interview Practice', 'route' => route('interviews.index'), 'active' => request()->routeIs('interviews.*'), 'icon' => '🎤'],
-    ['label' => 'Reports', 'route' => route('reports.overview'), 'active' => request()->routeIs('reports.*'), 'icon' => '📊'],
-    ['label' => 'Notifications', 'route' => route('contact'), 'active' => request()->routeIs('contact'), 'icon' => '🔔'],
-    ['label' => 'Settings', 'route' => route('home'), 'active' => request()->routeIs('home'), 'icon' => '⚙️'],
+['label' => 'My Profile', 'route' => route('profile.index'), 'active' => request()->routeIs('profile.*'), 'icon' => '👤'],
+['label' => 'My Skills', 'route' => route('skills.index'), 'active' => request()->routeIs('skills.*'), 'icon' => '✨'],
+['label' => 'AI Resume Analysis', 'route' => route('ai-analysis.index'), 'active' => request()->routeIs('ai-analysis.*'), 'icon' => '🧠'],
+['label' => 'Interview Practice', 'route' => route('interviews.index'), 'active' => request()->routeIs('interviews.*'), 'icon' => '🎤'],
+['label' => 'Reports', 'route' => route('reports.overview'), 'active' => request()->routeIs('reports.*'), 'icon' => '📊'],
+['label' => 'Notifications', 'route' => route('contact'), 'active' => request()->routeIs('contact'), 'icon' => '🔔'],
+['label' => 'Settings', 'route' => route('home'), 'active' => request()->routeIs('home'), 'icon' => '⚙️'],
 ];
 @endphp
 
@@ -106,17 +114,17 @@ $mobileMoreNav = [
 
     <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
         @foreach ($mobilePrimaryNav as $item)
-            @if ($item['label'] === 'More')
-                <button type="button" class="mobile-bottom-nav__item {{ $item['active'] ? 'active' : '' }}" data-mobile-more-trigger aria-label="More navigation" aria-expanded="false">
-                    <span class="mobile-bottom-nav__icon">{!! $item['icon'] !!}</span>
-                    <span class="mobile-bottom-nav__label">{{ $item['label'] }}</span>
-                </button>
-            @else
-                <a href="{{ $item['route'] }}" class="mobile-bottom-nav__item {{ $item['active'] ? 'active' : '' }}" aria-label="{{ $item['label'] }}">
-                    <span class="mobile-bottom-nav__icon">{!! $item['icon'] !!}</span>
-                    <span class="mobile-bottom-nav__label">{{ $item['label'] }}</span>
-                </a>
-            @endif
+        @if ($item['label'] === 'More')
+        <button type="button" class="mobile-bottom-nav__item {{ $item['active'] ? 'active' : '' }}" data-mobile-more-trigger aria-label="More navigation" aria-expanded="false">
+            <span class="mobile-bottom-nav__icon">{!! $item['icon'] !!}</span>
+            <span class="mobile-bottom-nav__label">{{ $item['label'] }}</span>
+        </button>
+        @else
+        <a href="{{ $item['route'] }}" class="mobile-bottom-nav__item {{ $item['active'] ? 'active' : '' }}" aria-label="{{ $item['label'] }}">
+            <span class="mobile-bottom-nav__icon">{!! $item['icon'] !!}</span>
+            <span class="mobile-bottom-nav__label">{{ $item['label'] }}</span>
+        </a>
+        @endif
         @endforeach
     </nav>
 
@@ -129,10 +137,10 @@ $mobileMoreNav = [
         </div>
         <div class="mobile-more-sheet__content">
             @foreach ($mobileMoreNav as $item)
-                <a href="{{ $item['route'] }}" class="mobile-more-sheet__item {{ $item['active'] ? 'is-active' : '' }}">
-                    <span class="mobile-more-sheet__icon">{{ $item['icon'] }}</span>
-                    <span>{{ $item['label'] }}</span>
-                </a>
+            <a href="{{ $item['route'] }}" class="mobile-more-sheet__item {{ $item['active'] ? 'is-active' : '' }}">
+                <span class="mobile-more-sheet__icon">{{ $item['icon'] }}</span>
+                <span>{{ $item['label'] }}</span>
+            </a>
             @endforeach
             <form method="POST" action="{{ route('logout') }}" class="mobile-more-sheet__form">
                 @csrf
@@ -146,7 +154,7 @@ $mobileMoreNav = [
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const trigger = document.querySelector('[data-mobile-more-trigger]');
             const sheet = document.getElementById('mobileMoreSheet');
             const backdrop = document.getElementById('mobileMoreBackdrop');
@@ -174,29 +182,29 @@ $mobileMoreNav = [
                 sheet.style.transform = '';
             };
 
-            trigger.addEventListener('click', function () {
+            trigger.addEventListener('click', function() {
                 const isOpen = sheet.classList.contains('is-open');
                 isOpen ? closeSheet() : openSheet();
             });
 
-            closeButtons.forEach(function (button) {
+            closeButtons.forEach(function(button) {
                 button.addEventListener('click', closeSheet);
             });
 
             backdrop.addEventListener('click', closeSheet);
 
-            document.addEventListener('keydown', function (event) {
+            document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape') {
                     closeSheet();
                 }
             });
 
-            const pointerStart = function (event) {
+            const pointerStart = function(event) {
                 startY = event.touches ? event.touches[0].clientY : event.clientY;
                 deltaY = 0;
             };
 
-            const pointerMove = function (event) {
+            const pointerMove = function(event) {
                 if (!sheet.classList.contains('is-open')) {
                     return;
                 }
@@ -209,7 +217,7 @@ $mobileMoreNav = [
                 }
             };
 
-            const pointerEnd = function () {
+            const pointerEnd = function() {
                 if (deltaY > 90) {
                     closeSheet();
                     return;
@@ -218,15 +226,19 @@ $mobileMoreNav = [
                 sheet.style.transform = '';
             };
 
-            sheet.addEventListener('touchstart', pointerStart, { passive: true });
-            sheet.addEventListener('touchmove', pointerMove, { passive: true });
+            sheet.addEventListener('touchstart', pointerStart, {
+                passive: true
+            });
+            sheet.addEventListener('touchmove', pointerMove, {
+                passive: true
+            });
             sheet.addEventListener('touchend', pointerEnd);
             sheet.addEventListener('mousedown', pointerStart);
             sheet.addEventListener('mousemove', pointerMove);
             sheet.addEventListener('mouseup', pointerEnd);
 
-            sheet.querySelectorAll('a, button').forEach(function (element) {
-                element.addEventListener('click', function () {
+            sheet.querySelectorAll('a, button').forEach(function(element) {
+                element.addEventListener('click', function() {
                     closeSheet();
                 });
             });

@@ -15,15 +15,15 @@ class DashboardController extends Controller
 
         $jobs = $user?->jobApplications()->latest('applied_at')->get() ?? collect();
         $allApplications = $jobs->count();
-        $activeApplications = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['applied', 'saved', 'shortlisted', 'interviewing', 'in progress', 'pending'], true))->count();
-        $waitingInterview = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['interviewing', 'in progress', 'shortlisted'], true))->count();
-        $offerReceived = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['accepted', 'offered'], true))->count();
+        $activeApplications = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['applied', 'saved', 'shortlisted', 'interviewing', 'in progress', 'pending'], true))->count();
+        $waitingInterview = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['interviewing', 'in progress', 'shortlisted'], true))->count();
+        $offerReceived = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['accepted', 'offered'], true))->count();
 
         $displayName = $user?->name ?: 'User';
         $displayEmail = $user?->email ?: 'user@example.com';
         $firstName = trim(explode(' ', $displayName)[0] ?? 'User');
         $initials = collect(explode(' ', trim($displayName)))
-            ->map(fn ($part) => strtoupper(substr($part, 0, 1)))
+            ->map(fn($part) => strtoupper(substr($part, 0, 1)))
             ->take(2)
             ->implode('');
 
@@ -39,7 +39,7 @@ class DashboardController extends Controller
         ];
 
         $schedule = $jobs
-            ->filter(fn ($job) => ! empty($job->interview_date))
+            ->filter(fn($job) => ! empty($job->interview_date))
             ->sortBy('interview_date')
             ->take(3)
             ->map(function ($job) {
