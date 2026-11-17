@@ -50,11 +50,12 @@ $mobilePrimaryNav = [
 $mobileMoreNav = [
 ['label' => 'My Profile', 'route' => route('profile.index'), 'active' => request()->routeIs('profile.*'), 'icon' => '👤'],
 ['label' => 'My Skills', 'route' => route('skills.index'), 'active' => request()->routeIs('skills.*'), 'icon' => '✨'],
-['label' => 'AI Resume Analysis', 'route' => route('ai-analysis.index'), 'active' => request()->routeIs('ai-analysis.*'), 'icon' => '🧠'],
 ['label' => 'Interview Practice', 'route' => route('interviews.index'), 'active' => request()->routeIs('interviews.*'), 'icon' => '🎤'],
-['label' => 'Reports', 'route' => route('reports.overview'), 'active' => request()->routeIs('reports.*'), 'icon' => '📊'],
+['label' => 'AI Resume Analysis', 'route' => route('ai-analysis.index'), 'active' => request()->routeIs('ai-analysis.*'), 'icon' => '🧠'],
+['label' => 'Progress Reports', 'route' => route('reports.overview'), 'active' => request()->routeIs('reports.*'), 'icon' => '📊'],
 ['label' => 'Notifications', 'route' => route('contact'), 'active' => request()->routeIs('contact'), 'icon' => '🔔'],
-['label' => 'Settings', 'route' => route('home'), 'active' => request()->routeIs('home'), 'icon' => '⚙️'],
+['label' => 'Settings', 'route' => route('profile.edit'), 'active' => request()->routeIs('profile.edit'), 'icon' => '⚙️'],
+['label' => 'Help & Support', 'route' => route('contact'), 'active' => request()->routeIs('contact'), 'icon' => '💬'],
 ];
 @endphp
 

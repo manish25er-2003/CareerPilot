@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -25,8 +26,8 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $this->assertGuest();
+        $response->assertRedirect(route('login', absolute: false));
     }
 
     public function test_new_users_get_default_profile_and_settings_records(): void
@@ -38,10 +39,11 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $user = auth()->user();
+        $user = User::where('email', 'profile@example.com')->first();
 
         $this->assertNotNull($user);
         $this->assertTrue($user->profile()->exists());
         $this->assertTrue($user->settings()->exists());
+        $this->assertGuest();
     }
 }

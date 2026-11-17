@@ -4,6 +4,10 @@
 
 @section('content')
 @php
+$authUser = auth()->user();
+$displayName = $authUser?->name ?: 'Admin';
+$firstName = trim(explode(' ', $displayName)[0] ?? 'Admin');
+
 $adminCards = [
 ['label' => 'Total users', 'value' => $stats['users'] ?? 0, 'meta' => 'Platform members', 'tone' => 'purple'],
 ['label' => 'Active users', 'value' => $stats['active_users'] ?? 0, 'meta' => 'Currently active', 'tone' => 'blue'],
@@ -18,7 +22,7 @@ $adminCards = [
     <div class="jobflow-hero-banner jobflow-hero-banner--admin">
         <div class="jobflow-hero-copy">
             <span class="jobflow-hero-pill">Platform overview</span>
-            <h2>Welcome back, admin!</h2>
+            <h2>Welcome back, {{ $firstName }}!</h2>
             <p>Track usage, engagement, and key growth metrics across the CareerPilot AI platform.</p>
             <a href="{{ route('home') }}" class="jobflow-cta-button">View Insights →</a>
         </div>

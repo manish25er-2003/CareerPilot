@@ -1,6 +1,12 @@
 <x-guest-layout>
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    @if (session('success'))
+        <div class="alert alert-success mb-4" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="auth-header">
         <div class="eyebrow">Welcome back</div>
         <h1>Sign in to your account</h1>
