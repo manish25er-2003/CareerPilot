@@ -1,6 +1,6 @@
 {
-    "name": "CareerPilot AI",
-    "short_name": "CareerPilot",
+    "name": "Career Copilot",
+    "short_name": "CareerCopilot",
     "description": "AI-powered career growth planner for resumes, interviews, and job applications.",
     "id": "/",
     "start_url": "/",

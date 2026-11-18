@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="CareerPilot AI">
+    <meta name="apple-mobile-web-app-title" content="Career Copilot">
     <meta name="description" content="CareerPilot AI dashboard for resumes, jobs, interviews, and career growth.">
     <title>@yield('title', 'CareerPilot Dashboard')</title>
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192.png') }}">
@@ -218,6 +218,21 @@ $mobileMoreNav = [
         </div>
     </div>
 
+    <div class="mobile-install-popup" id="mobileInstallPopup" role="dialog" aria-modal="false" aria-labelledby="mobileInstallTitle" hidden>
+        <button type="button" class="mobile-install-popup__dismiss" id="dismissMobileInstallPopup" aria-label="Dismiss install app popup">×</button>
+        <div class="mobile-install-popup__logo">
+            <img src="{{ asset('favicon-192.png') }}" alt="Career Copilot logo">
+        </div>
+        <div class="mobile-install-popup__content">
+            <span class="mobile-install-popup__eyebrow">Career Copilot</span>
+            <h3 id="mobileInstallTitle">Install our app</h3>
+            <p>Install our app for a better experience.</p>
+        </div>
+        <button type="button" id="mobileInstallAppBtn" class="mobile-install-popup__button" aria-label="Install Career Copilot">
+            Install App
+        </button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -238,12 +253,20 @@ $mobileMoreNav = [
 
                 let deferredPrompt = null;
 
-                const showManualInstall = function() {
+                installBtn.addEventListener('click', function() {
+                    if (window.careerCopilotInstallPrompt) {
+                        window.careerCopilotInstallPrompt.prompt();
+                        window.careerCopilotInstallPrompt.userChoice.finally(function() {
+                            window.careerCopilotInstallPrompt = null;
+                        });
+                        return;
+                    }
+
                     installBtn.innerHTML = '<span class="install-app-card__button-icon" aria-hidden="true">☰</span> Use browser menu';
                     installBtn.setAttribute('title', 'Use your browser menu and choose Add to Home Screen');
                     installBtn.dataset.mode = 'manual';
                     installCard.dataset.mode = 'manual';
-                };
+                });
 
                 const hideInstallCard = function() {
                     installCard.hidden = true;
@@ -254,21 +277,9 @@ $mobileMoreNav = [
                     dismissBtn.addEventListener('click', hideInstallCard);
                 }
 
-                installBtn.addEventListener('click', function() {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        deferredPrompt.userChoice.finally(function() {
-                            deferredPrompt = null;
-                        });
-                        return;
-                    }
-
-                    showManualInstall();
-                });
-
                 window.addEventListener('beforeinstallprompt', function(event) {
                     event.preventDefault();
-                    deferredPrompt = event;
+                    window.careerCopilotInstallPrompt = event;
                     installBtn.innerHTML = '<span class="install-app-card__button-icon" aria-hidden="true">↓</span> Install app';
                     installBtn.removeAttribute('title');
                     delete installBtn.dataset.mode;
@@ -280,7 +291,10 @@ $mobileMoreNav = [
                 });
 
                 if (!('beforeinstallprompt' in window) || window.matchMedia('(display-mode: standalone)').matches) {
-                    showManualInstall();
+                    installBtn.innerHTML = '<span class="install-app-card__button-icon" aria-hidden="true">☰</span> Use browser menu';
+                    installBtn.setAttribute('title', 'Use your browser menu and choose Add to Home Screen');
+                    installBtn.dataset.mode = 'manual';
+                    installCard.dataset.mode = 'manual';
                 }
             }
 
@@ -371,6 +385,66 @@ $mobileMoreNav = [
                     closeSheet();
                 });
             });
+
+            const mobileInstallPopup = document.getElementById('mobileInstallPopup');
+            const mobileInstallBtn = document.getElementById('mobileInstallAppBtn');
+            const dismissMobileInstallPopup = document.getElementById('dismissMobileInstallPopup');
+
+            const showMobileInstallPopup = () => {
+                mobileInstallPopup.hidden = false;
+                document.body.classList.add('mobile-install-popup-open');
+            };
+
+            const hideMobileInstallPopup = () => {
+                mobileInstallPopup.hidden = true;
+                localStorage.setItem('careerpilot-mobile-install-dismissed', '1');
+                document.body.classList.remove('mobile-install-popup-open');
+            };
+
+            dismissMobileInstallPopup.addEventListener('click', hideMobileInstallPopup);
+
+            const isMobileDevice = window.matchMedia('(max-width: 991.98px)').matches;
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            const wasMobileInstallDismissed = localStorage.getItem('careerpilot-mobile-install-dismissed') === '1';
+
+            mobileInstallBtn.addEventListener('click', function() {
+                if (window.careerCopilotInstallPrompt) {
+                    window.careerCopilotInstallPrompt.prompt();
+                    window.careerCopilotInstallPrompt.userChoice.finally(function() {
+                        window.careerCopilotInstallPrompt = null;
+                    });
+                    return;
+                }
+
+                mobileInstallBtn.innerHTML = 'Use browser menu';
+                mobileInstallBtn.setAttribute('title', 'Use your browser menu and choose Add to Home Screen');
+                mobileInstallPopup.dataset.mode = 'manual';
+            });
+
+            window.addEventListener('beforeinstallprompt', function(event) {
+                event.preventDefault();
+                window.careerCopilotInstallPrompt = event;
+                mobileInstallBtn.innerHTML = 'Install App';
+                mobileInstallBtn.removeAttribute('title');
+                delete mobileInstallBtn.dataset.mode;
+                mobileInstallPopup.dataset.mode = 'prompt';
+
+                if (isMobileDevice && !wasMobileInstallDismissed && !isStandalone) {
+                    showMobileInstallPopup();
+                }
+            });
+
+            window.addEventListener('appinstalled', function() {
+                hideMobileInstallPopup();
+            });
+
+            if (isMobileDevice && !isStandalone && !wasMobileInstallDismissed) {
+                showMobileInstallPopup();
+            }
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register("{{ asset('sw.js') }}").catch(function() {});
+            }
         });
     </script>
 </body>

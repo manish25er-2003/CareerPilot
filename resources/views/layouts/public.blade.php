@@ -31,10 +31,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+<body class="{{ request()->routeIs('home') ? 'is-homepage' : '' }}">
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top {{ request()->routeIs('home') ? 'public-home-header' : '' }}">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
                 <span class="brand-dot"></span>
@@ -44,22 +45,23 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav mx-auto gap-lg-3">
-                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('about') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('features') }}">Features</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('how-it-works') }}">How It Works</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('contact') }}">Contact</a></li>
+                <ul class="navbar-nav mx-auto gap-lg-3 public-mobile-nav-list">
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('features') ? 'active' : '' }}" href="{{ route('features') }}">Features</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('how-it-works') ? 'active' : '' }}" href="{{ route('how-it-works') }}">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
-            </div>
-
-            <div class="d-flex gap-2 nav-actions ms-auto premium-navbar__actions">
-                @auth
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-custom premium-navbar__login">Dashboard</a>
-                @else
-                <a href="{{ route('login') }}" class="premium-navbar__login">Login</a>
-                <a href="{{ route('register') }}" class="btn btn-primary-custom text-white premium-navbar__signup">Get Started</a>
-                @endauth
+                @unless(request()->routeIs('home'))
+                <div class="d-flex gap-2 nav-actions ms-auto premium-navbar__actions">
+                    @auth
+                    <a href="{{ route('dashboard') }}" class="btn btn-outline-custom premium-navbar__login">Dashboard</a>
+                    @else
+                    <a href="{{ route('login') }}" class="premium-navbar__login">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white premium-navbar__signup">Get Started</a>
+                    @endauth
+                </div>
+                @endunless
             </div>
         </div>
     </nav>
@@ -97,6 +99,29 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menu = document.getElementById('mainNav');
+            const toggler = document.querySelector('.premium-navbar__toggler');
+            if (!menu || !toggler) return;
+
+            menu.querySelectorAll('a.nav-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.matchMedia('(max-width: 991.98px)').matches && menu.classList.contains('show')) {
+                        bootstrap.Collapse.getOrCreateInstance(menu).hide();
+                        toggler.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            menu.addEventListener('shown.bs.collapse', function() {
+                toggler.setAttribute('aria-expanded', 'true');
+            });
+            menu.addEventListener('hidden.bs.collapse', function() {
+                toggler.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>

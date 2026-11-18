@@ -6,103 +6,68 @@
 <section class="public-home-hero py-5 py-lg-6 bg-white">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <span class="hero-badge">Career growth, reimagined</span>
-                <h1 class="hero-title mt-3">Build a stronger career with clarity.</h1>
-                <p class="lead text-secondary-custom mt-4 mb-4">CareerPilot AI helps you organize applications, improve your resume, prepare for interviews, and track the progress that moves your career forward.</p>
-
-                <div class="d-flex flex-wrap gap-3 mb-4">
-                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white px-4 py-3">Get Started</a>
-                    <a href="{{ route('features') }}" class="btn btn-outline-custom px-4 py-3">Explore Features</a>
-                </div>
-
-                <div class="hero-metrics d-flex flex-wrap align-items-center gap-3 text-secondary-custom small">
-                    <span class="hero-metric-pill">Profile-first workflow</span>
-                    <span class="hero-metric-pill">AI resume feedback</span>
-                    <span class="hero-metric-pill">Interview readiness</span>
-                </div>
-
-                <div class="hero-feature-strip mt-4 d-flex flex-wrap gap-3">
-                    <div class="hero-highlight-card">
-                        <span class="mini-dot"></span>
-                        <span>Resume scoring</span>
-                    </div>
-                    <div class="hero-highlight-card">
-                        <span class="mini-dot"></span>
-                        <span>Applications tracked</span>
-                    </div>
-                    <div class="hero-highlight-card">
-                        <span class="mini-dot"></span>
-                        <span>Interview prep</span>
-                    </div>
+            <div class="col-lg-6 hero-copy-column">
+                <span class="hero-badge"><span aria-hidden="true">⚡</span> Your Career. Our Guidance.</span>
+                <h1 class="hero-title mt-3">Build a stronger<br>career with<br><span>Career Copilot</span></h1>
+                <p class="lead text-secondary-custom mt-4 mb-4">Get personalized career guidance, track progress, and achieve your goals with ease.</p>
+                <div class="d-flex flex-wrap gap-3 mb-4 hero-actions">
+                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white px-4 py-3">Get Started <span aria-hidden="true">→</span></a>
+                    <a href="{{ route('features') }}" class="btn btn-outline-custom px-4 py-3"><span class="hero-play" aria-hidden="true">▶</span> Watch Demo</a>
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="hero-panel card-soft p-4 p-xl-5">
-                    <div class="dark-panel-top mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-badge">CP</div>
-                            <div>
-                                <div class="small text-white-50">Career profile</div>
-                                <strong class="fs-6 text-white">Ready for next move</strong>
+            <div class="col-lg-6 hero-preview-column">
+                <div class="career-preview-wrap">
+                    <span class="hero-float-icon hero-float-icon--rocket" aria-hidden="true">🚀</span>
+                    <span class="hero-float-icon hero-float-icon--chart" aria-hidden="true">
+                        <svg viewBox="0 0 32 32">
+                            <rect x="4" y="18" width="5" height="9" rx="2" />
+                            <rect x="13.5" y="12" width="5" height="15" rx="2" />
+                            <rect x="23" y="7" width="5" height="20" rx="2" />
+                            <path d="M5 13 12 9l6 2 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <div class="career-preview">
+                        <div class="career-preview__topbar">
+                            <div class="career-preview__brand"><span>G</span> Career Copilot</div>
+                            <div class="career-preview__profile"><span>👨🏻</span><b>⌄</b></div>
+                        </div>
+                        <div class="career-preview__body">
+                            <aside class="career-preview__sidebar" aria-label="Preview navigation">
+                                <div class="career-preview__nav-item active"><span>⌂</span> Dashboard</div>
+                                <div class="career-preview__nav-item"><span>▣</span> Career Plan</div>
+                                <div class="career-preview__nav-item"><span>▦</span> Resources</div>
+                                <div class="career-preview__nav-item"><span>▥</span> Analytics</div>
+                                <div class="career-preview__nav-item"><span>⚙</span> Settings</div>
+                            </aside>
+                            <div class="career-preview__main">
+                                <h2>Welcome back!</h2>
+                                <p>Let’s continue your career journey</p>
+                                <div class="career-score-card">
+                                    <span>Your Career Score</span>
+                                    <strong>92%</strong>
+                                    <svg viewBox="0 0 300 80" role="img" aria-label="Career score chart">
+                                        <defs>
+                                            <linearGradient id="heroChartFill" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0" stop-color="#ffffff" stop-opacity="0.28" />
+                                                <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M0 66 C35 58 52 35 82 48 S125 64 152 42 S205 22 230 31 S270 10 300 0 L300 80 L0 80 Z" fill="url(#heroChartFill)" />
+                                        <path d="M0 66 C35 58 52 35 82 48 S125 64 152 42 S205 22 230 31 S270 10 300 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                                        <g fill="#fff">
+                                            <circle cx="82" cy="48" r="4" />
+                                            <circle cx="152" cy="42" r="4" />
+                                            <circle cx="230" cy="31" r="4" />
+                                            <circle cx="300" cy="0" r="4" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="hero-next-step"><span class="hero-next-step__icon">▦</span>
+                                    <div><b>Next Step</b><small>Complete your skill assessment</small></div><span class="hero-next-step__arrow">›</span>
+                                </div>
                             </div>
                         </div>
-                        <span class="status-pill">On track</span>
-                    </div>
-
-                    <div class="dark-score-card mb-3">
-                        <div class="d-flex justify-content-between small text-white-50 mb-2">
-                            <span>Resume readiness</span>
-                            <span class="fw-bold text-white">Strong</span>
-                        </div>
-                        <div class="progress dark-progress" style="height: 12px;">
-                            <div class="progress-bar bg-primary-custom" style="width: 82%"></div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mb-3">
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Profiles</div>
-                                <div class="fs-4 fw-bold">Live</div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Applications</div>
-                                <div class="fs-4 fw-bold">Tracked</div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Prep</div>
-                                <div class="fs-4 fw-bold">Ready</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border rounded-4 p-3 bg-white">
-                        <div class="d-flex justify-content-between align-items-center gap-3 mb-2">
-                            <div>
-                                <div class="fw-semibold">Product Analyst</div>
-                                <div class="small text-secondary-custom">Target role</div>
-                            </div>
-                            <span class="badge bg-primary rounded-pill px-2 py-1">In review</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center gap-3">
-                            <div>
-                                <div class="fw-semibold">Frontend Engineer</div>
-                                <div class="small text-secondary-custom">Second track</div>
-                            </div>
-                            <span class="badge bg-warning text-dark rounded-pill px-2 py-1">Preparing</span>
-                        </div>
-                    </div>
-
-                    <div class="quick-action-row mt-3 d-flex flex-wrap gap-2">
-                        <span class="premium-mini-tag">Tailored resume</span>
-                        <span class="premium-mini-tag">AI feedback</span>
-                        <span class="premium-mini-tag">Interview drills</span>
                     </div>
                 </div>
             </div>
