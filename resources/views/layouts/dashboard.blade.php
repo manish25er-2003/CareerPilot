@@ -177,7 +177,6 @@ $mobileMoreNav = [
         </main>
     </div>
 
-    @include('partials.footer')
 
     <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
         @foreach ($mobilePrimaryNav as $item)

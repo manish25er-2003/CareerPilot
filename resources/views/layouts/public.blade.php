@@ -40,7 +40,7 @@
                 <span class="brand-dot"></span>
                 <span class="text-primary-custom">Career</span>Pilot AI
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <button class="navbar-toggler premium-navbar__toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
@@ -53,12 +53,12 @@
                 </ul>
             </div>
 
-            <div class="d-flex gap-2 nav-actions ms-auto">
+            <div class="d-flex gap-2 nav-actions ms-auto premium-navbar__actions">
                 @auth
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-custom">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-custom premium-navbar__login">Dashboard</a>
                 @else
-                <a href="{{ route('login') }}" class="btn btn-outline-custom">Login</a>
-                <a href="{{ route('register') }}" class="btn btn-primary-custom text-white">Get Started</a>
+                <a href="{{ route('login') }}" class="premium-navbar__login">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-primary-custom text-white premium-navbar__signup">Get Started</a>
                 @endauth
             </div>
         </div>

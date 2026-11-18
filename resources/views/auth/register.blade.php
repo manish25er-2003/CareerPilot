@@ -44,7 +44,7 @@
         </div>
 
         <label for="terms" class="auth-check" style="margin-top: 0.25rem;">
-            <input id="terms" type="checkbox" required>
+            <input id="terms" name="terms" type="checkbox" required>
             <span>I agree to the <a href="{{ route('terms-and-conditions') }}" class="auth-link">terms and conditions</a></span>
         </label>
 
