@@ -233,13 +233,11 @@
             <p class="text-secondary-custom mx-auto" style="max-width: 720px;">Real users, resumes, applications, and AI insights are being created across the platform every day.</p>
         </div>
 
-        <div class="metric-showcase-panel">
+        <div class="metric-showcase-panel" id="livePlatformActivity">
             <div class="row g-4 justify-content-center">
                 <div class="col-md-6 col-lg-5">
                     <div class="metric-showcase-card">
-                        <div class="metric-ring metric-ring--purple" style="--percent: 70;">
-                            <span>70%</span>
-                        </div>
+                        <div class="metric-ring metric-ring--purple" data-percent="70" style="--percent: 0;"><span>0%</span></div>
                         <div class="metric-showcase-copy">
                             <h4>Resume completion</h4>
                             <small>70% completed</small>
@@ -249,9 +247,7 @@
 
                 <div class="col-md-6 col-lg-5">
                     <div class="metric-showcase-card">
-                        <div class="metric-ring metric-ring--blue" style="--percent: 45;">
-                            <span>45%</span>
-                        </div>
+                        <div class="metric-ring metric-ring--blue" data-percent="45" style="--percent: 0;"><span>0%</span></div>
                         <div class="metric-showcase-copy">
                             <h4>Applications</h4>
                             <small>45% completed</small>
@@ -261,9 +257,7 @@
 
                 <div class="col-md-6 col-lg-5">
                     <div class="metric-showcase-card">
-                        <div class="metric-ring metric-ring--green" style="--percent: 85;">
-                            <span>85%</span>
-                        </div>
+                        <div class="metric-ring metric-ring--green" data-percent="85" style="--percent: 0;"><span>0%</span></div>
                         <div class="metric-showcase-copy">
                             <h4>Interview practice</h4>
                             <small>85% completed</small>
@@ -273,9 +267,7 @@
 
                 <div class="col-md-6 col-lg-5">
                     <div class="metric-showcase-card">
-                        <div class="metric-ring metric-ring--orange" style="--percent: 30;">
-                            <span>30%</span>
-                        </div>
+                        <div class="metric-ring metric-ring--orange" data-percent="30" style="--percent: 0;"><span>0%</span></div>
                         <div class="metric-showcase-copy">
                             <h4>AI analysis</h4>
                             <small>30% completed</small>
@@ -381,29 +373,65 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="card-soft p-4 p-xl-5 h-100" style="background: linear-gradient(135deg, #5b4ef7, #7c5cff 48%, #3a5be8); color: white; border: none;">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div>
-                            <div class="small text-white-50">Premium learning</div>
-                            <strong class="fs-5 text-white">CareerPilot Growth Plan</strong>
+                <div class="hero-panel card-soft p-4 p-xl-5">
+                    <div class="dark-panel-top mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="avatar-badge">CP</div>
+                            <div>
+                                <div class="small text-white-50">Career profile</div>
+                                <strong class="fs-6 text-white">Ready for next move</strong>
+                            </div>
                         </div>
-                        <span class="badge rounded-pill px-3 py-2" style="background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.2);">Classic + premium</span>
+                        <span class="status-pill">On track</span>
                     </div>
 
-                    <div class="d-flex flex-column gap-3">
-                        <div class="p-3 rounded-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);">
-                            <div class="small text-white-50">Resume readiness</div>
-                            <div class="fs-4 fw-bold mt-1">82%</div>
+                    <div class="dark-score-card mb-3">
+                        <div class="d-flex justify-content-between small text-white-50 mb-2">
+                            <span>Resume readiness</span>
+                            <span class="fw-bold text-white">Strong</span>
                         </div>
-                        <div class="p-3 rounded-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);">
-                            <div class="small text-white-50">Application momentum</div>
-                            <div class="fs-4 fw-bold mt-1">3 active tracks</div>
-                        </div>
-                        <div class="p-3 rounded-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);">
-                            <div class="small text-white-50">Interview confidence</div>
-                            <div class="fs-4 fw-bold mt-1">Improving weekly</div>
+                        <div class="progress dark-progress" style="height: 12px;">
+                            <div class="progress-bar bg-primary-custom" style="width: 82%"></div>
                         </div>
                     </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-4">
+                            <div class="stat-card h-100">
+                                <div class="small text-secondary-custom">Profiles</div>
+                                <div class="fs-4 fw-bold">Live</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-card h-100">
+                                <div class="small text-secondary-custom">Applications</div>
+                                <div class="fs-4 fw-bold">Tracked</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-card h-100">
+                                <div class="small text-secondary-custom">Prep</div>
+                                <div class="fs-4 fw-bold">Ready</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border rounded-4 p-3 bg-white">
+                        <div class="d-flex justify-content-between align-items-center gap-3 mb-2">
+                            <div>
+                                <div class="fw-semibold">Product Analyst</div>
+                                <div class="small text-secondary-custom">Target role</div>
+                            </div><span class="badge bg-primary rounded-pill px-2 py-1">In review</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center gap-3">
+                            <div>
+                                <div class="fw-semibold">Frontend Engineer</div>
+                                <div class="small text-secondary-custom">Second track</div>
+                            </div><span class="badge bg-warning text-dark rounded-pill px-2 py-1">Preparing</span>
+                        </div>
+                    </div>
+
+                    <div class="quick-action-row mt-3 d-flex flex-wrap gap-2"><span class="premium-mini-tag">Tailored resume</span><span class="premium-mini-tag">AI feedback</span><span class="premium-mini-tag">Interview drills</span></div>
                 </div>
             </div>
         </div>
@@ -423,4 +451,61 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const activityPanel = document.getElementById('livePlatformActivity');
+    if (!activityPanel) return;
+
+    const rings = Array.from(activityPanel.querySelectorAll('.metric-ring[data-percent]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let hasAnimated = false;
+
+    const animateRing = function (ring) {
+        const target = Number(ring.dataset.percent) || 0;
+        const label = ring.querySelector('span');
+
+        if (reduceMotion) {
+            ring.style.setProperty('--percent', target);
+            if (label) label.textContent = target + '%';
+            return;
+        }
+
+        const duration = 1800;
+        const startedAt = performance.now();
+
+        const update = function (now) {
+            const progress = Math.min((now - startedAt) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(target * eased);
+
+            ring.style.setProperty('--percent', current);
+            if (label) label.textContent = current + '%';
+
+            if (progress < 1) requestAnimationFrame(update);
+        };
+
+        requestAnimationFrame(update);
+    };
+
+    const startAnimation = function () {
+        if (hasAnimated) return;
+        hasAnimated = true;
+        rings.forEach(animateRing);
+    };
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries, instance) {
+            if (entries.some(function (entry) { return entry.isIntersecting; })) {
+                startAnimation();
+                instance.disconnect();
+            }
+        }, { threshold: 0.25 });
+
+        observer.observe(activityPanel);
+    } else {
+        startAnimation();
+    }
+});
+</script>
 @endsection

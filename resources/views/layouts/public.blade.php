@@ -45,24 +45,34 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav mx-auto gap-lg-3 public-mobile-nav-list">
+                <ul class="navbar-nav mx-auto gap-lg-3 homepage-desktop-nav">
                     <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('features') ? 'active' : '' }}" href="{{ route('features') }}">Features</a></li>
-                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('how-it-works') ? 'active' : '' }}" href="{{ route('how-it-works') }}">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('home') }}#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('home') }}#faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
-                @unless(request()->routeIs('home'))
-                <div class="d-flex gap-2 nav-actions ms-auto premium-navbar__actions">
-                    @auth
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline-custom premium-navbar__login">Dashboard</a>
-                    @else
-                    <a href="{{ route('login') }}" class="premium-navbar__login">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary-custom text-white premium-navbar__signup">Get Started</a>
-                    @endauth
-                </div>
-                @endunless
+                <ul class="navbar-nav public-mobile-nav-list">
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('features') ? 'active' : '' }}" href="{{ route('features') }}">Features</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('home') }}#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom" href="{{ route('home') }}#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary-custom {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
+                </ul>
             </div>
+
+            @unless(request()->routeIs('home'))
+            <div class="d-flex gap-2 nav-actions ms-auto premium-navbar__actions">
+                @auth
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-custom premium-navbar__login">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="premium-navbar__login">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-primary-custom text-white premium-navbar__signup">Get Started</a>
+                @endauth
+            </div>
+            @endunless
         </div>
     </nav>
 
