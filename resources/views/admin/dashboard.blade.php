@@ -17,7 +17,7 @@ $adminCards = [
 ['label' => 'Completed interviews', 'value' => $stats['completed_interviews'] ?? 0, 'meta' => 'Interview sessions', 'tone' => 'green'],
 ];
 @endphp
-
+<!-- admin code -->
 <div class="jobflow-dashboard-page">
     <div class="jobflow-hero-banner jobflow-hero-banner--admin">
         <div class="jobflow-hero-copy">
