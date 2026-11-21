@@ -1,0 +1,9 @@
+@import "../../../public/css/careerpilot.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.premium-shell {
+    background: linear-gradient(180deg, #f8f6f3 0%, #f2eee9 100%);
+}

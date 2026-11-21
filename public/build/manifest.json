@@ -1,11 +1,42 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-aYHTKLBq.css",
-    "src": "resources/css/app.css",
+    "file": "assets/app-1MnCzayc.css",
+    "src": "resources/css/app.css"
+  },
+  "resources/css/pages/app.css": {
+    "file": "assets/app-CfT7mfzT.css",
+    "src": "resources/css/pages/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
+    ]
+  },
+  "resources/css/pages/auth.css": {
+    "file": "assets/auth-Dh243cK-.css",
+    "src": "resources/css/pages/auth.css",
+    "isEntry": true,
+    "name": "auth",
+    "names": [
+      "auth.css"
+    ]
+  },
+  "resources/css/pages/dashboard.css": {
+    "file": "assets/dashboard-CVKPBJvF.css",
+    "src": "resources/css/pages/dashboard.css",
+    "isEntry": true,
+    "name": "dashboard",
+    "names": [
+      "dashboard.css"
+    ]
+  },
+  "resources/css/pages/public.css": {
+    "file": "assets/public-SJFNS0HS.css",
+    "src": "resources/css/pages/public.css",
+    "isEntry": true,
+    "name": "public",
+    "names": [
+      "public.css"
     ]
   },
   "resources/js/app.js": {

@@ -19,9 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('css/careerpilot.css') }}?v={{ filemtime(public_path('css/careerpilot.css')) }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}?v={{ filemtime(public_path('css/dashboard.css')) }}">
+    @vite(['resources/css/pages/dashboard.css', 'resources/js/app.js'])
 </head>
 @php
 $authUser = Auth::user();
