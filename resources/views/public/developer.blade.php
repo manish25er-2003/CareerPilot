@@ -11,7 +11,7 @@
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-4 text-center">
                             <div class="developer-avatar mx-auto">
-                                MY
+                                <img src="{{ asset('Portrait in a Lush Garden Setting (1).png') }}" alt="{{ $developer['name'] }} portrait">
                             </div>
                         </div>
 
