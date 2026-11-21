@@ -26,14 +26,6 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
             <p>Let’s find your next opportunity together with CareerPilot AI.</p>
             <a href="{{ route('jobs.index') }}" class="jobflow-cta-button">Explore Opportunities →</a>
         </div>
-        <div class="jobflow-hero-visual" aria-hidden="true">
-            <div class="jobflow-hero-device">
-                <div class="jobflow-hero-screen"></div>
-            </div>
-            <div class="jobflow-mini-card jobflow-mini-card--chart">📈</div>
-            <div class="jobflow-mini-card jobflow-mini-card--briefcase">💼</div>
-            <div class="jobflow-mini-card jobflow-mini-card--note">📝</div>
-        </div>
     </div>
 
     <div class="jobflow-upper-grid">
