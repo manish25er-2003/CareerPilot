@@ -82,6 +82,7 @@
 
     @include('partials.footer')
 
+    @unless(request()->routeIs('home'))
     <nav class="public-mobile-bottom-nav" aria-label="Mobile navigation">
         <a href="{{ route('home') }}" class="public-mobile-bottom-nav__item {{ request()->routeIs('home') ? 'active' : '' }}">
             <span>🏠</span>
@@ -107,6 +108,7 @@
             <small>{{ auth()->check() ? 'Open' : 'Join' }}</small>
         </a>
     </nav>
+    @endunless
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
