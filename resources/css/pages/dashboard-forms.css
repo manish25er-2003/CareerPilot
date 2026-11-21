@@ -1,0 +1,307 @@
+/* Shared form and page-card polish for dashboard routes */
+.app-shell .card-soft,
+.app-shell .settings-summary,
+.app-shell .settings-sidebar {
+    border: 1px solid rgba(124, 92, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(49, 43, 105, 0.06);
+}
+
+.app-shell .form-label {
+    margin-bottom: 7px;
+    color: #3e465a;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.app-shell .form-control,
+.app-shell .form-select,
+.app-shell textarea.form-control {
+    min-height: 48px;
+    border: 1px solid #dde2ec;
+    border-radius: 12px;
+    background-color: #fbfcff;
+    color: #252b3d;
+    box-shadow: none;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.app-shell textarea.form-control {
+    min-height: 112px;
+    resize: vertical;
+}
+
+.app-shell .form-control:focus,
+.app-shell .form-select:focus,
+.app-shell textarea.form-control:focus {
+    border-color: rgba(124, 92, 255, 0.58);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.09);
+}
+
+.app-shell .form-control::placeholder,
+.app-shell textarea.form-control::placeholder {
+    color: #9aa2b3;
+}
+
+.app-shell .text-danger.small,
+.app-shell .invalid-feedback {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.72rem;
+}
+
+.app-shell .btn-primary-custom,
+.app-shell .btn-outline-custom,
+.app-shell .btn-outline-danger,
+.app-shell .jobflow-cta-button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    font-weight: 800;
+}
+
+.app-shell .btn-sm {
+    min-height: 38px;
+}
+
+.app-shell .table-responsive {
+    max-width: 100%;
+}
+
+.app-shell .settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.app-shell .settings-nav-item {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #697187;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 750;
+}
+
+.app-shell .settings-nav-item.active {
+    background: rgba(124, 92, 255, 0.1);
+    color: #6252df;
+}
+
+/* Sidebar install card and compact dashboard navigation containment */
+.app-shell .jobflow-sidebar {
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.app-shell .jobflow-logo,
+.app-shell .jobflow-user-chip,
+.app-shell .jobflow-nav {
+    flex: 0 0 auto;
+}
+
+.app-shell .jobflow-nav {
+    max-width: 100%;
+}
+
+.app-shell .jobflow-nav a {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-shell .install-app-card {
+    width: 100%;
+    max-width: 192px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.app-shell .install-app-card__panel {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px 10px 10px;
+}
+
+.app-shell .install-app-card__dismiss {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    line-height: 1;
+}
+
+.app-shell .install-app-card__top {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-shell .install-app-card__logo {
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.app-shell .install-app-card__logo img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.app-shell .install-app-card__meta {
+    min-width: 0;
+}
+
+.app-shell .install-app-card__eyebrow {
+    display: block;
+    margin-bottom: 2px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.54rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+}
+
+.app-shell .install-app-card__meta h6 {
+    max-width: 96px;
+    margin: 0;
+    color: #fff;
+    font-size: 0.72rem;
+    line-height: 1.22;
+}
+
+.app-shell .install-app-card__description {
+    margin: 8px 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.64rem;
+    line-height: 1.45;
+}
+
+.app-shell .install-app-card__button {
+    width: 100%;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 0;
+    border-radius: 9px;
+    background: #fff;
+    color: #3f36a9;
+    font-size: 0.68rem;
+    font-weight: 850;
+}
+
+.app-shell .install-app-card__button-icon {
+    font-size: 0.72rem;
+}
+
+.app-shell .install-app-card__footer {
+    display: none;
+}
+
+@media (max-width: 575.98px) {
+    .app-shell .card-soft,
+    .app-shell .settings-summary,
+    .app-shell .settings-sidebar {
+        border-radius: 16px;
+    }
+
+    .app-shell .jobflow-dashboard-page .card-soft,
+    .app-shell .jobflow-dashboard-page .summary-card {
+        padding: 16px !important;
+    }
+
+    .app-shell .form-control,
+    .app-shell .form-select,
+    .app-shell textarea.form-control {
+        min-height: 46px;
+        font-size: 16px;
+    }
+
+    .app-shell textarea.form-control {
+        min-height: 104px;
+    }
+
+    .app-shell .row.g-3 > [class*="col-"],
+    .app-shell .row.g-2 > [class*="col-"] {
+        width: 100%;
+    }
+
+    .app-shell form .btn {
+        width: 100%;
+    }
+
+    .app-shell .d-flex.flex-wrap.gap-2 form,
+    .app-shell .d-flex.flex-wrap.gap-2 form .btn {
+        flex: 1 1 auto;
+        width: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .app-shell .jobflow-dashboard-shell {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .app-shell .jobflow-sidebar {
+        width: 220px;
+        max-width: 220px;
+    }
+
+    .app-shell .jobflow-nav a {
+        width: 100%;
+    }
+
+    .app-shell .jobflow-sidebar > form {
+        width: 100%;
+        margin-top: 8px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .app-shell .jobflow-dashboard-shell {
+        grid-template-columns: 196px minmax(0, 1fr);
+    }
+
+    .app-shell .jobflow-sidebar {
+        width: 196px;
+        max-width: 196px;
+        padding-inline: 12px;
+    }
+
+    .app-shell .install-app-card {
+        max-width: 172px;
+    }
+}

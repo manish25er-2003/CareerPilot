@@ -1,2 +1,8 @@
 @import "../../../public/css/careerpilot.css";
 @import "../../../public/css/dashboard.css";
+@import "./dashboard-banner.css";
+@import "./dashboard-mobile.css";
+@import "./dashboard-forms.css";
+@import "./dashboard-mobile-header.css";
+@import "./dashboard-summary-cards.css";
+@import "./dashboard-audit.css";

@@ -32,6 +32,41 @@ $userInitials = collect(explode(' ', trim($userName)))
 ->take(2)
 ->implode('');
 
+$notificationCount = 0;
+
+try {
+$notificationCount = \App\Models\Notification::where('user_id', $authUser?->id)
+->where('is_read', false)
+->count();
+} catch (\Throwable $exception) {
+$notificationCount = 0;
+}
+
+$isAdminDashboard = request()->routeIs('admin.*') || (($authUser?->role ?? null) === 'admin');
+
+if ($isAdminDashboard) {
+$mobilePrimaryNav = [
+['label' => 'Overview', 'route' => route('admin.dashboard'), 'active' => request()->routeIs('admin.dashboard'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5Z" />
+</svg>'],
+['label' => 'Profile', 'route' => route('profile.index'), 'active' => request()->routeIs('profile.*'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-8 9v-2a8 8 0 0 1 16 0v2H4Z" />
+</svg>'],
+['label' => 'Website', 'route' => route('home'), 'active' => false, 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 9h-3.1a15.8 15.8 0 0 0-1.2-5.2A8.1 8.1 0 0 1 19.9 11ZM12 4c.8 1.2 1.5 3.5 1.8 7H10.2C10.5 7.5 11.2 5.2 12 4ZM4.1 11a8.1 8.1 0 0 1 4.3-5.2A15.8 15.8 0 0 0 7.2 11H4.1Zm0 2h3.1c.2 2 .6 3.8 1.2 5.2A8.1 8.1 0 0 1 4.1 13Zm6.1 0h3.6c-.3 3.5-1 5.8-1.8 7-.8-1.2-1.5-3.5-1.8-7Zm5.3 5.2c.6-1.4 1-3.2 1.2-5.2h3.1a8.1 8.1 0 0 1-4.3 5.2Z" />
+</svg>'],
+['label' => 'More', 'route' => '#', 'active' => request()->routeIs('profile.edit'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+</svg>']
+];
+
+$mobileMoreNav = [
+['label' => 'Admin dashboard', 'route' => route('admin.dashboard'), 'active' => request()->routeIs('admin.dashboard'), 'icon' => '▦'],
+['label' => 'My profile', 'route' => route('profile.index'), 'active' => request()->routeIs('profile.*'), 'icon' => '👤'],
+['label' => 'Security settings', 'route' => route('profile.edit'), 'active' => request()->routeIs('profile.edit'), 'icon' => '⚙️'],
+['label' => 'Open website', 'route' => route('home'), 'active' => false, 'icon' => '🌐']
+];
+} else {
 $mobilePrimaryNav = [
 ['label' => 'Dashboard', 'route' => route('dashboard'), 'active' => request()->routeIs('dashboard'), 'icon' => '<svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5Z" />
@@ -57,6 +92,7 @@ $mobileMoreNav = [
 ['label' => 'Settings', 'route' => route('profile.edit'), 'active' => request()->routeIs('profile.edit'), 'icon' => '⚙️'],
 ['label' => 'Help & Support', 'route' => route('contact'), 'active' => request()->routeIs('contact'), 'icon' => '💬'],
 ];
+}
 @endphp
 
 <body class="app-shell">
@@ -84,6 +120,12 @@ $mobileMoreNav = [
             </div>
 
             <nav class="jobflow-nav" aria-label="Sidebar navigation">
+                @if ($isAdminDashboard)
+                <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Admin Overview</a>
+                <a class="{{ request()->routeIs('profile.index') ? 'active' : '' }}" href="{{ route('profile.index') }}">My Profile</a>
+                <a class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}" href="{{ route('profile.edit') }}">Settings</a>
+                <a href="{{ route('home') }}">Open Website</a>
+                @else
                 <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
                 <a class="{{ request()->routeIs('profile.*') ? 'active' : '' }}" href="{{ route('profile.index') }}">My Profile</a>
                 <a class="{{ request()->routeIs('skills.*') ? 'active' : '' }}" href="{{ route('skills.index') }}">My Skills</a>
@@ -93,7 +135,8 @@ $mobileMoreNav = [
                 <a class="{{ request()->routeIs('ai-analysis.*') ? 'active' : '' }}" href="{{ route('ai-analysis.index') }}">AI Analysis</a>
                 <a class="{{ request()->routeIs('reports.*') ? 'active' : '' }}" href="{{ route('reports.overview') }}">Progress Reports</a>
                 <a class="{{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Notifications</a>
-                <a class="{{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Settings</a>
+                <a class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}" href="{{ route('profile.edit') }}">Settings</a>
+                @endif
             </nav>
 
             <div id="installAppCard" class="install-app-card" hidden>
@@ -125,6 +168,14 @@ $mobileMoreNav = [
 
         <main class="jobflow-main-panel">
             <div class="jobflow-header-bar">
+                <div class="mobile-dashboard-brand" aria-label="{{ request()->routeIs('admin.dashboard') ? 'CareerPilot AI Admin' : 'CareerPilot AI' }}">
+                    <span class="mobile-dashboard-brand__logo" aria-hidden="true">✦</span>
+                    <div class="mobile-dashboard-brand__text">
+                        <strong>CareerPilot AI</strong>
+                        <small>{{ request()->routeIs('admin.dashboard') ? 'Admin Dashboard' : 'Your Career App' }}</small>
+                    </div>
+                </div>
+
                 <div class="jobflow-title-wrap">
                     <div class="jobflow-icon-badge">✦</div>
                     <div>
@@ -138,7 +189,12 @@ $mobileMoreNav = [
                         <span>⌕</span>
                         <input type="text" value="" aria-label="Search" placeholder="Search opportunities, tools...">
                     </div>
-                    <button type="button" class="jobflow-notification-btn" aria-label="Notifications">🔔</button>
+                    <button type="button" class="jobflow-notification-btn" aria-label="Notifications: {{ $notificationCount }} unread">
+                        <span aria-hidden="true">🔔</span>
+                        @if ($notificationCount > 0)
+                        <span class="jobflow-notification-count">{{ $notificationCount > 99 ? '99+' : $notificationCount }}</span>
+                        @endif
+                    </button>
                     <div class="dropdown">
                         <button class="jobflow-user-panel dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="jobflow-user-avatar small">

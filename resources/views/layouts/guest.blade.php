@@ -19,10 +19,10 @@
 <body class="auth-shell">
     <div class="auth-page">
         <div class="auth-card">
-            <div class="auth-brand">
-                <div class="brand-mark">CP</div>
+            <a class="auth-brand" href="{{ route('home') }}" aria-label="CareerPilot AI home">
+                <div class="brand-mark" aria-hidden="true">CP</div>
                 <div><span>Career</span>Pilot AI</div>
-            </div>
+            </a>
             <div class="auth-body">
                 {{ $slot }}
             </div>

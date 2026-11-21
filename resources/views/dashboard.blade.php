@@ -37,7 +37,6 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
                     <span class="jobflow-arrow">→</span>
                 </div>
                 <div class="jobflow-stat-value">{{ $card['value'] }}</div>
-                <div class="jobflow-stat-meta">{{ $card['meta'] }}</div>
             </div>
             @empty
             <div class="jobflow-stat-card is-primary">
@@ -46,7 +45,6 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
                     <span class="jobflow-arrow">→</span>
                 </div>
                 <div class="jobflow-stat-value">0</div>
-                <div class="jobflow-stat-meta">No application activity yet.</div>
             </div>
             @endforelse
         </div>

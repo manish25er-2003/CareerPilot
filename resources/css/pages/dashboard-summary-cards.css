@@ -1,0 +1,72 @@
+/* Gradient summary cards for the dashboard */
+.app-shell .jobflow-stat-card {
+    min-height: 132px;
+    overflow: hidden;
+    border: 1px solid rgba(124, 92, 255, 0.08);
+}
+
+.app-shell .jobflow-stat-card:nth-child(1) {
+    background: linear-gradient(135deg, #f8f7ff 0%, #eeefff 100%);
+}
+
+.app-shell .jobflow-stat-card:nth-child(2) {
+    background: linear-gradient(135deg, #eff7ff 0%, #edf5ff 100%);
+}
+
+.app-shell .jobflow-stat-card:nth-child(3) {
+    background: linear-gradient(135deg, #effbf5 0%, #eefaf7 100%);
+}
+
+.app-shell .jobflow-stat-card:nth-child(4) {
+    background: linear-gradient(135deg, #fff8e9 0%, #fffaf1 100%);
+}
+
+.app-shell .jobflow-stat-header {
+    max-width: calc(100% - 54px);
+    align-items: flex-start;
+    color: #4d5870;
+    font-size: 0.74rem;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.app-shell .jobflow-stat-value {
+    margin-top: 8px;
+    margin-left: 0;
+    color: #182033;
+    font-size: 1.85rem;
+    line-height: 1;
+}
+
+.app-shell .jobflow-stat-meta,
+.app-shell .jobflow-arrow {
+    display: none;
+}
+
+.app-shell .jobflow-stat-card::before {
+    left: auto;
+    right: 14px;
+    bottom: 14px;
+}
+
+@media (max-width: 575.98px) {
+    .app-shell .jobflow-stat-card {
+        min-height: 118px;
+        padding: 14px;
+    }
+
+    .app-shell .jobflow-stat-header {
+        max-width: calc(100% - 46px);
+        font-size: 0.72rem;
+    }
+
+    .app-shell .jobflow-stat-value {
+        margin-top: 10px;
+        font-size: 1.55rem;
+    }
+
+    .app-shell .jobflow-stat-card::before {
+        right: 10px;
+        bottom: 10px;
+    }
+}

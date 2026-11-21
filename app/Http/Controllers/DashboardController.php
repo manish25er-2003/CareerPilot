@@ -32,10 +32,10 @@ class DashboardController extends Controller
             : null;
 
         $summaryCards = [
-            ['label' => 'Total Applications Sent', 'value' => $allApplications, 'meta' => 'Overview of all submitted applications', 'active' => true],
-            ['label' => 'Active Applications', 'value' => $activeApplications, 'meta' => 'Ongoing applications in progress', 'active' => false],
-            ['label' => 'Waiting for Interview', 'value' => $waitingInterview, 'meta' => 'Applications in the interview queue', 'active' => false],
-            ['label' => 'Offer Received', 'value' => $offerReceived, 'meta' => 'Jobs offering interview or job offer', 'active' => false],
+            ['label' => 'Total Applications', 'value' => $allApplications, 'meta' => '', 'active' => true],
+            ['label' => 'Active Applications', 'value' => $activeApplications, 'meta' => '', 'active' => false],
+            ['label' => 'Waiting for Interview', 'value' => $waitingInterview, 'meta' => '', 'active' => false],
+            ['label' => 'Offers Received', 'value' => $offerReceived, 'meta' => '', 'active' => false],
         ];
 
         $schedule = $jobs

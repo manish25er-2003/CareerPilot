@@ -1,0 +1,120 @@
+/* Shared full-background welcome banner for user and admin dashboards */
+.app-shell .jobflow-hero-banner,
+.app-shell .jobflow-hero-banner--admin {
+    isolation: isolate;
+    min-height: 190px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(43, 28, 125, 0.94) 0%,
+            rgba(58, 42, 158, 0.78) 34%,
+            rgba(58, 54, 166, 0.28) 58%,
+            rgba(45, 55, 160, 0.08) 100%
+        ),
+        url("/dashbaord-banner.png");
+    background-repeat: no-repeat;
+    background-position: center 58%;
+    background-size: cover;
+    box-shadow: 0 16px 36px rgba(70, 55, 175, 0.2);
+}
+
+.app-shell .jobflow-hero-banner::after,
+.app-shell .jobflow-hero-banner--admin::after {
+    display: none;
+}
+
+.app-shell .jobflow-hero-copy {
+    max-width: 56%;
+    padding: 24px 34px;
+}
+
+.app-shell .jobflow-hero-copy h2 {
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(26, 20, 76, 0.24);
+}
+
+.app-shell .jobflow-hero-copy p {
+    max-width: 440px;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 8px rgba(26, 20, 76, 0.2);
+}
+
+.app-shell .jobflow-hero-pill {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+}
+
+.app-shell .jobflow-cta-button {
+    box-shadow: 0 10px 22px rgba(24, 18, 75, 0.16);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.app-shell .jobflow-cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(24, 18, 75, 0.22);
+}
+
+.app-shell .jobflow-hero-banner--admin .jobflow-hero-copy {
+    max-width: 58%;
+}
+
+.app-shell .jobflow-hero-banner--admin .jobflow-hero-visual {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .app-shell .jobflow-hero-banner,
+    .app-shell .jobflow-hero-banner--admin {
+        min-height: 178px;
+        background-position: 62% 58%;
+    }
+
+    .app-shell .jobflow-hero-copy,
+    .app-shell .jobflow-hero-banner--admin .jobflow-hero-copy {
+        max-width: 64%;
+        padding: 22px 26px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-shell .jobflow-hero-banner,
+    .app-shell .jobflow-hero-banner--admin {
+        min-height: 180px;
+        background-position: 68% 58%;
+    }
+
+    .app-shell .jobflow-hero-copy,
+    .app-shell .jobflow-hero-banner--admin .jobflow-hero-copy {
+        max-width: 82%;
+        padding: 18px;
+    }
+
+    .app-shell .jobflow-hero-copy h2 {
+        font-size: 1.42rem;
+    }
+
+    .app-shell .jobflow-hero-copy p {
+        margin: 6px 0 12px;
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+
+    .app-shell .jobflow-hero-pill {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.58rem;
+    }
+
+    .app-shell .jobflow-cta-button {
+        min-height: 40px;
+        padding-inline: 14px;
+        font-size: 0.72rem;
+    }
+}

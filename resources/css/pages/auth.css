@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body.auth-shell {
+    width: 100%;
+    max-width: 100%;
+}
+
+body.auth-shell {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .auth-shell {
     min-height: 100vh;
     display: grid;
@@ -27,6 +39,7 @@
     width: 100%;
     display: grid;
     place-items: center;
+    min-height: 100dvh;
 }
 
 .auth-card {
@@ -36,20 +49,24 @@
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 28px 70px rgba(49, 43, 105, 0.16);
+    max-height: none;
 }
 
 .auth-brand {
-    min-height: 92px;
+    min-height: 108px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    padding: 18px 28px;
+    padding: 20px 28px;
     border-bottom: 1px solid #edf0f7;
     background: linear-gradient(135deg, #fdfcff 0%, #f5f3ff 100%);
     color: #17172f;
-    font-size: 1.05rem;
-    font-weight: 850;
+    font-size: 1.12rem;
+    font-weight: 900;
     letter-spacing: -0.035em;
+    text-align: center;
+    text-decoration: none;
 }
 
 .auth-brand > div:last-child span {
@@ -57,17 +74,20 @@
 }
 
 .brand-mark {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     display: grid;
-    flex: 0 0 48px;
+    flex: 0 0 52px;
     place-items: center;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #7c4dff 0%, #4d5be8 58%, #49a4e8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: 17px;
+    background: linear-gradient(135deg, #8262f5 0%, #5b58dd 56%, #50a5e6 100%);
     color: #fff;
-    box-shadow: 0 12px 26px rgba(103, 82, 223, 0.28);
-    font-size: 0.95rem;
-    font-weight: 900;
+    box-shadow:
+        0 12px 26px rgba(103, 82, 223, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    font-size: 1rem;
+    font-weight: 950;
 }
 
 .auth-body {
@@ -76,18 +96,19 @@
 
 .auth-header {
     margin-bottom: 22px;
+    text-align: center;
 }
 
 .auth-header .eyebrow {
     display: inline-flex;
-    margin-bottom: 8px;
-    padding: 5px 9px;
+    margin-bottom: 10px;
+    padding: 6px 10px;
     border: 1px solid rgba(124, 92, 255, 0.12);
     border-radius: 999px;
     background: #f3f1ff;
     color: #6653df;
-    font-size: 0.64rem;
-    font-weight: 850;
+    font-size: 0.68rem;
+    font-weight: 900;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -95,15 +116,17 @@
 .auth-header h1 {
     margin: 0;
     color: #17172f;
-    font-size: clamp(1.55rem, 4vw, 1.9rem);
+    font-size: clamp(1.6rem, 4vw, 1.95rem);
+    font-weight: 900;
     line-height: 1.12;
     letter-spacing: -0.045em;
 }
 
 .auth-header p {
-    margin: 8px 0 0;
-    color: #7a8195;
-    font-size: 0.82rem;
+    max-width: 340px;
+    margin: 9px auto 0;
+    color: #737c92;
+    font-size: 0.84rem;
     line-height: 1.55;
 }
 
@@ -210,7 +233,15 @@
     color: #fff;
     box-shadow: 0 12px 24px rgba(103, 82, 223, 0.2);
     font-size: 0.82rem;
-    font-weight: 850;
+    font-weight: 900;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.auth-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(103, 82, 223, 0.26);
 }
 
 .auth-divider {
@@ -247,6 +278,11 @@
     font-weight: 800;
 }
 
+.btn-google:hover {
+    border-color: #d7daea;
+    background: #fdfdff;
+}
+
 .auth-footer {
     margin-top: 18px;
     color: #7c8396;
@@ -256,13 +292,22 @@
 
 @media (max-width: 575.98px) {
     .auth-shell {
-        align-items: start;
-        padding: 12px;
-        padding-top: 24px;
+        min-height: 100dvh;
+        height: auto;
+        display: block;
+        overflow-y: auto;
+        padding: 12px 10px calc(24px + env(safe-area-inset-bottom));
+    }
+
+    .auth-page {
+        min-height: auto;
+        display: block;
     }
 
     .auth-card {
+        width: 100%;
         max-width: 430px;
+        margin: 0 auto;
         border-radius: 22px;
     }
 
@@ -272,14 +317,14 @@
     }
 
     .brand-mark {
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
-        border-radius: 14px;
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+        border-radius: 15px;
     }
 
     .auth-body {
-        padding: 22px 18px 24px;
+        padding: 20px 16px 22px;
     }
 
     .auth-header {
@@ -287,6 +332,21 @@
     }
 
     .auth-header h1 {
-        font-size: 1.42rem;
+        font-size: 1.38rem;
+    }
+
+    .auth-header p {
+        font-size: 0.78rem;
+    }
+
+    .auth-input,
+    .auth-submit,
+    .btn-google {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .auth-row {
+        align-items: flex-start;
     }
 }

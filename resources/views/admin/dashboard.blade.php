@@ -26,14 +26,6 @@ $adminCards = [
             <p>Track usage, engagement, and key growth metrics across the CareerPilot AI platform.</p>
             <a href="{{ route('home') }}" class="jobflow-cta-button">View Insights →</a>
         </div>
-        <div class="jobflow-hero-visual" aria-hidden="true">
-            <div class="jobflow-hero-device">
-                <div class="jobflow-hero-screen"></div>
-            </div>
-            <div class="jobflow-mini-card jobflow-mini-card--chart">📊</div>
-            <div class="jobflow-mini-card jobflow-mini-card--briefcase">👥</div>
-            <div class="jobflow-mini-card jobflow-mini-card--note">📈</div>
-        </div>
     </div>
 
     <div class="jobflow-upper-grid">
