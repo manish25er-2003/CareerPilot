@@ -61,7 +61,7 @@ body.app-shell {
     max-width: 1460px;
     min-height: calc(100vh - 36px);
     margin: 0 auto;
-    border: 1px solid rgba(111, 94, 184, 0.10);
+    border: 1px solid rgba(111, 94, 184, 0.1);
     border-radius: 24px;
     background: #f8f9fd;
     box-shadow: 0 24px 70px rgba(61, 52, 126, 0.14);
@@ -98,11 +98,21 @@ body.app-shell {
 .app-shell .jobflow-hero-banner {
     min-height: 190px;
     background:
-        linear-gradient(90deg, rgba(49, 29, 132, 0.98) 0%, rgba(83, 57, 190, 0.88) 42%, rgba(68, 137, 225, 0.38) 75%, rgba(72, 173, 224, 0.12) 100%),
-        radial-gradient(circle at 82% 28%, rgba(87, 203, 255, 0.75), transparent 24%),
+        linear-gradient(
+            90deg,
+            rgba(49, 29, 132, 0.98) 0%,
+            rgba(83, 57, 190, 0.88) 42%,
+            rgba(68, 137, 225, 0.38) 75%,
+            rgba(72, 173, 224, 0.12) 100%
+        ),
+        radial-gradient(
+            circle at 82% 28%,
+            rgba(87, 203, 255, 0.75),
+            transparent 24%
+        ),
         linear-gradient(115deg, #3b247f 0%, #6650dc 55%, #43a4e6 100%);
     border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 16px 36px rgba(70, 55, 175, 0.20);
+    box-shadow: 0 16px 36px rgba(70, 55, 175, 0.2);
 }
 
 .app-shell .jobflow-hero-banner::after {
@@ -112,7 +122,7 @@ body.app-shell {
     height: 260px;
     right: -40px;
     bottom: -150px;
-    border: 42px solid rgba(122, 205, 255, 0.20);
+    border: 42px solid rgba(122, 205, 255, 0.2);
     border-radius: 50%;
     box-shadow: 0 0 0 28px rgba(255, 255, 255, 0.06);
 }
@@ -2162,4 +2172,3 @@ section .alert-success {
         margin-left: 42px;
     }
 }
-
