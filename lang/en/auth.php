@@ -1,0 +1,1 @@
+    'failed' => 'The email or password you entered is incorrect. Please try again.',

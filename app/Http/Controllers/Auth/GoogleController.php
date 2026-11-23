@@ -89,6 +89,6 @@ class GoogleController extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('dashboard', absolute: false))->with('success', 'Welcome back! You are signed in successfully.');
     }
 }

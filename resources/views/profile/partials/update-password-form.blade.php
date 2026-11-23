@@ -34,9 +34,6 @@
 
         <div class="col-12 d-flex align-items-center gap-3 mt-2">
             <button type="submit" class="btn btn-primary-custom text-white">Save password</button>
-            @if (session('status') === 'password-updated')
-            <span class="text-success small fw-semibold">Saved.</span>
-            @endif
         </div>
     </form>
 </section>

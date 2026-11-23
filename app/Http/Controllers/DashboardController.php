@@ -32,7 +32,7 @@ class DashboardController extends Controller
             : null;
 
         $summaryCards = [
-            ['label' => 'Total Applications', 'value' => $allApplications, 'meta' => '', 'active' => true],
+            ['label' => 'Total Applications Sent', 'value' => $allApplications, 'meta' => '', 'active' => true],
             ['label' => 'Active Applications', 'value' => $activeApplications, 'meta' => '', 'active' => false],
             ['label' => 'Waiting for Interview', 'value' => $waitingInterview, 'meta' => '', 'active' => false],
             ['label' => 'Offers Received', 'value' => $offerReceived, 'meta' => '', 'active' => false],

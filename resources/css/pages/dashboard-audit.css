@@ -64,6 +64,175 @@
     overflow-wrap: anywhere;
 }
 
+/* Shared dashboard content spacing for all navigation pages */
+.app-shell .jobflow-dashboard-content {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1180px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 26px 28px 40px;
+}
+
+.app-shell .jobflow-dashboard-content > * {
+    box-sizing: border-box;
+}
+
+.app-shell .jobflow-dashboard-content > .jobflow-dashboard-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-shell .jobflow-dashboard-content > .row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.app-shell .jobflow-dashboard-content > .row > [class*="col-"] {
+    min-width: 0;
+}
+
+.app-shell .jobflow-dashboard-content > .card-soft,
+.app-shell .jobflow-dashboard-content > form,
+.app-shell .jobflow-dashboard-content > section,
+.app-shell .jobflow-dashboard-content > .jobflow-dashboard-page > * {
+    width: 100%;
+}
+
+.app-shell .jobflow-dashboard-content .card-soft,
+.app-shell .jobflow-dashboard-content .summary-card,
+.app-shell .jobflow-dashboard-content .settings-summary,
+.app-shell .jobflow-dashboard-content .settings-sidebar {
+    box-sizing: border-box;
+}
+
+.app-shell .jobflow-dashboard-content .row.g-4,
+.app-shell .jobflow-dashboard-content .row.g-3,
+.app-shell .jobflow-dashboard-content .jobflow-upper-grid,
+.app-shell .jobflow-dashboard-content .jobflow-lower-grid,
+.app-shell .jobflow-dashboard-content .jobflow-bottom-grid,
+.app-shell .jobflow-dashboard-content .jobflow-job-grid {
+    row-gap: 20px;
+}
+
+.app-shell .jobflow-main-panel > .alert {
+    max-width: 1124px;
+    margin: 16px auto 0;
+}
+
+/* Balanced edge spacing for all dashboard cards and forms */
+.app-shell .jobflow-dashboard-content {
+    max-width: 1180px;
+    padding: 26px 28px 40px;
+}
+
+.app-shell .jobflow-dashboard-content > .row.profile-settings-layout,
+.app-shell .jobflow-dashboard-content > .row,
+.app-shell .jobflow-dashboard-content > .card-soft,
+.app-shell .jobflow-dashboard-content > form,
+.app-shell .jobflow-dashboard-content > section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.app-shell .jobflow-dashboard-content .profile-settings-layout {
+    --bs-gutter-x: 20px;
+    --bs-gutter-y: 20px;
+}
+
+.app-shell
+    .jobflow-dashboard-content
+    .profile-settings-layout
+    > [class*="col-"] {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.app-shell .jobflow-dashboard-content .card-soft,
+.app-shell .jobflow-dashboard-content .summary-card,
+.app-shell .jobflow-dashboard-content .settings-sidebar,
+.app-shell .jobflow-dashboard-content .settings-summary {
+    margin-top: 0;
+}
+
+.app-shell .jobflow-dashboard-content > .card-soft + .card-soft,
+.app-shell .jobflow-dashboard-content > .card-soft + .row,
+.app-shell .jobflow-dashboard-content > .row + .card-soft,
+.app-shell .jobflow-dashboard-content > .row + .row,
+.app-shell .jobflow-dashboard-content > form + .row,
+.app-shell .jobflow-dashboard-content > section + section {
+    margin-top: 20px;
+}
+
+/* Common direct-content card structure */
+.app-shell .jobflow-dashboard-content > .card-soft,
+.app-shell .jobflow-dashboard-content > form,
+.app-shell .jobflow-dashboard-content > section,
+.app-shell .jobflow-dashboard-content > .row > [class*="col-"] > .card-soft,
+.app-shell .jobflow-dashboard-content > .row > [class*="col-"] > form,
+.app-shell .jobflow-dashboard-content > .row > [class*="col-"] > section {
+    box-sizing: border-box;
+}
+
+.app-shell .jobflow-dashboard-content > .jobflow-dashboard-page,
+.app-shell .jobflow-dashboard-content > .row {
+    overflow: visible;
+}
+
+.app-shell .jobflow-dashboard-content .profile-settings-layout {
+    width: 100%;
+    max-width: 100%;
+}
+
+.app-shell
+    .jobflow-dashboard-content
+    .profile-settings-layout
+    > [class*="col-"] {
+    min-width: 0;
+}
+
+/* FINAL shared Dashboard-home reference layout */
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 26px 20px 40px;
+}
+
+.app-shell
+    .jobflow-dashboard-content.jobflow-dashboard-page
+    > .jobflow-dashboard-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page > .row,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page > .card-soft,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page > form,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page > section {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page > .row {
+    --bs-gutter-x: 20px;
+    --bs-gutter-y: 20px;
+}
+
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-4,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-3,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-2 {
+    --bs-gutter-x: 20px;
+    --bs-gutter-y: 20px;
+}
+
 @media (max-width: 991.98px) {
     body.app-shell {
         width: 100%;
@@ -116,6 +285,45 @@
     .app-shell .profile-settings-layout {
         --bs-gutter-x: 12px;
     }
+
+    .app-shell .jobflow-dashboard-content {
+        max-width: none;
+        padding: 12px 12px 24px;
+    }
+
+    .app-shell .jobflow-dashboard-content > .row.g-4,
+    .app-shell .jobflow-dashboard-content > .row.g-3,
+    .app-shell .jobflow-dashboard-content > .row.g-2,
+    .app-shell .jobflow-dashboard-content .row.g-4,
+    .app-shell .jobflow-dashboard-content .row.g-3,
+    .app-shell .jobflow-dashboard-content .row.g-2 {
+        --bs-gutter-x: 12px;
+        --bs-gutter-y: 12px;
+    }
+
+    .app-shell .jobflow-dashboard-content .jobflow-upper-grid,
+    .app-shell .jobflow-dashboard-content .jobflow-lower-grid,
+    .app-shell .jobflow-dashboard-content .jobflow-bottom-grid {
+        gap: 12px;
+    }
+
+    .app-shell .jobflow-main-panel > .alert {
+        width: calc(100% - 24px);
+        margin: 12px 12px 0;
+    }
+
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+        max-width: none;
+        padding: 12px 10px 24px;
+    }
+
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page > .row,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-4,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-3,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-2 {
+        --bs-gutter-x: 12px;
+        --bs-gutter-y: 12px;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -157,5 +365,78 @@
 
     .app-shell .settings-summary .d-flex.flex-wrap {
         align-items: flex-start !important;
+    }
+
+    .app-shell .jobflow-dashboard-content {
+        padding: 10px 10px 24px;
+    }
+
+    .app-shell .jobflow-dashboard-content > .row,
+    .app-shell .jobflow-dashboard-content .row {
+        --bs-gutter-x: 10px;
+        --bs-gutter-y: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .app-shell .jobflow-dashboard-content > .row > [class*="col-"],
+    .app-shell .jobflow-dashboard-content .row > [class*="col-"] {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .app-shell .jobflow-dashboard-content .card-soft,
+    .app-shell .jobflow-dashboard-content .summary-card,
+    .app-shell .jobflow-dashboard-content .settings-summary,
+    .app-shell .jobflow-dashboard-content .settings-sidebar {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .app-shell .jobflow-dashboard-content form,
+    .app-shell .jobflow-dashboard-content section,
+    .app-shell .jobflow-dashboard-content table {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .app-shell .jobflow-dashboard-content .table-responsive {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .app-shell .jobflow-main-panel > .alert {
+        width: calc(100% - 20px);
+        margin-inline: 10px;
+    }
+
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 8px calc(24px + env(safe-area-inset-bottom));
+        overflow-x: hidden;
+    }
+
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page > .row,
+    .app-shell .jobflow-dashboard_content.jobflow-dashboard-page .row {
+        --bs-gutter-x: 10px;
+        --bs-gutter-y: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .app-shell
+        .jobflow-dashboard_content.jobflow-dashboard-page
+        > .row
+        > [class*="col-"],
+    .app-shell
+        .jobflow-dashboard_content.jobflow-dashboard-page
+        .row
+        > [class*="col-"] {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }

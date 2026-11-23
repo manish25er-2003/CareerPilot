@@ -37,6 +37,7 @@ class ApiAuthController extends Controller
         $token = $user->createToken('careerpilot')->plainTextToken;
 
         return response()->json([
+            'message' => 'Registration successful. Please sign in to continue.',
             'user' => $user,
             'token' => $token,
         ], 201);
@@ -52,12 +53,13 @@ class ApiAuthController extends Controller
         $user = User::where('email', $validated['email'])->first();
 
         if (! $user || ! Hash::check($validated['password'], $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'The email or password you entered is incorrect. Please try again.'], 401);
         }
 
         $token = $user->createToken('careerpilot')->plainTextToken;
 
         return response()->json([
+            'message' => 'Login successful.',
             'user' => $user,
             'token' => $token,
         ]);

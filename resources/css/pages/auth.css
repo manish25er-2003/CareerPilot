@@ -1,4 +1,5 @@
 @import "../../../public/css/careerpilot.css";
+@import "./notifications.css";
 
 @tailwind base;
 @tailwind components;
@@ -43,7 +44,7 @@ body.auth-shell {
 }
 
 .auth-card {
-    width: min(100%, 460px);
+    width: min(100%, 400px);
     overflow: hidden;
     border: 1px solid rgba(112, 91, 213, 0.11);
     border-radius: 28px;
@@ -52,13 +53,17 @@ body.auth-shell {
     max-height: none;
 }
 
+.auth-card {
+    max-width: 400px;
+}
+
 .auth-brand {
-    min-height: 108px;
+    min-height: 68px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 20px 28px;
+    padding: 10px 20px;
     border-bottom: 1px solid #edf0f7;
     background: linear-gradient(135deg, #fdfcff 0%, #f5f3ff 100%);
     color: #17172f;
@@ -74,10 +79,10 @@ body.auth-shell {
 }
 
 .brand-mark {
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     display: grid;
-    flex: 0 0 52px;
+    flex: 0 0 46px;
     place-items: center;
     border: 1px solid rgba(255, 255, 255, 0.52);
     border-radius: 17px;
@@ -90,19 +95,39 @@ body.auth-shell {
     font-weight: 950;
 }
 
+.auth-brand {
+    min-height: 60px;
+    padding: 8px 16px;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    border-radius: 13px;
+}
+
 .auth-body {
-    padding: 28px 32px 30px;
+    padding: 14px 24px 16px;
+}
+
+.auth-body {
+    padding: 12px 16px 14px;
 }
 
 .auth-header {
-    margin-bottom: 22px;
+    margin-bottom: 10px;
     text-align: center;
+}
+
+.auth-header {
+    margin-bottom: 8px;
 }
 
 .auth-header .eyebrow {
     display: inline-flex;
-    margin-bottom: 10px;
-    padding: 6px 10px;
+    margin-bottom: 5px;
+    padding: 5px 9px;
     border: 1px solid rgba(124, 92, 255, 0.12);
     border-radius: 999px;
     background: #f3f1ff;
@@ -113,21 +138,31 @@ body.auth-shell {
     text-transform: uppercase;
 }
 
+.auth-header .eyebrow {
+    margin-bottom: 4px;
+    padding: 4px 8px;
+}
+
 .auth-header h1 {
     margin: 0;
     color: #17172f;
-    font-size: clamp(1.6rem, 4vw, 1.95rem);
+    font-size: clamp(1.6rem, 4vw, 1.55rem);
     font-weight: 900;
     line-height: 1.12;
     letter-spacing: -0.045em;
 }
 
 .auth-header p {
+    margin-top: 5px;
     max-width: 340px;
-    margin: 9px auto 0;
     color: #737c92;
-    font-size: 0.84rem;
-    line-height: 1.55;
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.auth-header p {
+    margin-top: 4px;
+    line-height: 1.32;
 }
 
 .auth-form {
@@ -138,8 +173,13 @@ body.auth-shell {
 .auth-field {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    margin-bottom: 14px;
+    gap: 4px;
+    margin-bottom: 7px;
+}
+
+.auth-field {
+    gap: 3px;
+    margin-bottom: 6px;
 }
 
 .auth-label {
@@ -151,7 +191,7 @@ body.auth-shell {
 
 .auth-input {
     width: 100%;
-    height: 48px;
+    height: 42px;
     border: 1px solid #e3e6ef;
     border-radius: 12px;
     outline: none;
@@ -199,7 +239,7 @@ body.auth-shell {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin: 1px 0 16px;
+    margin: 0 0 9px;
 }
 
 .auth-check {
@@ -226,7 +266,7 @@ body.auth-shell {
 
 .auth-submit {
     width: 100%;
-    height: 48px;
+    height: 42px;
     border: 0;
     border-radius: 12px;
     background: linear-gradient(135deg, #7458e8 0%, #5549ce 100%);
@@ -248,7 +288,7 @@ body.auth-shell {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 16px 0;
+    margin: 9px 0;
     color: #9aa1b2;
     font-size: 0.72rem;
 }
@@ -263,7 +303,7 @@ body.auth-shell {
 
 .btn-google {
     width: 100%;
-    height: 48px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -284,10 +324,41 @@ body.auth-shell {
 }
 
 .auth-footer {
-    margin-top: 18px;
+    margin-top: 8px;
     color: #7c8396;
     text-align: center;
     font-size: 0.72rem;
+}
+
+.auth-terms {
+    min-height: 24px;
+    align-items: flex-start;
+    margin: 0 0 6px;
+    line-height: 1.45;
+}
+
+.auth-terms {
+    min-height: 22px;
+    margin-bottom: 5px;
+}
+
+.auth-terms input {
+    flex: 0 0 15px;
+    margin-top: 1px;
+}
+
+.auth-error {
+    display: block;
+    margin: -3px 0 5px;
+}
+
+/* Small final spacing adjustments */
+.auth-brand {
+    min-height: 64px;
+}
+
+.auth-terms {
+    margin-bottom: 12px;
 }
 
 @media (max-width: 575.98px) {
@@ -311,9 +382,19 @@ body.auth-shell {
         border-radius: 22px;
     }
 
+    .auth-card {
+        max-width: 400px;
+    }
+
     .auth-brand {
         min-height: 76px;
         padding: 14px 18px;
+    }
+
+    .auth-brand {
+        min-height: 52px;
+        padding-top: 6px;
+        padding-bottom: 6px;
     }
 
     .brand-mark {
@@ -323,12 +404,26 @@ body.auth-shell {
         border-radius: 15px;
     }
 
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
     .auth-body {
-        padding: 20px 16px 22px;
+        padding: 16px 16px 18px;
+    }
+
+    .auth-body {
+        padding: 12px 16px 14px;
     }
 
     .auth-header {
-        margin-bottom: 18px;
+        margin-bottom: 12px;
+    }
+
+    .auth-header {
+        margin-bottom: 8px;
     }
 
     .auth-header h1 {
@@ -339,11 +434,23 @@ body.auth-shell {
         font-size: 0.78rem;
     }
 
+    .auth-header p {
+        margin-top: 4px;
+        line-height: 1.32;
+    }
+
     .auth-input,
     .auth-submit,
     .btn-google {
         min-height: 48px;
         font-size: 16px;
+    }
+
+    .auth-input,
+    .auth-submit,
+    .btn-google {
+        height: 42px;
+        min-height: 42px;
     }
 
     .auth-row {

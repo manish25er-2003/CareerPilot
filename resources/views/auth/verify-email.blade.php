@@ -2,14 +2,8 @@
     <div class="auth-header">
         <div class="eyebrow">Verify email</div>
         <h1>Check your inbox</h1>
-        <p>We’ve sent a verification link to your email address to activate your account.</p>
+        <p class="text-secondary-custom mb-4">Check your inbox for a verification link.</p>
     </div>
-
-    @if (session('status') == 'verification-link-sent')
-    <div class="alert alert-success mb-4">
-        A new verification link has been sent to the email address provided during registration.
-    </div>
-    @endif
 
     <form method="POST" action="{{ route('verification.send') }}" class="auth-form">
         @csrf

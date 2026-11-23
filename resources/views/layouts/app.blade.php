@@ -31,6 +31,8 @@
         <main class="py-4 py-lg-5">
             {{ $slot }}
         </main>
+
+        @include('partials.toast-notifications')
     </div>
 </body>
 

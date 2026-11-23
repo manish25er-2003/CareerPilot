@@ -226,10 +226,9 @@ $mobileMoreNav = [
                 </div>
             </div>
 
-            @if (session('success'))
-            <div class="alert alert-success mb-4">{{ session('success') }}</div>
-            @endif
-            @yield('content')
+            <div class="jobflow-dashboard-content jobflow-dashboard-page">
+                @yield('content')
+            </div>
         </main>
     </div>
 
@@ -288,6 +287,8 @@ $mobileMoreNav = [
             Install App
         </button>
     </div>
+
+    @include('partials.toast-notifications')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

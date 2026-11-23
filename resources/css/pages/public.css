@@ -1,6 +1,7 @@
 @import "../../../public/css/careerpilot.css";
 @import "./home.css";
 @import "./developer.css";
+@import "./notifications.css";
 
 /* Home-only floating navigation pill */
 .is-homepage {

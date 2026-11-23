@@ -90,10 +90,6 @@
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <button form="send-verification" class="btn btn-outline-custom">Verify email</button>
             @endif
-
-            @if (session('status') === 'profile-updated')
-            <span class="text-success small fw-semibold">Saved.</span>
-            @endif
         </div>
     </form>
 </section>

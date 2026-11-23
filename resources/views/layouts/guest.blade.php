@@ -29,6 +29,8 @@
         </div>
     </div>
 
+    @include('partials.toast-notifications')
+
     <script>
         document.querySelectorAll('[data-password-toggle]').forEach(function(button) {
             button.addEventListener('click', function() {

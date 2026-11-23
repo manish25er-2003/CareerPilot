@@ -9,10 +9,6 @@
             <h1 class="section-title text-center">Contact us</h1>
             <p class="text-secondary-custom text-center mb-4">We’d love to hear from you. Send us a message and we’ll get back to you soon.</p>
 
-            @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
             <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
                 <div class="row g-3">

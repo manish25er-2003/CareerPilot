@@ -24,6 +24,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'terms' => '1',
         ]);
 
         $this->assertGuest();
@@ -37,6 +38,7 @@ class RegistrationTest extends TestCase
             'email' => 'profile@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'terms' => '1',
         ]);
 
         $user = User::where('email', 'profile@example.com')->first();

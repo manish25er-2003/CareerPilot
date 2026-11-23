@@ -43,10 +43,13 @@
             </div>
         </div>
 
-        <label for="terms" class="auth-check" style="margin-top: 0.25rem;">
-            <input id="terms" name="terms" type="checkbox" required>
+        <label for="terms" class="auth-check auth-terms">
+            <input id="terms" name="terms" type="checkbox" value="1" @checked(old('terms')) required>
             <span>I agree to the <a href="{{ route('terms-and-conditions') }}" class="auth-link">terms and conditions</a></span>
         </label>
+        @error('terms')
+        <span class="text-danger small auth-error">{{ $message }}</span>
+        @enderror
 
         <button type="submit" class="auth-submit">Create account</button>
 
