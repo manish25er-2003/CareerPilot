@@ -33,6 +33,17 @@ class ApiLifecycleTest extends TestCase
             ->assertJsonStructure(['user', 'token']);
     }
 
+    public function test_api_login_returns_a_json_error_for_invalid_credentials(): void
+    {
+        $response = $this->postJson('/api/login', [
+            'email' => 'unknown@example.com',
+            'password' => 'incorrect-password',
+        ]);
+
+        $response->assertUnauthorized()
+            ->assertJsonPath('message', 'The email or password you entered is incorrect. Please try again.');
+    }
+
     public function test_authenticated_user_can_fetch_dashboard_via_api(): void
     {
         $user = User::factory()->create();

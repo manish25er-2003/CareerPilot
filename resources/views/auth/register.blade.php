@@ -5,42 +5,54 @@
         <p>Build your profile, track applications, and prepare for interviews with AI-powered insights.</p>
     </div>
 
+    @if ($errors->any())
+    <div class="auth-alert auth-alert--error" role="alert" aria-live="assertive">
+        <svg class="auth-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1Zm0 10a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 12 17Z" />
+        </svg>
+        <span>Please review the highlighted fields and try again.</span>
+    </div>
+    @endif
+
     <form method="POST" action="{{ route('register') }}" class="auth-form">
         @csrf
 
         <div class="auth-field">
             <label for="name" class="auth-label">Full name</label>
-            <input id="name" class="auth-input" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+            <input id="name" class="auth-input @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}" aria-invalid="{{ $errors->has('name') ? 'true' : 'false' }}" @error('name') aria-describedby="name-error" @enderror required autofocus autocomplete="name">
             @error('name')
-            <span class="text-danger small">{{ $message }}</span>
+            <span class="auth-field-error" id="name-error">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="auth-field">
             <label for="email" class="auth-label">Email address</label>
-            <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
+            <input id="email" class="auth-input @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" @error('email') aria-describedby="email-error" @enderror required autocomplete="username">
             @error('email')
-            <span class="text-danger small">{{ $message }}</span>
+            <span class="auth-field-error" id="email-error">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="auth-field">
             <label for="password" class="auth-label">Password</label>
             <div class="password-wrap">
-                <input id="password" class="auth-input" type="password" name="password" required autocomplete="new-password">
+                <input id="password" class="auth-input @error('password') is-invalid @enderror" type="password" name="password" aria-invalid="{{ $errors->has('password') ? 'true' : 'false' }}" @error('password') aria-describedby="password-error" @enderror required autocomplete="new-password">
                 <button type="button" class="pass-toggle" data-password-toggle data-target="password">Show</button>
             </div>
             @error('password')
-            <span class="text-danger small">{{ $message }}</span>
+            <span class="auth-field-error" id="password-error">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="auth-field">
             <label for="password_confirmation" class="auth-label">Confirm password</label>
             <div class="password-wrap">
-                <input id="password_confirmation" class="auth-input" type="password" name="password_confirmation" required autocomplete="new-password">
+                <input id="password_confirmation" class="auth-input @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" aria-invalid="{{ $errors->has('password_confirmation') ? 'true' : 'false' }}" @error('password_confirmation') aria-describedby="password_confirmation-error" @enderror required autocomplete="new-password">
                 <button type="button" class="pass-toggle" data-password-toggle data-target="password_confirmation">Show</button>
             </div>
+            @error('password_confirmation')
+            <span class="auth-field-error" id="password_confirmation-error">{{ $message }}</span>
+            @enderror
         </div>
 
         <label for="terms" class="auth-check auth-terms">
@@ -48,7 +60,7 @@
             <span>I agree to the <a href="{{ route('terms-and-conditions') }}" class="auth-link">terms and conditions</a></span>
         </label>
         @error('terms')
-        <span class="text-danger small auth-error">{{ $message }}</span>
+        <span class="auth-field-error auth-error" id="terms-error">{{ $message }}</span>
         @enderror
 
         <button type="submit" class="auth-submit">Create account</button>

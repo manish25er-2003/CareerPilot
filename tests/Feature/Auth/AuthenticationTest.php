@@ -34,12 +34,45 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->post('/login', [
+        $response = $this->from('/login')->post('/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
 
         $this->assertGuest();
+        $response->assertRedirect('/login')
+            ->assertSessionHasErrors([
+                'login' => 'The email or password you entered is incorrect. Please try again.',
+            ])
+            ->assertSessionHas('_old_input.email', $user->email)
+            ->assertSessionMissing('_old_input.password');
+    }
+
+    public function test_users_can_not_authenticate_with_an_unknown_email(): void
+    {
+        $email = 'unknown@example.com';
+
+        $response = $this->from('/login')->post('/login', [
+            'email' => $email,
+            'password' => 'incorrect-password',
+        ]);
+
+        $this->assertGuest();
+        $response->assertRedirect('/login')
+            ->assertSessionHasErrors([
+                'login' => 'The email or password you entered is incorrect. Please try again.',
+            ])
+            ->assertSessionHas('_old_input.email', $email)
+            ->assertSessionMissing('_old_input.password');
+    }
+
+    public function test_login_requires_email_and_password(): void
+    {
+        $response = $this->from('/login')->post('/login', []);
+
+        $response->assertRedirect('/login')
+            ->assertSessionHasErrors(['email', 'password'])
+            ->assertSessionMissing('_old_input.password');
     }
 
     public function test_users_can_logout(): void

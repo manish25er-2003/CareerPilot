@@ -440,3 +440,114 @@
         padding-right: 5px;
     }
 }
+
+/* Keep desktop navigation fixed while the dashboard content scrolls. */
+@media (min-width: 992px) {
+    body.app-shell {
+        height: 100dvh;
+        overflow: hidden;
+        padding: 12px;
+    }
+
+    .app-shell .jobflow-dashboard-shell {
+        width: 100%;
+        max-width: none;
+        height: calc(100dvh - 24px);
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .app-shell .jobflow-sidebar {
+        position: sticky;
+        top: 0;
+        height: calc(100dvh - 24px);
+        max-height: calc(100dvh - 24px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+    }
+
+    .app-shell .jobflow-main-panel {
+        height: 100%;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        scrollbar-gutter: stable;
+    }
+
+    .app-shell .jobflow-dashboard-content,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+        max-width: 1600px;
+    }
+}
+
+/* Compact, consistent form rhythm across every dashboard route. */
+.app-shell .jobflow-dashboard-content .row.g-3,
+.app-shell .jobflow-dashboard-content .row.g-2,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-3,
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-2 {
+    --bs-gutter-x: 16px;
+    --bs-gutter-y: 12px;
+}
+
+.app-shell .jobflow-dashboard-content .form-label {
+    margin-bottom: 5px;
+}
+
+.app-shell .jobflow-dashboard-content .form-control,
+.app-shell .jobflow-dashboard-content .form-select {
+    min-width: 0;
+}
+
+.app-shell .jobflow-dashboard-content textarea[name="job_description"] {
+    height: 132px;
+}
+
+.app-shell .jobflow-dashboard-content textarea[name="answer"] {
+    height: 120px;
+}
+
+.app-shell .jobflow-dashboard-content .card-soft.p-lg-5 {
+    padding: 1.5rem !important;
+}
+
+.app-shell .jobflow-dashboard-content .table-responsive {
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 991.98px) {
+    body.app-shell {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .app-shell .jobflow-dashboard-shell {
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+    }
+
+    .app-shell .jobflow-main-panel {
+        height: auto;
+        min-height: 100dvh;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-shell .jobflow-dashboard-content .row.g-3,
+    .app-shell .jobflow-dashboard-content .row.g-2,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-3,
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page .row.g-2 {
+        --bs-gutter-x: 10px;
+        --bs-gutter-y: 10px;
+    }
+
+    .app-shell .jobflow-dashboard-content .card-soft.p-lg-5 {
+        padding: 16px !important;
+    }
+}

@@ -7,25 +7,41 @@
         <p>Manage your resume, jobs, interviews and growth in one place.</p>
     </div>
 
+    @if ($errors->has('login'))
+    <div class="auth-alert auth-alert--error" role="alert" aria-live="assertive">
+        <svg class="auth-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1Zm0 10a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 12 17Z" />
+        </svg>
+        <span>{{ $errors->first('login') }}</span>
+    </div>
+    @elseif ($errors->any())
+    <div class="auth-alert auth-alert--error" role="alert" aria-live="assertive">
+        <svg class="auth-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1Zm0 10a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 12 17Z" />
+        </svg>
+        <span>Please check the highlighted fields and try again.</span>
+    </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}" class="auth-form">
         @csrf
 
         <div class="auth-field">
             <label for="email" class="auth-label">Email address</label>
-            <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username">
+            <input id="email" class="auth-input @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" @error('email') aria-describedby="email-error" @enderror required autofocus autocomplete="username">
             @error('email')
-            <span class="text-danger small">{{ $message }}</span>
+            <span class="auth-field-error" id="email-error">{{ $message }}</span>
             @enderror
         </div>
 
         <div class="auth-field">
             <label for="password" class="auth-label">Password</label>
             <div class="password-wrap">
-                <input id="password" class="auth-input" type="password" name="password" required autocomplete="current-password">
+                <input id="password" class="auth-input @error('password') is-invalid @enderror" type="password" name="password" aria-invalid="{{ $errors->has('password') ? 'true' : 'false' }}" @error('password') aria-describedby="password-error" @enderror required autocomplete="current-password">
                 <button type="button" class="pass-toggle" data-password-toggle data-target="password">Show</button>
             </div>
             @error('password')
-            <span class="text-danger small">{{ $message }}</span>
+            <span class="auth-field-error" id="password-error">{{ $message }}</span>
             @enderror
         </div>
 

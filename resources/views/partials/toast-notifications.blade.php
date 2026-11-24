@@ -28,8 +28,10 @@ $toastMessages[] = str_contains($status, 'throttle')
 : ['type' => 'success', 'message' => $status];
 }
 
-foreach ($errors->all() as $error) {
-$toastMessages[] = ['type' => 'error', 'message' => $error];
+if (! request()->routeIs('login', 'register')) {
+    foreach ($errors->all() as $error) {
+        $toastMessages[] = ['type' => 'error', 'message' => $error];
+    }
 }
 @endphp
 
@@ -46,9 +48,7 @@ $toastMessages[] = ['type' => 'error', 'message' => $error];
             warning: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 7h2v6h-2zm0 8h2v2h-2zm1-13 10 18H2zm0 4.1L5.2 20h13.6z"/></svg>'
         };
 
-        const messages = {
-            !!json_encode($toastMessages, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) !!
-        };
+        const messages = {!! json_encode($toastMessages, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) !!};
         const seen = new Set();
 
         function showToast(type, message) {

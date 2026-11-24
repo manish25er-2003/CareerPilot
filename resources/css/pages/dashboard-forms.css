@@ -16,7 +16,7 @@
 .app-shell .form-control,
 .app-shell .form-select,
 .app-shell textarea.form-control {
-    min-height: 48px;
+    min-height: 44px;
     border: 1px solid #dde2ec;
     border-radius: 12px;
     background-color: #fbfcff;
@@ -29,7 +29,7 @@
 }
 
 .app-shell textarea.form-control {
-    min-height: 112px;
+    min-height: 96px;
     resize: vertical;
 }
 
@@ -251,7 +251,7 @@
     }
 
     .app-shell textarea.form-control {
-        min-height: 104px;
+        min-height: 96px;
     }
 
     .app-shell .row.g-3 > [class*="col-"],

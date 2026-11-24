@@ -165,6 +165,34 @@ body.auth-shell {
     line-height: 1.32;
 }
 
+.auth-alert {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border: 1px solid;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.auth-alert--error {
+    border-color: #fecaca;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.auth-alert__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin-top: 1px;
+    fill: currentColor;
+}
+
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -209,6 +237,25 @@ body.auth-shell {
     border-color: rgba(103, 82, 223, 0.48);
     background: #fff;
     box-shadow: 0 0 0 4px rgba(103, 82, 223, 0.09);
+}
+
+.auth-input.is-invalid {
+    border-color: #fca5a5;
+    background: #fffafa;
+}
+
+.auth-input.is-invalid:focus {
+    border-color: #ef7373;
+    box-shadow: 0 0 0 3px rgba(239, 115, 115, 0.12);
+}
+
+.auth-field-error {
+    display: block;
+    color: #b42318;
+    font-size: 0.72rem;
+    font-weight: 650;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
 }
 
 .password-wrap {
