@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\JobApplicationRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class JobApplicationController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $jobs = Auth::user()->jobApplications()->latest('applied_at')->get();
+        $suggestedJobTitle = $request->query('job_title');
 
-        return view('jobs.index', compact('jobs'));
+        return view('jobs.index', compact('jobs', 'suggestedJobTitle'));
     }
 
     public function store(JobApplicationRequest $request): RedirectResponse

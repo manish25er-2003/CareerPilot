@@ -179,7 +179,7 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
 
         <div class="jobflow-recommendation-panel">
             <div class="jobflow-card-header jobflow-recommend-header">
-                <h3>Recommended Jobs</h3>
+                <h3>Recommended Job Profiles</h3>
                 <button type="button" class="jobflow-link-button subtle">See All</button>
             </div>
 
@@ -187,23 +187,22 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
             <div class="jobflow-job-grid">
                 @foreach($recommendedJobs as $job)
                 <div class="jobflow-job-card jobflow-job-card-{{ $job['tone'] }}">
-                    <div class="jobflow-job-meta">{{ $job['days'] }}</div>
+                    <div class="jobflow-job-meta">{{ $job['match_percentage'] }}% resume match</div>
                     <div class="jobflow-job-title-row">
                         <div>
                             <strong>{{ $job['title'] }}</strong>
-                            <small>{{ $job['company'] }}</small>
+                            <small>{{ $job['explanation'] }}</small>
                         </div>
-                        <span class="jobflow-job-bookmark">◫</span>
                     </div>
                     <div class="jobflow-job-footer">
-                        <span>{{ $job['location'] }}</span>
-                        <span class="jobflow-job-icon">◌</span>
+                        <a href="{{ route('jobs.index', ['job_title' => $job['title']]) }}" class="btn btn-sm btn-outline-custom">Track this role</a>
+                        <a href="{{ route('ai-analysis.index') }}" class="jobflow-job-icon" aria-label="View full AI analysis">Details →</a>
                     </div>
                 </div>
                 @endforeach
             </div>
             @else
-            <div class="text-center text-secondary-custom py-4">No role recommendations yet.</div>
+            <div class="text-center text-secondary-custom py-4">Run a resume analysis to see suitable job profiles.</div>
             @endif
         </div>
     </div>

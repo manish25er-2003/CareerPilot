@@ -58,3 +58,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # CareerPilot
+
+## Resume Intelligence
+
+Authenticated users can upload PDF, DOCX, or TXT resumes and run an analysis with or without a target job description. When `GEMINI_API_KEY` is configured, CareerPilot uses Gemini for structured resume extraction, role recommendations, skill matching, and career-roadmap generation. Without a working Gemini configuration, it labels and saves a local resume-based analysis instead.
+
+PDF text extraction requires Poppler's `pdftotext` executable. The project Docker image installs it through `poppler-utils`. DOCX files are read from their document XML; scanned/image-only PDFs are not OCR-processed and must contain selectable text.
+
+Analysis history, extracted profile details, recommended roles, skill gaps, and learning roadmaps are stored on each user's existing AI analysis records.

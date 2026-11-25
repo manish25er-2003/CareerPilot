@@ -15,7 +15,7 @@ class ResumeRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'string', 'max:150'],
-            'file' => ['required', 'file', 'mimes:pdf,doc,docx', 'max:5120'],
+            'file' => ['required', 'file', 'mimes:pdf,docx,txt', 'max:5120'],
         ];
     }
 }

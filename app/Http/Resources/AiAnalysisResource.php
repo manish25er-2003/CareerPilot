@@ -18,6 +18,15 @@ class AiAnalysisResource extends JsonResource
             'recommended_skills' => $this->recommended_skills,
             'strengths' => $this->strengths,
             'weaknesses' => $this->weaknesses,
+            'ats_suggestions' => $this->ats_suggestions,
+            'structured_profile' => $this->structured_profile,
+            'role_recommendations' => $this->role_recommendations,
+            'matched_skills' => $this->matched_skills,
+            'skill_gaps' => $this->skill_gaps,
+            'career_roadmap' => $this->career_roadmap,
+            'learning_recommendations' => $this->learning_recommendations,
+            'analysis_source' => $this->analysis_source,
+            'created_at' => $this->created_at,
         ];
     }
 }

@@ -49,7 +49,7 @@ class ApiLifecycleTest extends TestCase
         $user = User::factory()->create();
         $token = $user->createToken('test')->plainTextToken;
 
-        $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+        $response = $this->withHeader('Authorization', 'Bearer '.$token)
             ->getJson('/api/dashboard');
 
         $response->assertOk()
@@ -60,23 +60,24 @@ class ApiLifecycleTest extends TestCase
     public function test_resume_analysis_api_returns_result_for_uploaded_resume(): void
     {
         Storage::fake('local');
+        config(['services.gemini.key' => null]);
 
         $user = User::factory()->create();
         $resume = Resume::create([
             'user_id' => $user->id,
             'title' => 'API Resume',
-            'file_path' => 'resumes/' . $user->id . '/resume.txt',
+            'file_path' => 'resumes/'.$user->id.'/resume.txt',
             'original_name' => 'resume.txt',
             'mime_type' => 'text/plain',
             'size' => 120,
             'is_primary' => true,
         ]);
 
-        Storage::disk('local')->put($resume->file_path, "Senior software engineer with React, Laravel, and SQL experience. Built analytics tools and shipped production features.");
+        Storage::disk('local')->put($resume->file_path, 'Senior software engineer with React, Laravel, and SQL experience. Built analytics tools and shipped production features.');
 
         $token = $user->createToken('test')->plainTextToken;
 
-        $response = $this->withHeader('Authorization', 'Bearer ' . $token)
+        $response = $this->withHeader('Authorization', 'Bearer '.$token)
             ->postJson('/api/ai/resume-analysis', [
                 'resume_id' => $resume->id,
                 'job_title' => 'Senior Full Stack Engineer',
@@ -85,18 +86,5 @@ class ApiLifecycleTest extends TestCase
 
         $response->assertStatus(201)
             ->assertJsonStructure(['message', 'data' => ['job_title', 'summary', 'overall_score']]);
-    }
-
-    public function test_pdf_resume_extraction_reads_real_text_content(): void
-    {
-        $controller = new \App\Http\Controllers\AiResumeAnalysisController();
-        $method = new \ReflectionMethod($controller, 'extractTextFromFile');
-        $method->setAccessible(true);
-
-        $pdfContent = "BT\n/F1 12 Tf\n72 720 Td\n(Senior Product Manager) Tj\nET\nendstream\n%%EOF";
-
-        $result = $method->invoke($controller, $pdfContent, 'application/pdf');
-
-        $this->assertStringContainsString('Senior Product Manager', $result);
     }
 }

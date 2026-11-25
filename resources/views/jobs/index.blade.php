@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-4">
             <label class="form-label">Job title</label>
-            <input type="text" name="job_title" class="form-control" required>
+            <input type="text" name="job_title" class="form-control" value="{{ $suggestedJobTitle }}" required>
         </div>
         <div class="col-md-4">
             <label class="form-label">Status</label>

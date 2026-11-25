@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -15,15 +16,15 @@ class DashboardController extends Controller
 
         $jobs = $user?->jobApplications()->latest('applied_at')->get() ?? collect();
         $allApplications = $jobs->count();
-        $activeApplications = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['applied', 'saved', 'shortlisted', 'interviewing', 'in progress', 'pending'], true))->count();
-        $waitingInterview = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['interviewing', 'in progress', 'shortlisted'], true))->count();
-        $offerReceived = $jobs->filter(fn($job) => in_array(strtolower($job->status ?? ''), ['accepted', 'offered'], true))->count();
+        $activeApplications = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['applied', 'saved', 'shortlisted', 'interviewing', 'in progress', 'pending'], true))->count();
+        $waitingInterview = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['interviewing', 'in progress', 'shortlisted'], true))->count();
+        $offerReceived = $jobs->filter(fn ($job) => in_array(strtolower($job->status ?? ''), ['accepted', 'offered'], true))->count();
 
         $displayName = $user?->name ?: 'User';
         $displayEmail = $user?->email ?: 'user@example.com';
         $firstName = trim(explode(' ', $displayName)[0] ?? 'User');
         $initials = collect(explode(' ', trim($displayName)))
-            ->map(fn($part) => strtoupper(substr($part, 0, 1)))
+            ->map(fn ($part) => strtoupper(substr($part, 0, 1)))
             ->take(2)
             ->implode('');
 
@@ -39,7 +40,7 @@ class DashboardController extends Controller
         ];
 
         $schedule = $jobs
-            ->filter(fn($job) => ! empty($job->interview_date))
+            ->filter(fn ($job) => ! empty($job->interview_date))
             ->sortBy('interview_date')
             ->take(3)
             ->map(function ($job) {
@@ -74,14 +75,14 @@ class DashboardController extends Controller
             ? 0
             : (int) round(array_sum($resumeStrength) / count($resumeStrength));
 
-        $recommendedJobs = $jobs
+        $latestAnalysis = $user?->aiAnalyses()->latest()->first();
+        $recommendedJobs = collect($latestAnalysis?->role_recommendations ?? [])
             ->take(3)
-            ->map(function ($job, $index) {
+            ->map(function ($recommendation, $index) {
                 return [
-                    'title' => $job->job_title,
-                    'company' => $job->company_name,
-                    'location' => $job->location,
-                    'days' => $job->applied_at ? $job->applied_at->diffForHumans() : 'Recently added',
+                    'title' => $recommendation['role_title'] ?? 'Career profile',
+                    'match_percentage' => $recommendation['match_percentage'] ?? 0,
+                    'explanation' => $recommendation['explanation'] ?? '',
                     'tone' => ['purple', 'light', 'soft'][$index % 3],
                 ];
             })
@@ -104,7 +105,7 @@ class DashboardController extends Controller
         ));
     }
 
-    protected function buildResumeStrength(?\App\Models\User $user): array
+    protected function buildResumeStrength(?User $user): array
     {
         $analysis = $user?->aiAnalyses()->latest()->first();
         $interview = $user?->interviewSessions()->latest()->first();

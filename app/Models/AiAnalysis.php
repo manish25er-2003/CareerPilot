@@ -25,6 +25,13 @@ class AiAnalysis extends Model
         'recommended_skills',
         'ats_suggestions',
         'summary',
+        'structured_profile',
+        'role_recommendations',
+        'matched_skills',
+        'skill_gaps',
+        'career_roadmap',
+        'learning_recommendations',
+        'analysis_source',
         'status',
     ];
 
@@ -34,6 +41,12 @@ class AiAnalysis extends Model
         'missing_skills' => 'array',
         'recommended_skills' => 'array',
         'ats_suggestions' => 'array',
+        'structured_profile' => 'array',
+        'role_recommendations' => 'array',
+        'matched_skills' => 'array',
+        'skill_gaps' => 'array',
+        'career_roadmap' => 'array',
+        'learning_recommendations' => 'array',
     ];
 
     public function user(): BelongsTo

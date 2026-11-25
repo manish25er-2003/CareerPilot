@@ -15,8 +15,8 @@ class AiAnalysisRequest extends FormRequest
     {
         return [
             'resume_id' => ['required', 'integer', 'exists:resumes,id'],
-            'job_title' => ['required', 'string', 'max:150'],
-            'job_description' => ['required', 'string', 'min:20', 'max:4000'],
+            'job_title' => ['nullable', 'string', 'max:150'],
+            'job_description' => ['nullable', 'string', 'min:20', 'max:4000'],
         ];
     }
 }
