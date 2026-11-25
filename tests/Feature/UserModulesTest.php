@@ -373,4 +373,20 @@ class UserModulesTest extends TestCase
             ->assertSee('Your matches will appear here')
             ->assertSee('Analyze Resume');
     }
+
+    public function test_homepage_career_momentum_preview_keeps_its_dashboard_content_visible(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSeeInOrder([
+                'Keep the momentum',
+                'Build momentum with consistent, smarter',
+                'career growth.',
+                'Career workspace preview',
+                'Resume readiness',
+                'Product Analyst',
+                'Frontend Engineer',
+                'Interview prep',
+            ]);
+    }
 }

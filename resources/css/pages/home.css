@@ -1901,9 +1901,9 @@ body main .job-search-features > .container {
     overflow: hidden;
     padding-block: clamp(4.5rem, 8vw, 7rem);
     background:
-        radial-gradient(ellipse at 4% 12%, rgba(132, 111, 255, 0.1), transparent 34rem),
-        radial-gradient(ellipse at 96% 84%, rgba(91, 150, 255, 0.09), transparent 32rem),
-        linear-gradient(135deg, #fcfbff 0%, #f7f8ff 52%, #fbfaff 100%);
+        radial-gradient(ellipse at 83% 45%, rgba(130, 102, 244, 0.16), transparent 32rem),
+        radial-gradient(ellipse at 7% 84%, rgba(119, 158, 255, 0.13), transparent 31rem),
+        linear-gradient(128deg, #f8f5ff 0%, #f0efff 49%, #f8f8ff 100%);
 }
 
 .profile-intelligence-section::before,
@@ -1917,17 +1917,21 @@ body main .job-search-features > .container {
 }
 
 .profile-intelligence-section::before {
-    top: -150px;
-    right: -85px;
-    width: 330px;
-    height: 330px;
+    top: -205px;
+    right: -112px;
+    width: 470px;
+    height: 470px;
+    border-color: rgba(112, 98, 220, 0.1);
+    box-shadow: 0 0 0 28px rgba(126, 104, 232, 0.025), 0 0 0 58px rgba(126, 104, 232, 0.02);
 }
 
 .profile-intelligence-section::after {
-    bottom: -180px;
-    left: -115px;
-    width: 390px;
-    height: 390px;
+    right: 33%;
+    bottom: -305px;
+    left: auto;
+    width: 510px;
+    height: 510px;
+    border-color: rgba(112, 98, 220, 0.06);
 }
 
 body main .profile-intelligence-section > .container {
@@ -1975,7 +1979,21 @@ body main .profile-intelligence-section > .container {
 }
 
 .profile-intelligence-copy h2 span {
+    position: relative;
+    display: inline-block;
     color: #6b50db;
+}
+
+.profile-intelligence-copy h2 span::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.13em;
+    left: 4%;
+    height: 0.075em;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #7955ed, #5929d8);
+    content: "";
+    transform: rotate(-1.5deg);
 }
 
 .profile-intelligence-lead {
@@ -2010,10 +2028,10 @@ body main .profile-intelligence-section > .container {
     height: 42px;
     flex: 0 0 42px;
     place-items: center;
-    border: 1px solid rgba(107, 80, 219, 0.12);
+    border: 1px solid rgba(107, 80, 219, 0.13);
     border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 6px 16px rgba(48, 47, 105, 0.06);
+    background: linear-gradient(145deg, #fff, #eee9ff);
+    box-shadow: 0 8px 18px rgba(84, 63, 180, 0.09);
     color: #6b50db;
 }
 
@@ -2031,20 +2049,47 @@ body main .profile-intelligence-section > .container {
 .profile-intelligence-visual::before {
     position: absolute;
     z-index: -1;
-    inset: 0 -0.6rem 0.25rem 1.5rem;
-    border: 1px solid rgba(123, 102, 225, 0.12);
-    border-radius: 34px;
-    background: linear-gradient(145deg, rgba(228, 223, 255, 0.8), rgba(226, 238, 255, 0.62));
+    inset: 0 -0.85rem 0.1rem 1.5rem;
+    border: 1px solid rgba(109, 81, 220, 0.19);
+    border-radius: 38px;
+    background: linear-gradient(145deg, rgba(199, 186, 255, 0.86), rgba(202, 221, 255, 0.76));
+    box-shadow: 0 28px 64px rgba(100, 77, 201, 0.15);
     content: "";
-    transform: rotate(2.2deg);
+    transform: rotate(3deg);
+}
+
+.profile-intelligence-visual::after {
+    position: absolute;
+    z-index: 1;
+    top: 0.55rem;
+    left: 0.25rem;
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(104, 57, 224, 0.32);
+    border-radius: 50%;
+    box-shadow: 0 0 0 7px rgba(116, 77, 230, 0.07), inset 0 0 0 7px rgba(116, 77, 230, 0.06);
+    content: "";
+    pointer-events: none;
 }
 
 .profile-matches-card {
+    position: relative;
+    overflow: hidden;
     padding: clamp(1.25rem, 2.4vw, 2rem);
-    border: 1px solid rgba(105, 107, 155, 0.13);
+    border: 1px solid rgba(107, 86, 206, 0.19);
     border-radius: 27px;
-    background: rgba(255, 255, 255, 0.97);
-    box-shadow: 0 24px 64px rgba(46, 47, 105, 0.12), 0 3px 9px rgba(46, 47, 105, 0.035);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(250, 248, 255, 0.98));
+    box-shadow: 0 28px 64px rgba(53, 48, 121, 0.16), 0 4px 12px rgba(53, 48, 121, 0.05);
+}
+
+.profile-matches-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9e7cff, #5e3cda 48%, #81a5ff);
+    content: "";
 }
 
 .profile-matches-card__header {
@@ -2052,7 +2097,9 @@ body main .profile-intelligence-section > .container {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 1.05rem;
+    border-bottom: 1px solid rgba(106, 88, 194, 0.12);
 }
 
 .profile-matches-card__header > div {
@@ -2079,15 +2126,21 @@ body main .profile-intelligence-section > .container {
     flex: 0 0 auto;
     align-items: center;
     gap: 0.35rem;
+    padding: 0.6rem 0.82rem;
+    border: 1px solid rgba(107, 80, 219, 0.12);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f5f0ff, #ecebff);
     color: #6652ca;
     font-size: 0.78rem;
     font-weight: 750;
     text-decoration: none;
-    transition: color 160ms ease, gap 160ms ease;
+    transition: color 160ms ease, gap 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
 .profile-matches-card__view-all:hover {
     gap: 0.55rem;
+    transform: translateY(-1px);
+    background: #e7e0ff;
     color: #4736a8;
 }
 
@@ -2102,10 +2155,11 @@ body main .profile-intelligence-section > .container {
     align-items: center;
     gap: 0.85rem;
     padding: 0.95rem;
-    border: 1px solid #ececf4;
+    border: 1px solid rgba(117, 106, 180, 0.12);
     border-radius: 18px;
-    background: linear-gradient(115deg, #fff, #fcfcff);
-    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    background: linear-gradient(115deg, #fff 0%, #fff 72%, #f8f6ff 100%);
+    box-shadow: 0 5px 15px rgba(44, 44, 90, 0.045);
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease, background 160ms ease;
 }
 
 .profile-match:hover {
@@ -2120,8 +2174,9 @@ body main .profile-intelligence-section > .container {
     height: 46px;
     flex: 0 0 46px;
     place-items: center;
+    border: 1px solid rgba(112, 85, 219, 0.1);
     border-radius: 15px;
-    background: #f0edff;
+    background: linear-gradient(145deg, #f7f3ff, #eae3ff);
     color: #7154d7;
 }
 
@@ -2178,31 +2233,47 @@ body main .profile-intelligence-section > .container {
 .profile-match__score {
     flex: 0 0 auto;
     padding: 0.44rem 0.58rem;
-    border: 1px solid rgba(39, 168, 121, 0.14);
+    border: 1px solid transparent;
     border-radius: 999px;
-    background: #edfaf4;
-    color: #23885f;
     font-size: 0.7rem;
     font-weight: 800;
     white-space: nowrap;
 }
 
+.profile-match__score--high {
+    border-color: rgba(39, 168, 121, 0.18);
+    background: linear-gradient(135deg, #e9f9ef, #d7f5e1);
+    color: #21834f;
+}
+
+.profile-match__score--moderate {
+    border-color: rgba(68, 126, 224, 0.17);
+    background: linear-gradient(135deg, #edf4ff, #dceaff);
+    color: #326ac4;
+}
+
 .profile-match__score--recommended {
-    border-color: rgba(107, 80, 219, 0.12);
-    background: #f2efff;
-    color: #6652c8;
+    border-color: rgba(220, 153, 44, 0.19);
+    background: linear-gradient(135deg, #fff6df, #ffebc1);
+    color: #a86a09;
 }
 
 .profile-matches-empty {
+    position: relative;
+    overflow: hidden;
     display: flex;
     min-height: 255px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    border: 1px dashed rgba(112, 98, 220, 0.24);
+    border: 1px dashed rgba(112, 98, 220, 0.3);
     border-radius: 20px;
-    background: linear-gradient(145deg, #fcfbff, #f8faff);
+    background:
+        radial-gradient(circle at 50% 30%, rgba(168, 147, 255, 0.2), transparent 8rem),
+        radial-gradient(rgba(105, 83, 207, 0.09) 1px, transparent 1px),
+        linear-gradient(145deg, #f8f5ff, #f2f5ff);
+    background-size: auto, 17px 17px, auto;
     text-align: center;
 }
 
@@ -2213,7 +2284,9 @@ body main .profile-intelligence-section > .container {
     margin-bottom: 0.85rem;
     place-items: center;
     border-radius: 19px;
-    background: #efecff;
+    border: 1px solid rgba(109, 82, 216, 0.14);
+    background: linear-gradient(145deg, #fff, #e8e1ff);
+    box-shadow: 0 10px 24px rgba(91, 66, 191, 0.12), 0 0 0 8px rgba(255, 255, 255, 0.58);
     color: #7054d8;
 }
 
@@ -2243,8 +2316,8 @@ body main .profile-intelligence-section > .container {
     margin-top: 1rem;
     padding: 0.65rem 1rem;
     border-radius: 999px;
-    background: #6b50db;
-    box-shadow: 0 7px 18px rgba(107, 80, 219, 0.2);
+    background: linear-gradient(100deg, #7553e3, #5536c8);
+    box-shadow: 0 8px 20px rgba(107, 80, 219, 0.27);
     color: #fff;
     font-size: 0.78rem;
     font-weight: 750;
@@ -2254,7 +2327,7 @@ body main .profile-intelligence-section > .container {
 
 .profile-matches-empty a:hover {
     transform: translateY(-1px);
-    background: #553bc2;
+    background: linear-gradient(100deg, #6745d3, #492ab4);
     color: #fff;
 }
 
@@ -2314,7 +2387,14 @@ body main .profile-intelligence-section > .container {
 
     .profile-intelligence-visual::before {
         inset: 0 -0.2rem 0.1rem 0.8rem;
-        border-radius: 27px;
+        border-radius: 29px;
+    }
+
+    .profile-intelligence-visual::after {
+        top: 0.2rem;
+        left: 0.1rem;
+        width: 35px;
+        height: 35px;
     }
 
     .profile-matches-card {
@@ -2339,6 +2419,7 @@ body main .profile-intelligence-section > .container {
 
     .profile-matches-card__view-all {
         margin-top: 0.2rem;
+        padding: 0.5rem 0.65rem;
         font-size: 0.71rem;
     }
 
@@ -2389,5 +2470,725 @@ body main .profile-intelligence-section > .container {
     .profile-match:hover,
     .profile-matches-empty a:hover {
         transform: none;
+    }
+}
+
+.career-momentum-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 8vw, 7rem);
+    background:
+        radial-gradient(ellipse at 82% 48%, rgba(128, 99, 245, 0.16), transparent 34rem),
+        radial-gradient(ellipse at 5% 90%, rgba(127, 165, 255, 0.13), transparent 32rem),
+        linear-gradient(128deg, #f8f5ff 0%, #f0efff 48%, #faf9ff 100%);
+}
+
+.career-momentum-section::before,
+.career-momentum-section::after {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgba(112, 91, 220, 0.08);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.career-momentum-section::before {
+    top: -240px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+    box-shadow: 0 0 0 28px rgba(126, 104, 232, 0.025), 0 0 0 58px rgba(126, 104, 232, 0.02);
+}
+
+.career-momentum-section::after {
+    bottom: -315px;
+    left: 28%;
+    width: 560px;
+    height: 560px;
+    border-color: rgba(112, 98, 220, 0.055);
+}
+
+body main .career-momentum-section > .container {
+    width: min(100% - 48px, 1440px);
+}
+
+.career-momentum-layout {
+    --bs-gutter-x: clamp(2rem, 5vw, 5.25rem);
+}
+
+.career-momentum-copy {
+    max-width: 640px;
+}
+
+.career-momentum-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.3rem;
+    padding: 0.65rem 1.05rem;
+    border: 1px solid rgba(107, 78, 221, 0.13);
+    border-radius: 999px;
+    background: linear-gradient(110deg, rgba(234, 226, 255, 0.95), rgba(241, 238, 255, 0.92));
+    box-shadow: 0 9px 22px rgba(75, 58, 158, 0.07);
+    color: #5d34cf;
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.career-momentum-kicker svg {
+    width: 19px;
+    height: 19px;
+}
+
+.career-momentum-copy h2 {
+    max-width: 660px;
+    margin: 0;
+    color: #161b36;
+    font-size: clamp(2.5rem, 4.65vw, 4.25rem);
+    font-weight: 850;
+    letter-spacing: -0.06em;
+    line-height: 1.04;
+}
+
+.career-momentum-copy h2 span {
+    position: relative;
+    display: inline-block;
+    color: #6734dd;
+}
+
+.career-momentum-copy h2 span::after {
+    position: absolute;
+    right: 3%;
+    bottom: -0.15em;
+    left: 0;
+    height: 0.075em;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #9264fb, #5b2bd5);
+    content: "";
+    transform: rotate(-1.5deg);
+}
+
+.career-momentum-copy > p {
+    max-width: 570px;
+    margin: 1.3rem 0 0;
+    color: #626985;
+    font-size: clamp(1rem, 1.35vw, 1.12rem);
+    line-height: 1.72;
+}
+
+.career-momentum-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.72rem;
+    margin-top: 1.8rem;
+}
+
+.career-momentum-highlight {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid rgba(106, 82, 214, 0.13);
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(244, 240, 255, 0.88));
+    box-shadow: 0 7px 18px rgba(68, 58, 135, 0.06);
+    color: #30304f;
+    font-size: 0.78rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.career-momentum-highlight svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    color: #7046db;
+}
+
+.career-momentum-visual {
+    position: relative;
+    isolation: isolate;
+    padding: 1.6rem 0.25rem 1.25rem 1.15rem;
+}
+
+.career-momentum-visual::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 -0.75rem 0.1rem 1.5rem;
+    border: 1px solid rgba(111, 84, 220, 0.18);
+    border-radius: 38px;
+    background: linear-gradient(145deg, rgba(194, 179, 255, 0.88), rgba(208, 221, 255, 0.76));
+    box-shadow: 0 28px 64px rgba(93, 71, 190, 0.14);
+    content: "";
+    transform: rotate(2.7deg);
+}
+
+.career-momentum-visual::after {
+    position: absolute;
+    z-index: -1;
+    top: 0.2rem;
+    left: 0.1rem;
+    width: 54px;
+    height: 54px;
+    border: 2px solid rgba(102, 52, 221, 0.25);
+    border-radius: 50%;
+    box-shadow: 0 0 0 8px rgba(116, 77, 230, 0.07), inset 0 0 0 8px rgba(116, 77, 230, 0.06);
+    content: "";
+}
+
+.career-momentum-preview-label {
+    position: absolute;
+    z-index: 2;
+    top: 0.35rem;
+    right: 1.6rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid rgba(109, 82, 216, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: #6747c8;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 5px 16px rgba(76, 57, 153, 0.06);
+}
+
+.career-momentum-dashboard {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1rem, 2vw, 1.45rem);
+    border: 7px solid rgba(255, 255, 255, 0.92);
+    border-radius: 32px;
+    background: linear-gradient(145deg, #fff 0%, #fbfaff 54%, #f4f1ff 100%);
+    box-shadow: 0 27px 68px rgba(54, 45, 122, 0.17), 0 5px 15px rgba(54, 45, 122, 0.06);
+}
+
+.career-momentum-dashboard__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    background: linear-gradient(112deg, #7750dd 0%, #4d32a8 100%);
+    box-shadow: 0 10px 24px rgba(80, 52, 174, 0.2);
+}
+
+.career-momentum-dashboard__identity {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.career-momentum-dashboard__avatar {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #a881ff, #9061ef);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.28);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 850;
+}
+
+.career-momentum-dashboard__identity > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.16rem;
+}
+
+.career-momentum-dashboard__identity small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.68rem;
+}
+
+.career-momentum-dashboard__identity strong {
+    overflow: hidden;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.career-momentum-dashboard__status {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.48rem 0.7rem;
+    border: 1px solid rgba(93, 232, 176, 0.18);
+    border-radius: 999px;
+    background: rgba(24, 178, 126, 0.17);
+    color: #c4ffe5;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.career-momentum-dashboard__status span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5ee4ae;
+    box-shadow: 0 0 0 4px rgba(94, 228, 174, 0.13);
+}
+
+.career-momentum-readiness {
+    margin-top: 0.75rem;
+    padding: 0.9rem 1rem 1rem;
+    border: 1px solid rgba(110, 93, 187, 0.08);
+    border-radius: 18px;
+    background: linear-gradient(120deg, #fff, #f8f6ff);
+    box-shadow: 0 6px 18px rgba(48, 47, 105, 0.045);
+}
+
+.career-momentum-readiness__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+    color: #222542;
+    font-size: 0.75rem;
+}
+
+.career-momentum-readiness__label strong {
+    font-weight: 800;
+}
+
+.career-momentum-readiness__label span {
+    color: #626681;
+    font-weight: 750;
+}
+
+.career-momentum-readiness__track {
+    height: 11px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e6e2f5;
+}
+
+.career-momentum-readiness__track span {
+    display: block;
+    width: 82%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #a17bff, #6937df);
+    box-shadow: 0 2px 8px rgba(111, 65, 220, 0.24);
+}
+
+.career-momentum-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin-top: 0.75rem;
+}
+
+.career-momentum-stat {
+    display: flex;
+    min-width: 0;
+    min-height: 76px;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem;
+    border: 1px solid rgba(111, 87, 214, 0.1);
+    border-radius: 16px;
+    background: linear-gradient(145deg, #fff, #f1edff);
+}
+
+.career-momentum-stat:nth-child(2) {
+    background: linear-gradient(145deg, #fff, #eef3ff);
+}
+
+.career-momentum-stat:nth-child(3) {
+    background: linear-gradient(145deg, #fff, #f2efff);
+}
+
+.career-momentum-stat__icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    place-items: center;
+    border-radius: 12px;
+    background: #e9e1ff;
+    color: #7046d8;
+}
+
+.career-momentum-stat:nth-child(2) .career-momentum-stat__icon {
+    background: #e5edff;
+    color: #4775d3;
+}
+
+.career-momentum-stat:nth-child(3) .career-momentum-stat__icon {
+    background: #ede8ff;
+    color: #6650c7;
+}
+
+.career-momentum-stat__icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.career-momentum-stat > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.15rem;
+}
+
+.career-momentum-stat small {
+    overflow: hidden;
+    color: #777b91;
+    font-size: 0.62rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.career-momentum-stat strong {
+    overflow: hidden;
+    color: #242744;
+    font-size: 0.86rem;
+    font-weight: 850;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.career-momentum-roles {
+    margin-top: 0.75rem;
+    padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(104, 103, 151, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 7px 20px rgba(48, 47, 105, 0.055);
+}
+
+.career-momentum-role {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+}
+
+.career-momentum-role + .career-momentum-role {
+    border-top: 1px solid #eeedf5;
+}
+
+.career-momentum-role__icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    border-radius: 13px;
+    background: #eee8ff;
+    color: #6b46d2;
+}
+
+.career-momentum-role__icon--code {
+    background: #eaf0ff;
+    color: #4a70cc;
+}
+
+.career-momentum-role__icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.career-momentum-role__copy {
+    display: grid;
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 0.14rem;
+}
+
+.career-momentum-role__copy strong {
+    overflow: hidden;
+    color: #2a2d49;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.career-momentum-role__copy small {
+    color: #85889d;
+    font-size: 0.68rem;
+}
+
+.career-momentum-role__tag {
+    flex: 0 0 auto;
+    padding: 0.43rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.career-momentum-role__tag--interview {
+    background: #e6f0ff;
+    color: #3871ce;
+}
+
+.career-momentum-role__tag--preparing {
+    background: #fff0cf;
+    color: #a86a08;
+}
+
+.career-momentum-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 0.75rem;
+}
+
+.career-momentum-tools span {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid rgba(111, 87, 214, 0.11);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #fff, #f2eeff);
+    box-shadow: 0 4px 12px rgba(55, 46, 125, 0.05);
+    color: #6045bd;
+    font-size: 0.65rem;
+    font-weight: 750;
+}
+
+.career-momentum-tools svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 991.98px) {
+    body main .career-momentum-section > .container {
+        width: min(100% - 40px, 760px);
+    }
+
+    .career-momentum-copy {
+        max-width: 690px;
+    }
+
+    .career-momentum-visual {
+        max-width: 700px;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body main .career-momentum-section > .container {
+        width: min(100% - 28px, 540px);
+    }
+
+    .career-momentum-section {
+        padding-block: 3.75rem;
+    }
+
+    .career-momentum-copy h2 {
+        font-size: clamp(2.3rem, 10.4vw, 3.05rem);
+    }
+
+    .career-momentum-copy > p {
+        margin-top: 1rem;
+        font-size: 0.97rem;
+    }
+
+    .career-momentum-highlights {
+        gap: 0.55rem;
+        margin-top: 1.35rem;
+    }
+
+    .career-momentum-highlight {
+        min-height: 42px;
+        gap: 0.4rem;
+        padding: 0.55rem 0.68rem;
+        border-radius: 13px;
+        font-size: 0.7rem;
+    }
+
+    .career-momentum-highlight svg {
+        width: 17px;
+        height: 17px;
+        flex-basis: 17px;
+    }
+
+    .career-momentum-visual {
+        padding: 1.35rem 0.15rem 0.85rem 0.45rem;
+    }
+
+    .career-momentum-visual::before {
+        inset: 0 -0.15rem 0.1rem 0.75rem;
+        border-radius: 28px;
+    }
+
+    .career-momentum-visual::after {
+        top: 0.2rem;
+        left: 0.05rem;
+        width: 38px;
+        height: 38px;
+    }
+
+    .career-momentum-preview-label {
+        top: 0.05rem;
+        right: 0.9rem;
+        padding: 0.32rem 0.55rem;
+        font-size: 0.56rem;
+    }
+
+    .career-momentum-dashboard {
+        padding: 0.7rem;
+        border-width: 5px;
+        border-radius: 24px;
+    }
+
+    .career-momentum-dashboard__topbar {
+        gap: 0.45rem;
+        padding: 0.7rem;
+        border-radius: 16px;
+    }
+
+    .career-momentum-dashboard__identity {
+        gap: 0.55rem;
+    }
+
+    .career-momentum-dashboard__avatar {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+        font-size: 0.8rem;
+    }
+
+    .career-momentum-dashboard__identity small {
+        font-size: 0.6rem;
+    }
+
+    .career-momentum-dashboard__identity strong {
+        font-size: 0.76rem;
+    }
+
+    .career-momentum-dashboard__status {
+        gap: 0.3rem;
+        padding: 0.38rem 0.48rem;
+        font-size: 0.59rem;
+    }
+
+    .career-momentum-dashboard__status span {
+        width: 7px;
+        height: 7px;
+    }
+
+    .career-momentum-readiness {
+        padding: 0.75rem 0.78rem 0.85rem;
+        border-radius: 15px;
+    }
+
+    .career-momentum-readiness__label {
+        font-size: 0.68rem;
+    }
+
+    .career-momentum-readiness__track {
+        height: 9px;
+    }
+
+    .career-momentum-stats {
+        gap: 0.42rem;
+    }
+
+    .career-momentum-stat {
+        min-height: 76px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.5rem 0.25rem;
+        text-align: center;
+    }
+
+    .career-momentum-stat__icon {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+        border-radius: 10px;
+    }
+
+    .career-momentum-stat__icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .career-momentum-stat > span:last-child {
+        justify-items: center;
+        width: 100%;
+    }
+
+    .career-momentum-stat small {
+        font-size: 0.55rem;
+    }
+
+    .career-momentum-stat strong {
+        font-size: 0.7rem;
+    }
+
+    .career-momentum-roles {
+        padding-inline: 0.65rem;
+        border-radius: 15px;
+    }
+
+    .career-momentum-role {
+        gap: 0.5rem;
+    }
+
+    .career-momentum-role__icon {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+        border-radius: 11px;
+    }
+
+    .career-momentum-role__copy strong {
+        font-size: 0.72rem;
+    }
+
+    .career-momentum-role__copy small {
+        font-size: 0.61rem;
+    }
+
+    .career-momentum-role__tag {
+        padding: 0.35rem 0.45rem;
+        font-size: 0.56rem;
+    }
+
+    .career-momentum-tools {
+        gap: 0.38rem;
+    }
+
+    .career-momentum-tools span {
+        min-height: 31px;
+        gap: 0.28rem;
+        padding: 0.38rem 0.48rem;
+        font-size: 0.56rem;
+    }
+
+    .career-momentum-tools svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .career-momentum-highlight,
+    .career-momentum-dashboard {
+        transition: none;
     }
 }

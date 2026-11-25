@@ -260,7 +260,7 @@
                         <header class="profile-matches-card__header">
                             <div>
                                 <h3>Your Matches</h3>
-                                <p>Role recommendations from your resume analysis</p>
+                                <p>Opportunities tailored to your profile</p>
                             </div>
                             <a href="{{ auth()->check() ? route('ai-analysis.index') : route('login') }}" class="profile-matches-card__view-all">
                                 View All <span aria-hidden="true">→</span>
@@ -291,7 +291,9 @@
                                             <p>{{ $recommendation['explanation'] ?? 'Recommended from your resume analysis.' }}</p>
                                         </div>
                                         @if(isset($recommendation['match_percentage']) && is_numeric($recommendation['match_percentage']) && $recommendation['match_percentage'] >= 0 && $recommendation['match_percentage'] <= 100)
-                                            <span class="profile-match__score">{{ (int) round($recommendation['match_percentage']) }}% Match</span>
+                                            <span class="profile-match__score {{ $recommendation['match_percentage'] >= 85 ? 'profile-match__score--high' : 'profile-match__score--moderate' }}">
+                                                {{ (int) round($recommendation['match_percentage']) }}% Match
+                                            </span>
                                         @else
                                             <span class="profile-match__score profile-match__score--recommended">Recommended</span>
                                         @endif
@@ -755,83 +757,123 @@
     </div>
 </section>
 
-<section class="py-5 bg-white">
+<section class="career-momentum-section" aria-labelledby="career-momentum-title">
     <div class="container">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-5 career-momentum-layout">
             <div class="col-lg-6">
-                <div class="card-soft p-4 p-xl-5 h-100" style="background: linear-gradient(135deg, rgba(124, 92, 255, 0.08), rgba(59, 130, 246, 0.05)); border-color: rgba(124, 92, 255, 0.15);">
-                    <span class="hero-badge">Keep learning. Stay premium.</span>
-                    <h2 class="section-title mt-3 mb-3">Build momentum with consistent, smarter career growth.</h2>
-                    <p class="text-secondary-custom mb-4">From your first resume draft to your next interview round, CareerPilot keeps your job-search system organized, premium, and easier to trust.</p>
+                <div class="career-momentum-copy">
+                    <span class="career-momentum-kicker">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M13.2 2.8 5.5 13h5l-.8 8.2L18.5 11h-5.2l-.1-8.2Z"/>
+                        </svg>
+                        Keep the momentum
+                    </span>
+                    <h2 id="career-momentum-title">Build momentum with consistent, smarter <span>career growth.</span></h2>
+                    <p>From your first resume draft to your next interview round, CareerPilot keeps your job search organized, focused, and easier to trust.</p>
 
-                    <div class="d-flex flex-wrap gap-3">
-                        <span class="premium-mini-tag">AI coaching</span>
-                        <span class="premium-mini-tag">Career clarity</span>
-                        <span class="premium-mini-tag">Application focus</span>
+                    <div class="career-momentum-highlights">
+                        <span class="career-momentum-highlight">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m12 3 2.2 5.7L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.3L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                <path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" fill="currentColor"/>
+                            </svg>
+                            AI coaching
+                        </span>
+                        <span class="career-momentum-highlight">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="m12 3 9 5-9 5-9-5 9-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                <path d="m3 12 9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Career clarity
+                        </span>
+                        <span class="career-momentum-highlight">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Application tracking
+                        </span>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="hero-panel card-soft p-4 p-xl-5">
-                    <div class="dark-panel-top mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-badge">CP</div>
-                            <div>
-                                <div class="small text-white-50">Career profile</div>
-                                <strong class="fs-6 text-white">Ready for next move</strong>
+                <div class="career-momentum-visual">
+                    <span class="career-momentum-preview-label">Career workspace preview</span>
+                    <div class="career-momentum-dashboard">
+                        <div class="career-momentum-dashboard__topbar">
+                            <div class="career-momentum-dashboard__identity">
+                                <span class="career-momentum-dashboard__avatar">CP</span>
+                                <span>
+                                    <small>Career profile</small>
+                                    <strong>Ready for next move</strong>
+                                </span>
+                            </div>
+                            <span class="career-momentum-dashboard__status">
+                                <span aria-hidden="true"></span>
+                                On track
+                            </span>
+                        </div>
+
+                        <div class="career-momentum-readiness">
+                            <div class="career-momentum-readiness__label">
+                                <strong>Resume readiness</strong>
+                                <span>Strong</span>
+                            </div>
+                            <div class="career-momentum-readiness__track" aria-hidden="true">
+                                <span></span>
                             </div>
                         </div>
-                        <span class="status-pill">On track</span>
-                    </div>
 
-                    <div class="dark-score-card mb-3">
-                        <div class="d-flex justify-content-between small text-white-50 mb-2">
-                            <span>Resume readiness</span>
-                            <span class="fw-bold text-white">Strong</span>
-                        </div>
-                        <div class="progress dark-progress" style="height: 12px;">
-                            <div class="progress-bar bg-primary-custom" style="width: 82%"></div>
-                        </div>
-                    </div>
-
-                    <div class="row g-3 mb-3">
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Profiles</div>
-                                <div class="fs-4 fw-bold">Live</div>
+                        <div class="career-momentum-stats">
+                            <div class="career-momentum-stat">
+                                <span class="career-momentum-stat__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-8 8a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                                </span>
+                                <span><small>Profiles</small><strong>Live</strong></span>
+                            </div>
+                            <div class="career-momentum-stat">
+                                <span class="career-momentum-stat__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="7.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7.5V5.8A1.8 1.8 0 0 1 10.8 4h2.4A1.8 1.8 0 0 1 15 5.8v1.7M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                                </span>
+                                <span><small>Applications</small><strong>Tracked</strong></span>
+                            </div>
+                            <div class="career-momentum-stat">
+                                <span class="career-momentum-stat__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-3 0h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                                </span>
+                                <span><small>Prep</small><strong>Ready</strong></span>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Applications</div>
-                                <div class="fs-4 fw-bold">Tracked</div>
+
+                        <div class="career-momentum-roles">
+                            <div class="career-momentum-role">
+                                <span class="career-momentum-role__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="7.5" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7.5V5.8A1.8 1.8 0 0 1 10.8 4h2.4A1.8 1.8 0 0 1 15 5.8v1.7M8 12h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="career-momentum-role__copy">
+                                    <strong>Product Analyst</strong>
+                                    <small>Target role</small>
+                                </span>
+                                <span class="career-momentum-role__tag career-momentum-role__tag--interview">Interview</span>
+                            </div>
+                            <div class="career-momentum-role">
+                                <span class="career-momentum-role__icon career-momentum-role__icon--code" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="career-momentum-role__copy">
+                                    <strong>Frontend Engineer</strong>
+                                    <small>Second track</small>
+                                </span>
+                                <span class="career-momentum-role__tag career-momentum-role__tag--preparing">Preparing</span>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="stat-card h-100">
-                                <div class="small text-secondary-custom">Prep</div>
-                                <div class="fs-4 fw-bold">Ready</div>
-                            </div>
+
+                        <div class="career-momentum-tools">
+                            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M7 3v6m10-6v6M5 10h14v10H5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tailored resume</span>
+                            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>AI feedback</span>
+                            <span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-3 0h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Interview prep</span>
                         </div>
                     </div>
-
-                    <div class="border rounded-4 p-3 bg-white">
-                        <div class="d-flex justify-content-between align-items-center gap-3 mb-2">
-                            <div>
-                                <div class="fw-semibold">Product Analyst</div>
-                                <div class="small text-secondary-custom">Target role</div>
-                            </div><span class="badge bg-primary rounded-pill px-2 py-1">In review</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center gap-3">
-                            <div>
-                                <div class="fw-semibold">Frontend Engineer</div>
-                                <div class="small text-secondary-custom">Second track</div>
-                            </div><span class="badge bg-warning text-dark rounded-pill px-2 py-1">Preparing</span>
-                        </div>
-                    </div>
-
-                    <div class="quick-action-row mt-3 d-flex flex-wrap gap-2"><span class="premium-mini-tag">Tailored resume</span><span class="premium-mini-tag">AI feedback</span><span class="premium-mini-tag">Interview drills</span></div>
                 </div>
             </div>
         </div>
