@@ -1,10 +1,10 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-C8gYg1oR.css",
+    "file": "assets/app-DUAmgnsa.css",
     "src": "resources/css/app.css"
   },
   "resources/css/pages/app.css": {
-    "file": "assets/app-DFNuZqw1.css",
+    "file": "assets/app-DlyiOAw5.css",
     "src": "resources/css/pages/app.css",
     "isEntry": true,
     "name": "app",
@@ -13,7 +13,7 @@
     ]
   },
   "resources/css/pages/auth.css": {
-    "file": "assets/auth-DeboxdiZ.css",
+    "file": "assets/auth-BfdmA3st.css",
     "src": "resources/css/pages/auth.css",
     "isEntry": true,
     "name": "auth",
@@ -22,7 +22,7 @@
     ]
   },
   "resources/css/pages/dashboard.css": {
-    "file": "assets/dashboard-CS_pWI5O.css",
+    "file": "assets/dashboard-zANbN7Tl.css",
     "src": "resources/css/pages/dashboard.css",
     "isEntry": true,
     "name": "dashboard",
@@ -31,7 +31,7 @@
     ]
   },
   "resources/css/pages/public.css": {
-    "file": "assets/public-D0UXE4rV.css",
+    "file": "assets/public-DgiqlVvm.css",
     "src": "resources/css/pages/public.css",
     "isEntry": true,
     "name": "public",
@@ -40,7 +40,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CQsktF47.js",
+    "file": "assets/app-BRiin9xV.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

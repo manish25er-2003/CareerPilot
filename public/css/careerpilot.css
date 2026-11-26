@@ -266,6 +266,12 @@ img {
     box-shadow: 0 12px 30px rgba(17, 24, 39, 0.04);
 }
 
+.navbar.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
 .premium-navbar .navbar-brand {
     padding: 0.35rem 0.2rem;
 }

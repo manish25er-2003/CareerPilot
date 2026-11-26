@@ -7,6 +7,14 @@
     display: none;
 }
 
+@media (min-width: 992px) {
+    .app-shell .jobflow-header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+    }
+}
+
 @media (max-width: 991.98px) {
     .app-shell .jobflow-main-panel,
     .app-shell .jobflow-dashboard-shell {

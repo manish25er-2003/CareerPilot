@@ -1,3 +1,4 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
 @import "../../../public/css/careerpilot.css";
 @import "./home.css";
 @import "./developer.css";
