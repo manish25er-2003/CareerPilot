@@ -7,4 +7,12 @@
 @import "./dashboard-mobile-header.css";
 @import "./dashboard-summary-cards.css";
 @import "./dashboard-audit.css";
+@import "./settings.css";
+@import "./my-profile.css";
+@import "./reports.css";
+@import "./interviews.css";
+@import "./jobs.css";
+@import "./resumes.css";
+@import "./skills.css";
 @import "./notifications.css";
+@import "./dashboard-home.css";

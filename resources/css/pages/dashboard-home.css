@@ -1,0 +1,859 @@
+.app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+    max-width: none;
+    padding: 10px 16px 12px;
+}
+
+.app-shell .dashboard-home {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+}
+
+.app-shell .dashboard-home-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: 150px;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(115, 82, 205, 0.12);
+    border-radius: 14px;
+    background: #f0e9ff;
+    box-shadow: 0 8px 22px rgba(79, 56, 160, 0.1);
+}
+
+.app-shell .dashboard-home-hero::after {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(247, 241, 255, 0.97) 0%, rgba(247, 241, 255, 0.92) 34%, rgba(247, 241, 255, 0.58) 48%, rgba(247, 241, 255, 0) 68%);
+    content: "";
+    pointer-events: none;
+}
+
+.app-shell .dashboard-home-hero-image {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+}
+
+.app-shell .dashboard-home-hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(660px, 66%);
+    padding: 10px 30px;
+}
+
+.app-shell .dashboard-home-eyebrow {
+    display: block;
+    margin-bottom: 2px;
+    color: #242044;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.app-shell .dashboard-home-hero h1 {
+    margin: 0;
+    color: #10152f;
+    font-size: clamp(1.7rem, 2.25vw, 2.15rem);
+    font-weight: 850;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+}
+
+.app-shell .dashboard-home-hero h1 span {
+    color: #7029df;
+}
+
+.app-shell .dashboard-home-hero p {
+    margin: 5px 0 10px;
+    color: #292845;
+    font-size: 0.83rem;
+    font-weight: 550;
+    line-height: 1.35;
+}
+
+.app-shell .dashboard-home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.app-shell .dashboard-home-action {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 15px;
+    border: 1px solid #6e36d5;
+    border-radius: 10px;
+    font-size: 0.76rem;
+    font-weight: 750;
+    text-decoration: none;
+    transition: background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.app-shell .dashboard-home-action svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.app-shell .dashboard-home-action:hover {
+    transform: translateY(-1px);
+}
+
+.app-shell .dashboard-home-action--primary {
+    background: linear-gradient(135deg, #7a2be2, #5e1fc6);
+    color: #fff;
+    box-shadow: 0 5px 12px rgba(105, 40, 205, 0.19);
+}
+
+.app-shell .dashboard-home-action--primary:hover {
+    background: #5820bf;
+    color: #fff;
+}
+
+.app-shell .dashboard-home-action--secondary {
+    background: rgba(255, 255, 255, 0.78);
+    color: #2a2545;
+}
+
+.app-shell .dashboard-home-action--secondary:hover {
+    background: #fff;
+    color: #5720b8;
+}
+
+.app-shell .dashboard-home-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.app-shell .dashboard-stat-card {
+    position: relative;
+    min-width: 0;
+    min-height: 154px;
+    overflow: hidden;
+    padding: 12px 15px;
+    border: 1px solid rgba(117, 98, 167, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(52, 45, 98, 0.07);
+}
+
+.app-shell .dashboard-stat-card--purple {
+    --stat-accent: #7638df;
+    --stat-icon-bg: #eee1ff;
+    background: linear-gradient(145deg, #fbf9ff, #f1eaff);
+}
+
+.app-shell .dashboard-stat-card--orange {
+    --stat-accent: #f39900;
+    --stat-icon-bg: #fff0d6;
+    background: linear-gradient(145deg, #fffdf8, #fff3df);
+}
+
+.app-shell .dashboard-stat-card--green {
+    --stat-accent: #12a35a;
+    --stat-icon-bg: #dcf8e9;
+    background: linear-gradient(145deg, #f8fffb, #e4f8ef);
+}
+
+.app-shell .dashboard-stat-card--pink {
+    --stat-accent: #e83c77;
+    --stat-icon-bg: #ffe3ef;
+    background: linear-gradient(145deg, #fffaff, #ffeaf3);
+}
+
+.app-shell .dashboard-stat-card--violet {
+    --stat-accent: #7136d4;
+    --stat-icon-bg: #eee3ff;
+    background: linear-gradient(145deg, #fcfaff, #f0e8ff);
+}
+
+.app-shell .dashboard-stat-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--stat-icon-bg);
+    color: var(--stat-accent);
+}
+
+.app-shell .dashboard-stat-heading {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+
+.app-shell .dashboard-stat-heading h2 {
+    margin: 0;
+    color: #24243b;
+    font-size: 0.79rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.app-shell .dashboard-stat-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.app-shell .dashboard-stat-value {
+    display: block;
+    color: #11152d;
+    font-size: 1.7rem;
+    font-weight: 850;
+    line-height: 1;
+}
+
+.app-shell .dashboard-stat-card p {
+    max-width: 210px;
+    margin: 5px 0 0;
+    color: #45445b;
+    font-size: 0.68rem;
+    line-height: 1.35;
+}
+
+.app-shell .dashboard-home-overview {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.32fr);
+    gap: 12px;
+}
+
+.app-shell .dashboard-home-panel {
+    min-width: 0;
+    min-height: 240px;
+    padding: 14px 16px;
+    border: 1px solid rgba(84, 76, 130, 0.08);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 7px 20px rgba(52, 45, 98, 0.07);
+}
+
+.app-shell .dashboard-panel-heading {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-shell .dashboard-panel-icon {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    place-items: center;
+    border-radius: 11px;
+}
+
+.app-shell .dashboard-panel-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.9;
+}
+
+.app-shell .dashboard-panel-icon--purple {
+    background: #f0e6ff;
+    color: #7434d8;
+}
+
+.app-shell .dashboard-panel-icon--blue {
+    background: #eee8ff;
+    color: #6537d1;
+}
+
+.app-shell .dashboard-panel-heading h2 {
+    margin: 0;
+    color: #1d2037;
+    font-size: 0.94rem;
+    font-weight: 850;
+    line-height: 1.2;
+}
+
+.app-shell .dashboard-panel-heading p {
+    margin: 3px 0 0;
+    color: #5d5c70;
+    font-size: 0.69rem;
+    line-height: 1.35;
+}
+
+.app-shell .dashboard-profile-content {
+    display: grid;
+    grid-template-columns: 0.95fr 1fr;
+    align-items: center;
+    gap: 12px;
+    min-height: 132px;
+    padding: 5px 12px 2px;
+}
+
+.app-shell .dashboard-profile-ring {
+    display: grid;
+    width: 116px;
+    height: 116px;
+    place-items: center;
+    justify-self: center;
+    border-radius: 50%;
+    background: conic-gradient(#7226df 0 var(--completion), #e9e7f2 var(--completion) 100%);
+}
+
+.app-shell .dashboard-profile-ring-center {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.app-shell .dashboard-profile-ring-center strong {
+    color: #16172d;
+    font-size: 1.35rem;
+    font-weight: 850;
+    line-height: 1;
+}
+
+.app-shell .dashboard-profile-ring-center span {
+    margin-top: 3px;
+    color: #44445b;
+    font-size: 0.62rem;
+}
+
+.app-shell .dashboard-profile-checklist {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.app-shell .dashboard-profile-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #33334a;
+    font-size: 0.69rem;
+    line-height: 1.25;
+}
+
+.app-shell .dashboard-checklist-mark {
+    display: grid;
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    place-items: center;
+    border: 1.5px solid #b8b8c8;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.61rem;
+    font-weight: 800;
+}
+
+.app-shell .dashboard-checklist-mark.is-complete {
+    border-color: #16ad54;
+    background: #16ad54;
+}
+
+.app-shell .dashboard-profile-action {
+    display: flex;
+    min-height: 34px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 9px;
+    background: linear-gradient(100deg, #7730df, #6228cd);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.app-shell .dashboard-profile-action:hover {
+    background: #5722ba;
+    color: #fff;
+}
+
+.app-shell .dashboard-application-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-shell .dashboard-application-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.app-shell .dashboard-chart-period {
+    display: inline-flex;
+    min-height: 30px;
+    align-items: center;
+    gap: 6px;
+    padding: 0 9px;
+    border: 1px solid #eceaf3;
+    border-radius: 8px;
+    color: #3a3955;
+    font-size: 0.64rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.app-shell .dashboard-chart-period svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #6554b7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.app-shell .dashboard-chart-legend {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    margin: 4px 2px 3px;
+    color: #46455c;
+    font-size: 0.63rem;
+}
+
+.app-shell .dashboard-chart-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.app-shell .dashboard-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.app-shell .dashboard-legend-dot--applied {
+    background: #7824dc;
+}
+
+.app-shell .dashboard-legend-dot--interview {
+    background: #1f8cff;
+}
+
+.app-shell .dashboard-legend-dot--offer {
+    background: #28b357;
+}
+
+.app-shell .dashboard-application-chart {
+    display: grid;
+    min-height: 142px;
+    flex: 1;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 8px;
+}
+
+.app-shell .dashboard-chart-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0 18px;
+    color: #636279;
+    font-size: 0.59rem;
+    text-align: right;
+}
+
+.app-shell .dashboard-chart-plot {
+    position: relative;
+    min-width: 0;
+    min-height: 142px;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(20% - 1px), #e9e8f1 calc(20% - 1px), #e9e8f1 20%);
+}
+
+.app-shell .dashboard-chart-columns {
+    position: absolute;
+    inset: 0 0 18px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.app-shell .dashboard-chart-week {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.app-shell .dashboard-chart-bar-group {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+}
+
+.app-shell .dashboard-chart-bar {
+    width: min(14px, 18%);
+    height: var(--bar-height);
+    min-height: 0;
+    border-radius: 5px 5px 0 0;
+}
+
+.app-shell .dashboard-chart-bar--applied {
+    background: #7824dc;
+}
+
+.app-shell .dashboard-chart-bar--interview {
+    background: #1f8cff;
+}
+
+.app-shell .dashboard-chart-bar--offer {
+    background: #28b357;
+}
+
+.app-shell .dashboard-chart-week-label {
+    position: absolute;
+    bottom: -18px;
+    color: #414057;
+    font-size: 0.6rem;
+    font-weight: 700;
+}
+
+.app-shell .dashboard-chart-empty-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.app-shell .dashboard-chart-empty-state svg {
+    width: 62px;
+    height: 58px;
+    margin-bottom: 2px;
+    fill: none;
+    stroke: #8d78e4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4;
+}
+
+.app-shell .dashboard-chart-empty-state strong {
+    color: #17172e;
+    font-size: 0.84rem;
+    font-weight: 850;
+}
+
+.app-shell .dashboard-chart-empty-state span {
+    margin-top: 2px;
+    color: #45445b;
+    font-size: 0.68rem;
+}
+
+.app-shell .dashboard-home-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.app-shell .dashboard-shortcut-card {
+    display: grid;
+    min-width: 0;
+    min-height: 96px;
+    grid-template-columns: 44px minmax(0, 1fr) 36px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid rgba(117, 98, 167, 0.1);
+    border-radius: 15px;
+    color: #20203a;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(52, 45, 98, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.app-shell .dashboard-shortcut-card:hover {
+    transform: translateY(-2px);
+    color: #20203a;
+    box-shadow: 0 10px 22px rgba(52, 45, 98, 0.11);
+}
+
+.app-shell .dashboard-shortcut-card--purple {
+    background: linear-gradient(120deg, #fcfaff, #f2eaff);
+}
+
+.app-shell .dashboard-shortcut-card--orange {
+    background: linear-gradient(120deg, #fffdf8, #fff2df);
+}
+
+.app-shell .dashboard-shortcut-card--green {
+    background: linear-gradient(120deg, #f8fffb, #e7f9f1);
+}
+
+.app-shell .dashboard-shortcut-icon {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #6d35d2;
+}
+
+.app-shell .dashboard-shortcut-card--orange .dashboard-shortcut-icon {
+    color: #ed9200;
+}
+
+.app-shell .dashboard-shortcut-card--green .dashboard-shortcut-icon {
+    color: #159e52;
+}
+
+.app-shell .dashboard-shortcut-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.9;
+}
+
+.app-shell .dashboard-shortcut-copy {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+}
+
+.app-shell .dashboard-shortcut-copy strong {
+    color: #20203a;
+    font-size: 0.82rem;
+    font-weight: 850;
+    line-height: 1.2;
+}
+
+.app-shell .dashboard-shortcut-copy span {
+    color: #4b4a60;
+    font-size: 0.67rem;
+    line-height: 1.35;
+}
+
+.app-shell .dashboard-shortcut-arrow {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #342766;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+@media (max-width: 1199.98px) {
+    .app-shell .dashboard-home-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .app-shell .dashboard-home-hero-content {
+        width: 72%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+        padding: 12px 12px 22px;
+    }
+
+    .app-shell .dashboard-home-hero {
+        min-height: 160px;
+    }
+
+    .app-shell .dashboard-home-overview {
+        grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    }
+
+    .app-shell .dashboard-shortcut-card {
+        grid-template-columns: 40px minmax(0, 1fr);
+    }
+
+    .app-shell .dashboard-shortcut-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .app-shell .dashboard-shortcut-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .app-shell .jobflow-dashboard-content.jobflow-dashboard-page {
+        padding: 10px 10px 24px;
+    }
+
+    .app-shell .dashboard-home-hero {
+        min-height: 220px;
+        align-items: flex-start;
+    }
+
+    .app-shell .dashboard-home-hero::after {
+        background: linear-gradient(90deg, rgba(247, 241, 255, 0.98) 0%, rgba(247, 241, 255, 0.9) 58%, rgba(247, 241, 255, 0.34) 100%);
+    }
+
+    .app-shell .dashboard-home-hero-image {
+        object-position: right center;
+        opacity: 0.8;
+    }
+
+    .app-shell .dashboard-home-hero-content {
+        width: 100%;
+        max-width: 520px;
+        padding: 20px;
+    }
+
+    .app-shell .dashboard-home-overview {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .app-shell .dashboard-home-panel {
+        min-height: 240px;
+    }
+
+    .app-shell .dashboard-profile-content {
+        grid-template-columns: 0.85fr 1fr;
+    }
+
+    .app-shell .dashboard-home-shortcuts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .app-shell .dashboard-shortcut-card {
+        grid-template-columns: 44px minmax(0, 1fr) 36px;
+        min-height: 88px;
+    }
+
+    .app-shell .dashboard-shortcut-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .app-shell .dashboard-shortcut-arrow {
+        display: grid;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-shell .dashboard-home-stats {
+        gap: 9px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .app-shell .dashboard-stat-card {
+        min-height: 144px;
+        padding: 11px 12px;
+    }
+
+    .app-shell .dashboard-stat-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .app-shell .dashboard-stat-card h2 {
+        font-size: 0.73rem;
+    }
+
+    .app-shell .dashboard-stat-card p {
+        font-size: 0.64rem;
+    }
+
+    .app-shell .dashboard-home-hero-content {
+        padding: 18px 16px;
+    }
+
+    .app-shell .dashboard-home-hero h1 {
+        font-size: 1.65rem;
+    }
+
+    .app-shell .dashboard-home-hero p {
+        max-width: 280px;
+        font-size: 0.77rem;
+    }
+
+    .app-shell .dashboard-home-action {
+        min-height: 36px;
+        gap: 6px;
+        padding-inline: 10px;
+        font-size: 0.68rem;
+    }
+
+    .app-shell .dashboard-profile-content {
+        grid-template-columns: 0.9fr 1fr;
+        gap: 7px;
+        padding-inline: 2px;
+    }
+
+    .app-shell .dashboard-profile-ring {
+        width: 104px;
+        height: 104px;
+    }
+
+    .app-shell .dashboard-profile-ring-center {
+        width: 78px;
+        height: 78px;
+    }
+
+    .app-shell .dashboard-profile-checklist li {
+        gap: 6px;
+        font-size: 0.65rem;
+    }
+
+    .app-shell .dashboard-application-heading {
+        align-items: flex-start;
+    }
+
+    .app-shell .dashboard-chart-period {
+        min-height: 27px;
+        gap: 4px;
+        padding-inline: 6px;
+        font-size: 0.57rem;
+    }
+
+    .app-shell .dashboard-chart-legend {
+        gap: 9px;
+        font-size: 0.59rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-shell .dashboard-home-action,
+    .app-shell .dashboard-shortcut-card {
+        transition: none;
+    }
+}

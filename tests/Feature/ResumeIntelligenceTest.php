@@ -251,6 +251,33 @@ class ResumeIntelligenceTest extends TestCase
         $this->assertNotEmpty($result['role_recommendations']);
     }
 
+    public function test_my_resumes_page_displays_uploaded_files_and_existing_actions(): void
+    {
+        Storage::fake('local');
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->post(route('resumes.store'), [
+                'title' => 'Product Analyst Resume',
+                'file' => UploadedFile::fake()->createWithContent('resume.txt', $this->sampleResume()),
+            ])
+            ->assertRedirect(route('resumes.index'));
+
+        $resume = $user->resumes()->firstOrFail();
+
+        $this->get(route('resumes.index'))
+            ->assertOk()
+            ->assertSee('My Resumes')
+            ->assertSee('Upload Your Resume')
+            ->assertSee('Your Resumes')
+            ->assertSee('Product Analyst Resume')
+            ->assertSee('resume.txt')
+            ->assertSee('TXT')
+            ->assertSee('Primary')
+            ->assertSee(route('resumes.download', $resume->id), false)
+            ->assertSee(route('resumes.destroy', $resume->id), false);
+    }
+
     private function createTextResume(User $user): Resume
     {
         $path = 'resumes/'.$user->id.'/resume.txt';

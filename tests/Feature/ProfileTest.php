@@ -18,7 +18,16 @@ class ProfileTest extends TestCase
             ->actingAs($user)
             ->get('/profile');
 
-        $response->assertOk();
+        $response
+            ->assertOk()
+            ->assertSee('My Profile')
+            ->assertSee('Personal Information')
+            ->assertSee('Professional Details')
+            ->assertSee('Education & About')
+            ->assertSee('Online Profiles')
+            ->assertSee('name="profile_image"', false)
+            ->assertSee(route('profile.update'), false)
+            ->assertSee(route('profile.edit').'#security-settings', false);
     }
 
     public function test_profile_information_can_be_updated(): void

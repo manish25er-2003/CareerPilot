@@ -3,208 +3,194 @@
 @section('title', 'Dashboard | CareerPilot AI')
 
 @section('content')
-@php
-$authUser = auth()->user();
-$profile = $authUser?->profile;
-$profileImage = $profile && $profile->profile_image ? \Illuminate\Support\Facades\Storage::url($profile->profile_image) : null;
-$displayName = $authUser?->name ?: 'User';
-$firstName = trim(explode(' ', $displayName)[0] ?? 'User');
-$initials = collect(explode(' ', trim($displayName)))
-->map(fn ($part) => strtoupper(substr($part, 0, 1)))
-->take(2)
-->implode('');
-$hour = now()->hour;
-$greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good evening' );
-    $score=$resumeScore ?? 0;
-    @endphp
-
-    <div class="jobflow-dashboard-page">
-    <div class="jobflow-hero-banner">
-        <div class="jobflow-hero-copy">
-            <span class="jobflow-hero-pill">Your Career Journey Starts Here</span>
-            <h2>Welcome back, {{ $firstName }}!</h2>
-            <p>Let’s find your next opportunity together with CareerPilot AI.</p>
-            <a href="{{ route('jobs.index') }}" class="jobflow-cta-button">Explore Opportunities →</a>
-        </div>
-    </div>
-
-    <div class="jobflow-upper-grid">
-        <div class="jobflow-stat-grid">
-            @forelse($summaryCards as $card)
-            <div class="jobflow-stat-card {{ $card['active'] ? 'is-primary' : '' }}">
-                <div class="jobflow-stat-header">
-                    <span>{{ $card['label'] }}</span>
-                    <span class="jobflow-arrow">→</span>
+<div class="jobflow-dashboard-page">
+    <div class="dashboard-home">
+        <section class="dashboard-home-hero" aria-labelledby="dashboard-home-title">
+            <img
+                class="dashboard-home-hero-image"
+                src="{{ asset('Modern Purple Workspace with Rocket Laptop.png') }}"
+                alt=""
+                aria-hidden="true"
+            >
+            <div class="dashboard-home-hero-content">
+                <span class="dashboard-home-eyebrow">CareerPilot AI</span>
+                <h1 id="dashboard-home-title">Welcome back, <span>{{ $firstName }}!</span></h1>
+                <p>Plan, prepare, and grow your career with AI-powered tools.</p>
+                <div class="dashboard-home-actions">
+                    <a href="{{ route('ai-analysis.index') }}" class="dashboard-home-action dashboard-home-action--primary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 14.2 9.8 21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2L12 3Z"/><path d="m18.5 3 .6 1.9L21 5.5l-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6.6-1.9Z"/></svg>
+                        Analyze Resume
+                    </a>
+                    <a href="{{ route('interviews.index') }}" class="dashboard-home-action dashboard-home-action--secondary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4V8Z"/></svg>
+                        Start Interview Practice
+                    </a>
                 </div>
-                <div class="jobflow-stat-value">{{ $card['value'] }}</div>
             </div>
-            @empty
-            <div class="jobflow-stat-card is-primary">
-                <div class="jobflow-stat-header">
-                    <span>Summary</span>
-                    <span class="jobflow-arrow">→</span>
-                </div>
-                <div class="jobflow-stat-value">0</div>
-            </div>
-            @endforelse
-        </div>
+        </section>
 
-        <div class="jobflow-schedule-card">
-            <div class="jobflow-card-header">
-                <h3>Schedule</h3>
-                <button type="button" class="jobflow-mini-icon">◍</button>
-            </div>
-
-            @if($schedule)
-            <div class="jobflow-calendar-head">
-                <span>◀</span>
-                <strong>{{ now()->monthName }} {{ now()->year }}</strong>
-                <span>▶</span>
-            </div>
-
-            @foreach($schedule as $item)
-            <div class="jobflow-schedule-item">
-                <div class="jobflow-date-box">
-                    <span>{{ \Illuminate\Support\Str::substr($item['date'] ?? 'N/A', 0, 3) }}</span>
+        <section class="dashboard-home-stats" aria-label="Career summary">
+            @foreach($summaryCards as $card)
+            <article class="dashboard-stat-card dashboard-stat-card--{{ $card['tone'] }}">
+                <div class="dashboard-stat-heading">
+                    <span class="dashboard-stat-icon" aria-hidden="true">
+                        @switch($card['icon'])
+                        @case('applications')
+                        <svg viewBox="0 0 24 24"><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 12h18M10 12v2h4v-2"/></svg>
+                        @break
+                        @case('active')
+                        <svg viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg>
+                        @break
+                        @case('interview')
+                        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3M8 17h7"/></svg>
+                        @break
+                        @case('offers')
+                        <svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+                        @break
+                        @default
+                        <svg viewBox="0 0 24 24"><path d="M4 19V9h4v10H4ZM10 19V5h4v14h-4ZM16 19v-7h4v7h-4Z"/></svg>
+                    @endswitch
+                    </span>
+                    <h2>{{ $card['label'] }}</h2>
                 </div>
-                <div class="jobflow-schedule-text">
-                    <div class="jobflow-schedule-name">{{ $item['title'] }}</div>
-                    <div class="jobflow-schedule-meta">{{ $item['company'] }}</div>
-                    <div class="jobflow-schedule-meta">{{ $item['date'] }} · {{ $item['time'] }}</div>
-                </div>
-                <button type="button" class="jobflow-next-icon">→</button>
-            </div>
+                <strong class="dashboard-stat-value">{{ $card['value'] }}</strong>
+                <p>{{ $card['description'] }}</p>
+            </article>
             @endforeach
-            @else
-            <div class="text-center text-secondary-custom py-4">No interviews scheduled yet.</div>
-            @endif
+        </section>
 
-            <button type="button" class="jobflow-link-button">See All</button>
-        </div>
-    </div>
-
-    <div class="jobflow-lower-grid">
-        <div class="jobflow-donut-card">
-            <div class="jobflow-card-title-row">
-                <h3>Resume Strength Analyzer</h3>
-            </div>
-
-            <div class="jobflow-donut-wrap">
-                <div class="jobflow-donut-ring" style="background: conic-gradient(#4f46e5 0 {{ $score }}%, #edf2ff {{ $score }}% 100%);">
-                    <div class="jobflow-donut-center">
-                        <span>{{ $score }}%</span>
+        <section class="dashboard-home-overview">
+            <article class="dashboard-home-panel dashboard-profile-panel">
+                <header class="dashboard-panel-heading">
+                    <span class="dashboard-panel-icon dashboard-panel-icon--purple" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0M5 4v3M3.5 5.5h3M19 4v3M17.5 5.5h3"/></svg>
+                    </span>
+                    <div>
+                        <h2>Profile Completion</h2>
+                        <p>Complete your profile to unlock better job recommendations.</p>
                     </div>
-                </div>
-            </div>
+                </header>
 
-            @if($resumeStrength)
-            <div class="jobflow-score-list">
-                @foreach($resumeStrength as $label => $scoreValue)
-                <div class="jobflow-score-row">
-                    <span>{{ $label }}</span>
-                    <div class="jobflow-score-bar">
-                        <span style="width: {{ $scoreValue }}%"></span>
-                    </div>
-                    <strong>{{ $scoreValue }}%</strong>
-                </div>
-                @endforeach
-            </div>
-            @else
-            <div class="text-center text-secondary-custom py-4">No resume analysis available yet.</div>
-            @endif
-
-            <button type="button" class="jobflow-primary-button">Improve Resume</button>
-        </div>
-
-        <div class="jobflow-table-card">
-            <div class="jobflow-card-header jobflow-table-header">
-                <h3>Latest Application Status</h3>
-                <div class="jobflow-table-tools">
-                    <span>⌕</span>
-                    <span>◌</span>
-                </div>
-            </div>
-
-            @if($applicationRows)
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Status</th>
-                        <th>Applied On</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($applicationRows as $row)
-                    <tr>
-                        <td class="jobflow-company-cell">
-                            <span class="jobflow-company-icon {{ strtolower(str_replace(' ', '-', $row['company'])) }}">{{ strtoupper(substr($row['company'], 0, 1)) }}</span>
-                            <div>
-                                <strong>{{ $row['company'] }}</strong>
-                                <small>{{ $row['location'] }}</small>
-                            </div>
-                        </td>
-                        <td>{{ $row['role'] }}</td>
-                        <td>
-                            <span class="jobflow-badge jobflow-badge-{{ $row['statusClass'] }}">{{ $row['status'] }}</span>
-                        </td>
-                        <td>{{ $row['date'] }}</td>
-                        <td class="jobflow-action-cell">⋯</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            @else
-            <div class="text-center text-secondary-custom py-4">No applications yet.</div>
-            @endif
-
-            <div class="jobflow-pagination">
-                <span>Page 1 of 1</span>
-                <div>
-                    <button type="button">←</button>
-                    <button type="button">→</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="jobflow-bottom-grid">
-        <div class="jobflow-purple-cta">
-            <span class="jobflow-cta-label">Career Momentum</span>
-            <h3>Keep building your professional profile with consistent action.</h3>
-            <button type="button">Learn More →</button>
-        </div>
-
-        <div class="jobflow-recommendation-panel">
-            <div class="jobflow-card-header jobflow-recommend-header">
-                <h3>Recommended Job Profiles</h3>
-                <button type="button" class="jobflow-link-button subtle">See All</button>
-            </div>
-
-            @if($recommendedJobs)
-            <div class="jobflow-job-grid">
-                @foreach($recommendedJobs as $job)
-                <div class="jobflow-job-card jobflow-job-card-{{ $job['tone'] }}">
-                    <div class="jobflow-job-meta">{{ $job['match_percentage'] }}% resume match</div>
-                    <div class="jobflow-job-title-row">
-                        <div>
-                            <strong>{{ $job['title'] }}</strong>
-                            <small>{{ $job['explanation'] }}</small>
+                <div class="dashboard-profile-content">
+                    <div
+                        class="dashboard-profile-ring"
+                        style="--completion: {{ $profileScore }}%;"
+                        role="img"
+                        aria-label="Profile {{ $profileScore }} percent completed"
+                    >
+                        <div class="dashboard-profile-ring-center">
+                            <strong>{{ $profileScore }}%</strong>
+                            <span>Completed</span>
                         </div>
                     </div>
-                    <div class="jobflow-job-footer">
-                        <a href="{{ route('jobs.index', ['job_title' => $job['title']]) }}" class="btn btn-sm btn-outline-custom">Track this role</a>
-                        <a href="{{ route('ai-analysis.index') }}" class="jobflow-job-icon" aria-label="View full AI analysis">Details →</a>
+                    <ul class="dashboard-profile-checklist">
+                        @foreach($profileChecklist as $item)
+                        <li>
+                            <span class="dashboard-checklist-mark {{ $item['complete'] ? 'is-complete' : '' }}" aria-hidden="true">
+                                {{ $item['complete'] ? '✓' : '' }}
+                            </span>
+                            <span>{{ $item['label'] }}</span>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <a href="{{ route('profile.index') }}" class="dashboard-profile-action">
+                    Complete Profile <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="dashboard-home-panel dashboard-application-panel">
+                <header class="dashboard-application-heading">
+                    <div class="dashboard-panel-heading">
+                        <span class="dashboard-panel-icon dashboard-panel-icon--blue" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M4 19V9h4v10H4ZM10 19V5h4v14h-4ZM16 19v-7h4v7h-4Z"/></svg>
+                        </span>
+                        <div>
+                            <h2>Application Overview</h2>
+                            <p>Track your job applications and their status over time.</p>
+                        </div>
+                    </div>
+                    <span class="dashboard-chart-period">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg>
+                        Last 4 Weeks
+                    </span>
+                </header>
+
+                <div class="dashboard-chart-legend" aria-label="Application statuses">
+                    <span><i class="dashboard-legend-dot dashboard-legend-dot--applied"></i>Applied</span>
+                    <span><i class="dashboard-legend-dot dashboard-legend-dot--interview"></i>Interview</span>
+                    <span><i class="dashboard-legend-dot dashboard-legend-dot--offer"></i>Offer</span>
+                </div>
+
+                <div class="dashboard-application-chart">
+                    <div class="dashboard-chart-axis" aria-hidden="true">
+                        @foreach($applicationChartTicks as $tick)
+                        <span>{{ $tick }}</span>
+                        @endforeach
+                    </div>
+                    <div class="dashboard-chart-plot">
+                        @if($hasApplicationChartData)
+                        <div class="dashboard-chart-columns">
+                            @foreach($applicationOverview as $week)
+                            <div class="dashboard-chart-week">
+                                <div class="dashboard-chart-bar-group">
+                                    <span class="dashboard-chart-bar dashboard-chart-bar--applied" style="--bar-height: {{ $week['applied'] ? max(8, (int) round($week['applied'] / $applicationChartMax * 100)) : 0 }}%"></span>
+                                    <span class="dashboard-chart-bar dashboard-chart-bar--interview" style="--bar-height: {{ $week['interviews'] ? max(8, (int) round($week['interviews'] / $applicationChartMax * 100)) : 0 }}%"></span>
+                                    <span class="dashboard-chart-bar dashboard-chart-bar--offer" style="--bar-height: {{ $week['offers'] ? max(8, (int) round($week['offers'] / $applicationChartMax * 100)) : 0 }}%"></span>
+                                </div>
+                                <span class="dashboard-chart-week-label">{{ $week['label'] }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                        @else
+                        <div class="dashboard-chart-empty-state">
+                            <svg viewBox="0 0 72 64" aria-hidden="true">
+                                <path d="M13 8h30v38H13zM20 17h16M20 24h11M20 31h9" />
+                                <circle cx="45" cy="37" r="11" />
+                                <path d="m53 45 9 9M46 32v10M41 37h10" />
+                            </svg>
+                            <strong>No application data yet</strong>
+                            <span>Start applying for jobs to see your progress here.</span>
+                        </div>
+                        @endif
                     </div>
                 </div>
-                @endforeach
-            </div>
-            @else
-            <div class="text-center text-secondary-custom py-4">Run a resume analysis to see suitable job profiles.</div>
-            @endif
-        </div>
+            </article>
+        </section>
+
+        <nav class="dashboard-home-shortcuts" aria-label="Career tools">
+            <a href="{{ route('ai-analysis.index') }}" class="dashboard-shortcut-card dashboard-shortcut-card--purple">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7M9 8h2"/></svg>
+                </span>
+                <span class="dashboard-shortcut-copy">
+                    <strong>AI Resume Analysis</strong>
+                    <span>Get AI-powered feedback to improve your resume and stand out.</span>
+                </span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="{{ route('interviews.index') }}" class="dashboard-shortcut-card dashboard-shortcut-card--orange">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4V8Z"/></svg>
+                </span>
+                <span class="dashboard-shortcut-copy">
+                    <strong>Interview Practice</strong>
+                    <span>Practice real interview questions with AI and get instant feedback.</span>
+                </span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="{{ route('reports.overview') }}" class="dashboard-shortcut-card dashboard-shortcut-card--green">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 19V9h4v10H4ZM10 19V5h4v14h-4ZM16 19v-7h4v7h-4Z"/></svg>
+                </span>
+                <span class="dashboard-shortcut-copy">
+                    <strong>Progress Reports</strong>
+                    <span>Track your learning, applications, and career progress over time.</span>
+                </span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+        </nav>
     </div>
-    </div>
-    @endsection
+</div>
+@endsection

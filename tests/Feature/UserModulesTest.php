@@ -27,7 +27,17 @@ class UserModulesTest extends TestCase
             ->get('/dashboard')
             ->assertOk()
             ->assertSee('Jane Doe')
-            ->assertSee('jane@example.com');
+            ->assertSee('jane@example.com')
+            ->assertSee(asset('Modern Purple Workspace with Rocket Laptop.png'), false)
+            ->assertSee('Welcome back,')
+            ->assertSee('Jane!')
+            ->assertSee('Analyze Resume')
+            ->assertSee('Start Interview Practice')
+            ->assertSee('Total Applications')
+            ->assertSee('Profile Completion')
+            ->assertSee('Application Overview')
+            ->assertSee('No application data yet')
+            ->assertSee('Progress Reports');
     }
 
     public function test_user_can_update_profile_image(): void
@@ -75,7 +85,24 @@ class UserModulesTest extends TestCase
         $this->actingAs($user)
             ->get('/dashboard')
             ->assertOk()
-            ->assertSeeInOrder(['Total Applications Sent', '2']);
+            ->assertSeeInOrder(['Total Applications', '2']);
+    }
+
+    public function test_dashboard_application_chart_shows_recent_status_data(): void
+    {
+        $user = User::factory()->create();
+
+        JobApplication::factory()->create([
+            'user_id' => $user->id,
+            'status' => 'Interviewing',
+            'applied_at' => now()->toDateString(),
+        ]);
+
+        $this->actingAs($user)
+            ->get('/dashboard')
+            ->assertOk()
+            ->assertDontSee('No application data yet')
+            ->assertSee('dashboard-chart-bar--interview', false);
     }
 
     public function test_admin_dashboard_shows_application_wide_statistics(): void
@@ -134,6 +161,50 @@ class UserModulesTest extends TestCase
         $this->actingAs($user)
             ->get('/skills')
             ->assertOk();
+    }
+
+    public function test_user_can_add_update_and_remove_skills_with_supported_proficiency_levels(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('skills.index'))
+            ->assertOk()
+            ->assertSee('Add a New Skill')
+            ->assertSee('All Categories')
+            ->assertSee('value="Advanced"', false)
+            ->assertDontSee('value="Expert"', false);
+
+        $this->post(route('skills.store'), [
+            'name' => 'React',
+            'category' => 'Development',
+            'description' => 'Building component-based interfaces.',
+            'proficiency_level' => 'Advanced',
+        ])->assertRedirect(route('skills.index'));
+
+        $profile = $user->profile()->firstOrFail();
+        $skill = $profile->skills()->firstOrFail();
+        $this->assertSame('Advanced', $skill->pivot->proficiency_level);
+
+        $this->get(route('skills.index'))
+            ->assertOk()
+            ->assertSee('React')
+            ->assertSee('Development')
+            ->assertSee(route('skills.update', $skill->id), false)
+            ->assertSee(route('skills.destroy', $skill->id), false);
+
+        $this->put(route('skills.update', $skill->id), [
+            'name' => $skill->name,
+            'category' => $skill->category,
+            'proficiency_level' => 'Intermediate',
+        ])->assertRedirect(route('skills.index'));
+
+        $this->assertSame('Intermediate', $profile->fresh()->skills()->firstOrFail()->pivot->proficiency_level);
+
+        $this->delete(route('skills.destroy', $skill->id))
+            ->assertRedirect(route('skills.index'));
+
+        $this->assertCount(0, $profile->fresh()->skills()->get());
     }
 
     public function test_jobs_page_is_accessible(): void
@@ -388,5 +459,70 @@ class UserModulesTest extends TestCase
                 'Frontend Engineer',
                 'Interview prep',
             ]);
+    }
+
+    public function test_user_can_start_a_mock_interview_with_the_available_form_options(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('interviews.index'))
+            ->assertOk()
+            ->assertSee('value="Behavioural"', false)
+            ->assertSee('value="Medium"', false)
+            ->assertSee('Intermediate');
+
+        $this->post(route('interviews.store'), [
+            'role' => 'Product Manager',
+            'category' => 'Behavioural',
+            'difficulty' => 'Medium',
+        ])->assertRedirect(route('interviews.index'));
+
+        $this->assertDatabaseHas('interview_sessions', [
+            'user_id' => $user->id,
+            'role' => 'Product Manager',
+            'category' => 'Behavioural',
+            'difficulty' => 'Medium',
+            'status' => 'active',
+        ]);
+        $this->assertDatabaseCount('interview_questions', 3);
+    }
+
+    public function test_job_applications_page_keeps_the_add_and_tracking_flow_working(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get(route('jobs.index'))
+            ->assertOk()
+            ->assertSee('Add Job Application')
+            ->assertSee('Recent Tracking')
+            ->assertSee('name="company_name"', false)
+            ->assertSee('name="job_title"', false);
+
+        $this->post(route('jobs.store'), [
+            'company_name' => 'Example Company',
+            'job_title' => 'Product Designer',
+            'status' => 'Applied',
+            'location' => 'Remote',
+            'job_type' => 'Full-Time',
+            'applied_at' => '2026-11-26',
+            'job_url' => 'https://example.test/jobs/product-designer',
+            'salary_range' => '$120k - $150k',
+            'notes' => 'Follow up next week.',
+        ])->assertRedirect(route('jobs.index'));
+
+        $this->assertDatabaseHas('job_applications', [
+            'user_id' => $user->id,
+            'company_name' => 'Example Company',
+            'job_title' => 'Product Designer',
+            'status' => 'Applied',
+            'location' => 'Remote',
+        ]);
+
+        $this->get(route('jobs.index'))
+            ->assertOk()
+            ->assertSee('Example Company')
+            ->assertSee('Product Designer');
     }
 }
