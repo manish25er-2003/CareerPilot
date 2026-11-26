@@ -6,6 +6,8 @@ if (config) {
     const formRoot = document.getElementById("rb-editor-form");
     const previewPaper = document.getElementById("rb-preview-paper");
     const previewStage = document.getElementById("rb-preview-stage");
+    const downloadButton = document.getElementById("rb-download-link");
+    const downloadLabel = document.getElementById("rb-download-label");
     const saveStatus = document.getElementById("rb-save-status");
     const saveStatusText = document.getElementById("rb-save-status-text");
     const formMessage = document.getElementById("rb-form-message");
@@ -25,6 +27,7 @@ if (config) {
     let loadingAi = false;
     let previewZoom = 100;
     let currentPreviewPage = 1;
+    let photoUploadPromise = null;
 
     const templateNames = {
         modern: "Modern Professional",
@@ -103,6 +106,65 @@ if (config) {
         return /^#[0-9a-f]{6}$/i.test(value || "") ? value : fallback;
     }
 
+    function hasText(value) {
+        return typeof value === "string" && value.trim().length > 0;
+    }
+
+    function isValidMonth(value) {
+        return typeof value === "string" && /^\d{4}-(0[1-9]|1[0-2])$/.test(value);
+    }
+
+    function isValidYear(value) {
+        return typeof value === "string" && /^\d{4}$/.test(value) && Number(value) >= 1900 && Number(value) <= 2099;
+    }
+
+    function isValidExperience(item) {
+        const hasDescription = hasText(item.responsibilities)
+            || (Array.isArray(item.achievements) && item.achievements.some(hasText));
+
+        return hasText(item.job_title)
+            && hasText(item.company)
+            && isValidMonth(item.start_date)
+            && hasDescription;
+    }
+
+    function isValidEducation(item) {
+        const hasStartYearValue = hasText(item.start_year);
+        const hasEndYearValue = hasText(item.end_year);
+        const hasStartYear = isValidYear(item.start_year);
+        const hasEndYear = isValidYear(item.end_year);
+
+        return hasText(item.degree)
+            && hasText(item.institution)
+            && (hasStartYear || hasEndYear)
+            && (!hasStartYearValue || hasStartYear)
+            && (!hasEndYearValue || hasEndYear)
+            && !(hasStartYear && hasEndYear && Number(item.end_year) < Number(item.start_year));
+    }
+
+    function resumeHasContent() {
+        const hasEntryContent = (entries) => entries.some((item) => Object.values(item).some((value) => (
+            Array.isArray(value) ? value.some(hasText) : hasText(value)
+        )));
+
+        return Object.values(state.personal_information || {}).some(hasText)
+            || ["work_experience", "education", "skills", "projects", "certifications", "languages", "additional_sections"]
+                .some((key) => hasEntryContent(state[key]));
+    }
+
+    function pdfFilename() {
+        const name = state.personal_information?.name || state.title || "Resume";
+        const safeName = String(name)
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-zA-Z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+
+        if (!safeName) return "Resume.pdf";
+
+        return `${safeName}${/-resume$/i.test(safeName) ? "" : "-Resume"}.pdf`;
+    }
+
     function getPath(path) {
         return path.split(".").reduce((value, key) => value?.[key], state);
     }
@@ -168,8 +230,8 @@ if (config) {
             field("Location", `${p}.location`, { placeholder: "City, Country" }),
             field("LinkedIn URL", `${p}.linkedin`, { type: "url", placeholder: "https://linkedin.com/in/..." }),
             field("Portfolio URL", `${p}.portfolio`, { type: "url", placeholder: "https://your-site.com" }),
-            field("Professional summary", `${p}.summary`, { type: "textarea", full: true, rows: 4, maxlength: 5000, placeholder: "Summarize your experience, strengths, and professional focus." }),
         ].join("");
+        const summary = getPath(`${p}.summary`) || "";
 
         return details("personal", "Personal Information", "Contact details and professional profile", "01", `
             <div class="rb-personal-top">
@@ -185,7 +247,17 @@ if (config) {
                     <button type="button" class="rb-small-button rb-small-button--ai" data-ai-action="summary" data-ai-target="personal_information.summary">✦ Generate with AI</button>
                 </div>
             </div>
-            <div class="rb-field-grid">${personalFields}</div>
+            <div class="rb-field-grid">
+                ${personalFields}
+                <label class="rb-field rb-field--full rb-summary-field">
+                    <span class="rb-summary-field__label">
+                        <span>Professional Summary</span>
+                        <button type="button" class="rb-small-button rb-small-button--ai" data-ai-action="summary" data-ai-target="personal_information.summary">✦ Generate with AI</button>
+                    </span>
+                    <textarea data-path="${p}.summary" rows="5" maxlength="5000" placeholder="Summarize your experience, strengths, and professional focus.">${escapeHtml(summary)}</textarea>
+                    <small class="rb-character-count"><span id="rb-summary-character-count">${String(summary).length}</span> / 5000 characters</small>
+                </label>
+            </div>
             <div class="rb-section-actions">
                 <button type="button" class="rb-small-button rb-small-button--ai" data-ai-action="summary" data-ai-target="personal_information.summary">✦ Improve Summary</button>
                 <button type="button" class="rb-small-button" data-ai-action="grammar" data-ai-target="personal_information.summary">✓ Fix Grammar</button>
@@ -385,11 +457,11 @@ if (config) {
         const heading = safeColor(state.heading_color, "#292044");
         const template = templateNames[state.template] ? state.template : "modern";
         const contacts = [
-            p.email ? `<span><a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a></span>` : "",
-            p.phone ? `<span>${escapeHtml(p.phone)}</span>` : "",
-            p.location ? `<span>${escapeHtml(p.location)}</span>` : "",
-            externalLink(p.linkedin, "LinkedIn"),
-            externalLink(p.portfolio, "Portfolio"),
+            p.email ? `<span class="rb-doc-contact__item"><span aria-hidden="true">✉</span><a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a></span>` : "",
+            p.phone ? `<span class="rb-doc-contact__item"><span aria-hidden="true">☎</span>${escapeHtml(p.phone)}</span>` : "",
+            p.location ? `<span class="rb-doc-contact__item"><span aria-hidden="true">⌖</span>${escapeHtml(p.location)}</span>` : "",
+            p.linkedin ? `<span class="rb-doc-contact__item"><span aria-hidden="true">in</span>${externalLink(p.linkedin, "LinkedIn")}</span>` : "",
+            p.portfolio ? `<span class="rb-doc-contact__item"><span aria-hidden="true">↗</span>${externalLink(p.portfolio, "Portfolio")}</span>` : "",
         ].filter(Boolean).join("");
 
         const section = (title, content) => content
@@ -500,21 +572,43 @@ if (config) {
 
     function updateProgress() {
         const p = state.personal_information || {};
+        const personalComplete = hasText(p.name)
+            && hasText(p.job_title)
+            && hasText(p.email)
+            && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email.trim())
+            && hasText(p.summary);
+        const additionalCompletion = state.additional_sections.map((item) => hasText(item.title) && hasText(item.content));
         const sectionCompletion = {
-            personal: Boolean(p.name && p.job_title && p.email && p.summary),
-            experience: state.work_experience.some((item) => item.job_title || item.company),
-            education: state.education.some((item) => item.degree || item.institution),
-            skills: state.skills.some((item) => item.name),
-            projects: state.projects.some((item) => item.name),
-            certifications: state.certifications.some((item) => item.name),
-            languages: state.languages.some((item) => item.name),
-            additional: state.additional_sections.some((item) => item.title || item.content),
+            personal: personalComplete,
+            experience: state.work_experience.length > 0 && state.work_experience.some(isValidExperience),
+            education: state.education.length > 0 && state.education.some(isValidEducation),
+            skills: state.skills.length > 0 && state.skills.some((item) => hasText(item.name)),
+            projects: state.projects.length > 0 && state.projects.some((item) => hasText(item.name) && hasText(item.description)),
+            certifications: state.certifications.length > 0 && state.certifications.some((item) => hasText(item.name) && hasText(item.organization)),
+            languages: state.languages.length > 0 && state.languages.some((item) => hasText(item.name)),
+            additional: additionalCompletion.length > 0 && additionalCompletion.every(Boolean),
         };
-        const completed = Object.values(sectionCompletion).filter(Boolean).length;
-        const percent = Math.round(completed / Object.keys(sectionCompletion).length * 100);
+        const applicableSections = [sectionCompletion.personal];
+        const sectionEntries = {
+            experience: state.work_experience,
+            education: state.education,
+            skills: state.skills,
+            projects: state.projects,
+            certifications: state.certifications,
+            languages: state.languages,
+        };
+        Object.entries(sectionEntries).forEach(([section, entries]) => {
+            if (entries.length > 0) {
+                applicableSections.push(sectionCompletion[section]);
+            }
+        });
+        applicableSections.push(...additionalCompletion);
+        const completed = applicableSections.filter(Boolean).length;
+        const percent = Math.round(completed / applicableSections.length * 100);
         document.getElementById("rb-progress-value").textContent = `${percent}%`;
         document.getElementById("rb-completion-ring").style.setProperty("--rb-progress", `${percent}%`);
-        document.querySelectorAll(".rb-builder-nav [data-rb-section]").forEach((button) => {
+        document.getElementById("rb-completion-track-fill").style.width = `${percent}%`;
+        document.querySelectorAll(".rb-builder-nav button[data-rb-section]:not(.rb-builder-nav__add)").forEach((button) => {
             const completedSection = sectionCompletion[button.dataset.rbSection];
             button.classList.toggle("is-complete", Boolean(completedSection));
             const status = button.querySelector("i");
@@ -790,6 +884,9 @@ if (config) {
         if (target.matches("[data-path]")) {
             const value = target.type === "checkbox" ? target.checked : target.value;
             setPath(target.dataset.path, value);
+            if (target.dataset.path === "personal_information.summary") {
+                document.getElementById("rb-summary-character-count").textContent = String(target.value.length);
+            }
             renderPreview();
             markChanged();
         } else if (target.matches("[data-line-list]")) {
@@ -806,21 +903,25 @@ if (config) {
             renderPreview();
             markChanged();
         }
-        if (target.id === "rb-profile-photo" && target.files?.[0]) uploadPhoto(target.files[0]);
+        if (target.id === "rb-profile-photo" && target.files?.[0]) {
+            photoUploadPromise = uploadPhoto(target.files[0]).finally(() => {
+                photoUploadPromise = null;
+            });
+        }
     });
 
     async function uploadPhoto(file) {
         const photoStatus = document.getElementById("rb-photo-status");
         if (!["image/png", "image/jpeg", "image/webp"].includes(file.type) || file.size > 2 * 1024 * 1024) {
             photoStatus.textContent = "Choose a PNG, JPG, or WebP image up to 2 MB.";
-            return;
+            return false;
         }
 
         if (!documentId) {
             const saved = await persist();
             if (!saved || !documentId) {
                 photoStatus.textContent = "Save your resume before adding a photo.";
-                return;
+                return false;
             }
         }
 
@@ -839,8 +940,10 @@ if (config) {
             photoUrl = `${result.photo_url}?v=${Date.now()}`;
             photoStatus.textContent = "Photo added to your resume.";
             renderPreview();
+            return true;
         } catch (error) {
             photoStatus.textContent = error.message || "The photo could not be uploaded.";
+            return false;
         }
     }
 
@@ -949,16 +1052,61 @@ if (config) {
         window.location.assign("/resume-builder");
     });
 
-    document.getElementById("rb-download-link").addEventListener("click", async (event) => {
-        if (!documentId) {
-            event.preventDefault();
-            formMessage.textContent = "Add resume details first; the draft will save automatically before downloading.";
+    downloadButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+        if (downloadButton.getAttribute("aria-busy") === "true") return;
+        if (!resumeHasContent()) {
+            formMessage.textContent = "Add resume information before downloading the PDF.";
             return;
         }
-        if (changed) {
-            event.preventDefault();
+
+        downloadButton.setAttribute("aria-busy", "true");
+        downloadButton.classList.add("is-loading");
+        downloadLabel.textContent = "Preparing PDF…";
+        formMessage.textContent = "";
+
+        try {
+            window.clearTimeout(saveTimer);
             const saved = await persist();
-            if (saved) window.location.assign(config.urlTemplates.download.replace("__ID__", documentId));
+            if (!saved || !documentId) {
+                throw new Error(formMessage.textContent || "Your resume could not be saved before downloading.");
+            }
+            if (photoUploadPromise && !(await photoUploadPromise)) {
+                throw new Error("The profile photo upload failed. Retry it before downloading the PDF.");
+            }
+
+            const response = await fetch(config.urlTemplates.download.replace("__ID__", documentId), {
+                headers: { "Accept": "application/pdf" },
+                cache: "no-store",
+            });
+            if (!response.ok) {
+                const contentType = response.headers.get("content-type") || "";
+                throw new Error(contentType.includes("application/json")
+                    ? await readError(response)
+                    : `The PDF could not be generated (HTTP ${response.status}). Please try again.`);
+            }
+
+            const pdf = await response.blob();
+            if (pdf.size === 0 || !pdf.type.includes("application/pdf") || await pdf.slice(0, 5).text() !== "%PDF-") {
+                throw new Error("The generated file was not a valid PDF. Please try again.");
+            }
+
+            const objectUrl = window.URL.createObjectURL(pdf);
+            const link = document.createElement("a");
+            link.href = objectUrl;
+            link.download = pdfFilename();
+            link.hidden = true;
+            document.body.append(link);
+            link.click();
+            link.remove();
+            window.setTimeout(() => window.URL.revokeObjectURL(objectUrl), 1000);
+            formMessage.textContent = "PDF downloaded.";
+        } catch (error) {
+            formMessage.textContent = error.message || "The PDF could not be generated. Please try again.";
+        } finally {
+            downloadButton.removeAttribute("aria-busy");
+            downloadButton.classList.remove("is-loading");
+            downloadLabel.textContent = "Download PDF";
         }
     });
 

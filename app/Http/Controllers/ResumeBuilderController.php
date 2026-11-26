@@ -121,7 +121,13 @@ class ResumeBuilderController extends Controller
             'photoDataUri' => $this->photoDataUri($document),
         ])->setPaper('a4', 'portrait');
 
-        return $pdf->download(Str::slug($document->title ?: 'resume').'.pdf');
+        $name = $document->personal_information['name'] ?? null;
+        $filename = Str::slug($name ?: $document->title ?: 'resume');
+        if ($filename !== 'resume' && ! Str::endsWith($filename, '-resume')) {
+            $filename .= '-resume';
+        }
+
+        return $pdf->download($filename.'.pdf');
     }
 
     public function uploadPhoto(Request $request, int $id): JsonResponse

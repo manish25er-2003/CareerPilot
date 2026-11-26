@@ -14,10 +14,10 @@
         .rb-doc-job-title { margin: 4pt 0 0; color: {{ $document->theme_color }}; font-size: 11pt; font-weight: bold; }
         .rb-doc-contact { margin-top: 7pt; color: #4b5061; font-size: 8pt; }
         .rb-doc-contact span { margin-right: 10pt; }
-        .rb-doc-section { margin-top: 13pt; page-break-inside: avoid; }
-        .rb-doc-section h2 { margin: 0 0 6pt; padding: 0 0 4pt; border-bottom: 0.8pt solid #e5e7ee; border-left: 2.5pt solid {{ $document->theme_color }}; padding-left: 6pt; color: {{ $document->heading_color }}; font-size: 10pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.7pt; }
+        .rb-doc-section { margin-top: 13pt; page-break-inside: auto; }
+        .rb-doc-section h2 { margin: 0 0 6pt; padding: 0 0 4pt; border-bottom: 0.8pt solid #e5e7ee; border-left: 2.5pt solid {{ $document->theme_color }}; padding-left: 6pt; color: {{ $document->heading_color }}; font-size: 10pt; font-weight: bold; text-transform: uppercase; letter-spacing: 0.7pt; page-break-after: avoid; }
         .rb-doc-summary, .rb-doc-body { margin: 0; white-space: pre-line; }
-        .rb-doc-entry { margin: 0 0 8pt; page-break-inside: avoid; }
+        .rb-doc-entry { margin: 0 0 8pt; page-break-inside: auto; }
         .rb-doc-entry__heading, .rb-doc-entry__subheading { display: table; width: 100%; }
         .rb-doc-entry__heading strong, .rb-doc-entry__heading span, .rb-doc-entry__subheading span { display: table-cell; }
         .rb-doc-entry__heading strong { color: #25283a; font-size: 9pt; }

@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\Resume;
 use App\Models\ResumeBuilderDocument;
 use App\Models\User;
+use App\Services\Ai\ResumeAnalysisService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
@@ -70,6 +72,7 @@ class ResumeBuilderTest extends TestCase
             ->assertOk()
             ->assertHeader('content-type', 'application/pdf');
         $this->assertStringStartsWith('%PDF-', $pdf->getContent());
+        $this->assertStringContainsString('taylor-example-resume.pdf', $pdf->headers->get('content-disposition'));
 
         $otherUser = User::factory()->create();
         $this->actingAs($otherUser)
@@ -98,6 +101,47 @@ class ResumeBuilderTest extends TestCase
         $this->get(route('dashboard'))
             ->assertOk()
             ->assertDontSee('Create Your Professional Resume');
+    }
+
+    public function test_long_resume_pdf_flows_across_multiple_pages(): void
+    {
+        $user = User::factory()->create();
+        $data = $this->resumeData();
+        $data['personal_information']['name'] = 'Page Test';
+        $description = str_repeat('Designed and delivered accessible product workflows with measurable improvements. ', 120);
+        $data['work_experience'] = array_map(fn (int $index): array => [
+            'job_title' => 'Product Designer '.$index,
+            'company' => 'Test Studio',
+            'employment_type' => 'Full-time',
+            'location' => '',
+            'start_date' => '2020-01',
+            'end_date' => '2022-01',
+            'current' => false,
+            'responsibilities' => $description,
+            'achievements' => [],
+        ], range(1, 8));
+        $document = $user->resumeBuilderDocuments()->create($data);
+
+        $pdf = Pdf::loadView('resume-builder.pdf', [
+            'document' => $document,
+            'photoDataUri' => null,
+        ])->setPaper('a4', 'portrait');
+        $output = $pdf->output();
+
+        $this->assertGreaterThan(1, $pdf->getDomPDF()->getCanvas()->get_page_count());
+
+        $temporaryPath = tempnam(sys_get_temp_dir(), 'careerpilot-resume-');
+        $path = $temporaryPath.'.pdf';
+        rename($temporaryPath, $path);
+        file_put_contents($path, $output);
+
+        try {
+            $text = app(ResumeAnalysisService::class)->extractTextFromFile($path, 'application/pdf');
+            $this->assertStringContainsString('Page Test', $text);
+            $this->assertStringContainsString('Product Designer 1', $text);
+        } finally {
+            unlink($path);
+        }
     }
 
     public function test_ai_suggestions_are_reviewable_and_invalid_items_are_reported(): void

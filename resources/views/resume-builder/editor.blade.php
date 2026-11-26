@@ -47,19 +47,20 @@
             @else
             <a class="rb-toolbar-button rb-preview-link" id="rb-preview-link" href="#" target="_blank" rel="noopener" hidden>Preview</a>
             @endif
-            <a class="rb-download-button" id="rb-download-link" href="{{ $document ? route('resume-builder.download', $document->id) : '#' }}" @if (!$document) aria-disabled="true" @endif>
-                <span aria-hidden="true">↓</span> Download PDF
+            <a class="rb-download-button" id="rb-download-link" href="{{ $document ? route('resume-builder.download', $document->id) : '#' }}">
+                <span aria-hidden="true">↓</span> <span id="rb-download-label">Download PDF</span>
             </a>
         </header>
 
         <main class="rb-workspace" id="rb-workspace" data-rb-view="editor">
             <aside class="rb-builder-nav" aria-label="Resume sections">
-                <h2>Resume Builder</h2>
+                <h2>Resume Sections</h2>
                 <div class="rb-completion-card" aria-label="Resume completion">
                     <div class="rb-completion-ring" id="rb-completion-ring" style="--rb-progress:0%">
                         <span id="rb-progress-value">0%</span>
                     </div>
-                    <strong>Completion</strong>
+                    <div class="rb-completion-track" aria-hidden="true"><span id="rb-completion-track-fill"></span></div>
+                    <strong>Complete</strong>
                 </div>
                 <button type="button" class="is-active" data-rb-section="personal"><span class="rb-builder-nav__icon">◎</span><span>Personal Info</span><i aria-hidden="true">✓</i></button>
                 <button type="button" data-rb-section="experience"><span class="rb-builder-nav__icon">▰</span><span>Experience</span><i aria-hidden="true"></i></button>
@@ -85,13 +86,18 @@
                 <div class="rb-editor-heading">
                     <div>
                         <span class="rb-editor-heading__icon" aria-hidden="true">▤</span>
-                        <div class="rb-editor-heading__copy"><h1>Build Your Resume</h1><p>Add your details, and see the live preview update instantly.</p></div>
+                        <div class="rb-editor-heading__copy"><h1>Build Your Resume with AI</h1><p>Get professional suggestions and improve your content instantly.</p></div>
                     </div>
-                    <div class="rb-ats-score" aria-label="ATS score">
-                        <span class="rb-ats-score__label">ATS Score</span>
-                        <span class="rb-ats-score__ring"><strong id="rb-ats-score">87</strong></span>
-                        <small>/100</small>
-                        <button type="button" aria-label="About ATS score" title="Estimated from resume completion; not a full ATS scan.">i</button>
+                    <div class="rb-editor-heading__actions">
+                        <button type="button" class="rb-ai-assistant-button" data-ai-action="summary" data-ai-target="personal_information.summary">
+                            <span aria-hidden="true">✦</span> AI Assistant
+                        </button>
+                        <div class="rb-ats-score" aria-label="ATS score">
+                            <span class="rb-ats-score__label">ATS Score</span>
+                            <span class="rb-ats-score__ring"><strong id="rb-ats-score">87</strong></span>
+                            <small>/100</small>
+                            <button type="button" aria-label="About ATS score" title="Estimated from resume completion; not a full ATS scan.">i</button>
+                        </div>
                     </div>
                 </div>
 

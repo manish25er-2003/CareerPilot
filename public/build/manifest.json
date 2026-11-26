@@ -40,7 +40,7 @@
     ]
   },
   "resources/css/pages/resume-builder.css": {
-    "file": "assets/resume-builder-BuBZLAJq.css",
+    "file": "assets/resume-builder-b75fjKMM.css",
     "src": "resources/css/pages/resume-builder.css",
     "isEntry": true,
     "name": "resume-builder",
@@ -55,7 +55,7 @@
     "isEntry": true
   },
   "resources/js/resume-builder.js": {
-    "file": "assets/resume-builder-0PxmEFUA.js",
+    "file": "assets/resume-builder-CasYbRGZ.js",
     "name": "resume-builder",
     "src": "resources/js/resume-builder.js",
     "isEntry": true
