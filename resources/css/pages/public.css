@@ -6,7 +6,7 @@
 
 /* Home-only floating navigation pill */
 .is-homepage {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .is-homepage .premium-navbar.public-home-header {

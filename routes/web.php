@@ -8,6 +8,7 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\ResumeBuilderController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/resumes/{id}/download', [ResumeController::class, 'download'])->name('resumes.download');
     Route::post('/resumes/{id}/primary', [ResumeController::class, 'markPrimary'])->name('resumes.primary');
     Route::delete('/resumes/{id}', [ResumeController::class, 'destroy'])->name('resumes.destroy');
+
+    Route::get('/resume-builder', [ResumeBuilderController::class, 'index'])->name('resume-builder.index');
+    Route::get('/resume-builder/create', [ResumeBuilderController::class, 'create'])->name('resume-builder.create');
+    Route::post('/resume-builder', [ResumeBuilderController::class, 'store'])->name('resume-builder.store');
+    Route::get('/resume-builder/{id}/edit', [ResumeBuilderController::class, 'edit'])->name('resume-builder.edit');
+    Route::patch('/resume-builder/{id}', [ResumeBuilderController::class, 'update'])->name('resume-builder.update');
+    Route::get('/resume-builder/{id}/preview', [ResumeBuilderController::class, 'preview'])->name('resume-builder.preview');
+    Route::get('/resume-builder/{id}/download', [ResumeBuilderController::class, 'download'])->name('resume-builder.download');
+    Route::post('/resume-builder/{id}/photo', [ResumeBuilderController::class, 'uploadPhoto'])->name('resume-builder.photo.upload');
+    Route::get('/resume-builder/{id}/photo', [ResumeBuilderController::class, 'photo'])->name('resume-builder.photo');
+    Route::post('/resume-builder/{id}/ai', [ResumeBuilderController::class, 'suggest'])->name('resume-builder.ai');
+    Route::delete('/resume-builder/{id}', [ResumeBuilderController::class, 'destroy'])->name('resume-builder.destroy');
 
     Route::get('/ai-analysis', [AiResumeAnalysisController::class, 'index'])->name('ai-analysis.index');
     Route::post('/ai-analysis', [AiResumeAnalysisController::class, 'store'])->name('ai-analysis.store');

@@ -191,6 +191,59 @@
                 <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
             </a>
         </nav>
+
+        @if (! $hasAnyResume)
+        <section class="dashboard-resume-builder dashboard-resume-builder--empty" aria-labelledby="dashboard-resume-builder-title">
+            <span class="dashboard-resume-builder__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M14 3v6h5M9 13h7M9 17h5"/></svg>
+            </span>
+            <div class="dashboard-resume-builder__copy">
+                <span class="dashboard-resume-builder__eyebrow">Resume Builder</span>
+                <h2 id="dashboard-resume-builder-title">Create Your Professional Resume</h2>
+                <p>Build an impressive, professional resume with AI-powered assistance.</p>
+            </div>
+            <a class="dashboard-resume-builder__button" href="{{ route('resume-builder.create') }}">Build My Resume <span aria-hidden="true">→</span></a>
+        </section>
+        @else
+        <section class="dashboard-resume-builder-list" aria-labelledby="dashboard-resume-list-title">
+            <header class="dashboard-resume-builder-list__header">
+                <div>
+                    <span class="dashboard-resume-builder__eyebrow">Career documents</span>
+                    <h2 id="dashboard-resume-list-title">Your Resumes</h2>
+                </div>
+                <a class="dashboard-resume-builder__button" href="{{ route('resume-builder.create') }}">Create Another Resume <span aria-hidden="true">+</span></a>
+            </header>
+
+            @foreach ($resumeBuilderDocuments as $document)
+            <article class="dashboard-resume-row">
+                <span class="dashboard-resume-row__icon" aria-hidden="true">CV</span>
+                <div class="dashboard-resume-row__details">
+                    <strong>{{ $document->title }}</strong>
+                    <small>Resume Builder · Updated {{ $document->updated_at->diffForHumans() }}</small>
+                </div>
+                <div class="dashboard-resume-row__actions">
+                    <a href="{{ route('resume-builder.edit', $document->id) }}">Edit Resume</a>
+                    <a href="{{ route('resume-builder.preview', $document->id) }}">Preview Resume</a>
+                    <a href="{{ route('resume-builder.download', $document->id) }}">Download PDF</a>
+                </div>
+            </article>
+            @endforeach
+
+            @foreach ($uploadedResumes->take(2) as $resume)
+            <article class="dashboard-resume-row">
+                <span class="dashboard-resume-row__icon dashboard-resume-row__icon--uploaded" aria-hidden="true">FILE</span>
+                <div class="dashboard-resume-row__details">
+                    <strong>{{ $resume->title }}</strong>
+                    <small>Uploaded resume · {{ $resume->original_name }}</small>
+                </div>
+                <div class="dashboard-resume-row__actions">
+                    <a href="{{ route('resumes.show', $resume->id) }}">Preview Resume</a>
+                    <a href="{{ route('resumes.download', $resume->id) }}">Download Resume</a>
+                </div>
+            </article>
+            @endforeach
+        </section>
+        @endif
     </div>
 </div>
 @endsection

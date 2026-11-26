@@ -22,7 +22,7 @@
     ]
   },
   "resources/css/pages/dashboard.css": {
-    "file": "assets/dashboard-CSPKs5q1.css",
+    "file": "assets/dashboard-PGI4n97F.css",
     "src": "resources/css/pages/dashboard.css",
     "isEntry": true,
     "name": "dashboard",
@@ -31,7 +31,7 @@
     ]
   },
   "resources/css/pages/public.css": {
-    "file": "assets/public-DgiqlVvm.css",
+    "file": "assets/public-EDzQv7Cs.css",
     "src": "resources/css/pages/public.css",
     "isEntry": true,
     "name": "public",
@@ -39,10 +39,25 @@
       "public.css"
     ]
   },
+  "resources/css/pages/resume-builder.css": {
+    "file": "assets/resume-builder-BuBZLAJq.css",
+    "src": "resources/css/pages/resume-builder.css",
+    "isEntry": true,
+    "name": "resume-builder",
+    "names": [
+      "resume-builder.css"
+    ]
+  },
   "resources/js/app.js": {
     "file": "assets/app-BRiin9xV.js",
     "name": "app",
     "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/resume-builder.js": {
+    "file": "assets/resume-builder-0PxmEFUA.js",
+    "name": "resume-builder",
+    "src": "resources/js/resume-builder.js",
     "isEntry": true
   }
 }

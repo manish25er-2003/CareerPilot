@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Resume::class);
     }
 
+    public function resumeBuilderDocuments(): HasMany
+    {
+        return $this->hasMany(ResumeBuilderDocument::class);
+    }
+
     public function jobApplications(): HasMany
     {
         return $this->hasMany(JobApplication::class);

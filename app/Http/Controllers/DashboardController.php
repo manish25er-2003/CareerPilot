@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ResumeBuilderDocument;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -12,6 +13,12 @@ class DashboardController extends Controller
         $user = Auth::user();
         $profile = $user?->profile;
         $profile?->loadMissing('skills');
+        $resumeBuilderDocuments = ResumeBuilderDocument::query()
+            ->where('user_id', $user?->id)
+            ->latest('updated_at')
+            ->get();
+        $uploadedResumes = $user?->resumes()->latest()->get() ?? collect();
+        $hasAnyResume = $resumeBuilderDocuments->isNotEmpty() || $uploadedResumes->isNotEmpty();
 
         $jobs = $user?->jobApplications()->latest('applied_at')->get() ?? collect();
         $allApplications = $jobs->count();
@@ -118,7 +125,10 @@ class DashboardController extends Controller
             'applicationOverview',
             'applicationChartMax',
             'applicationChartTicks',
-            'hasApplicationChartData'
+            'hasApplicationChartData',
+            'resumeBuilderDocuments',
+            'uploadedResumes',
+            'hasAnyResume'
         ));
     }
 }

@@ -1,0 +1,218 @@
+.app-shell .dashboard-resume-builder,
+.app-shell .dashboard-resume-builder-list {
+    min-width: 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(112, 76, 227, 0.13);
+    border-radius: 16px;
+    background: linear-gradient(110deg, #fff, #f8f5ff);
+    box-shadow: 0 7px 20px rgba(52, 45, 98, 0.06);
+}
+
+.app-shell .dashboard-resume-builder {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-shell .dashboard-resume-builder__icon,
+.app-shell .dashboard-resume-row__icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 14px;
+    background: #eee8ff;
+    color: #6844d6;
+}
+
+.app-shell .dashboard-resume-builder__icon svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.app-shell .dashboard-resume-builder__copy,
+.app-shell .dashboard-resume-row__details {
+    min-width: 0;
+}
+
+.app-shell .dashboard-resume-builder__eyebrow {
+    display: block;
+    margin-bottom: 3px;
+    color: #7458d6;
+    font-size: 0.66rem;
+    font-weight: 850;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.app-shell .dashboard-resume-builder h2,
+.app-shell .dashboard-resume-builder-list h2 {
+    margin: 0;
+    color: #20203a;
+    font-size: 1rem;
+    font-weight: 850;
+    letter-spacing: -0.02em;
+}
+
+.app-shell .dashboard-resume-builder p {
+    margin: 4px 0 0;
+    color: #5d5c70;
+    font-size: 0.76rem;
+    line-height: 1.45;
+}
+
+.app-shell .dashboard-resume-builder__button {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 15px;
+    border: 1px solid #6844d6;
+    border-radius: 10px;
+    background: linear-gradient(110deg, #7655e4, #603fd0);
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-shell .dashboard-resume-builder__button:hover,
+.app-shell .dashboard-resume-builder__button:focus-visible {
+    background: #5536c2;
+    color: #fff;
+}
+
+.app-shell .dashboard-resume-builder-list {
+    display: grid;
+    gap: 10px;
+}
+
+.app-shell .dashboard-resume-builder-list__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eeebf7;
+}
+
+.app-shell .dashboard-resume-row {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 42px minmax(120px, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+}
+
+.app-shell .dashboard-resume-row + .dashboard-resume-row {
+    border-top: 1px solid #f0eef6;
+}
+
+.app-shell .dashboard-resume-row__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    font-size: 0.61rem;
+    font-weight: 900;
+}
+
+.app-shell .dashboard-resume-row__icon--uploaded {
+    background: #f0f2f8;
+    color: #676d82;
+    font-size: 0.48rem;
+}
+
+.app-shell .dashboard-resume-row__details strong,
+.app-shell .dashboard-resume-row__details small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-shell .dashboard-resume-row__details strong {
+    color: #292b3d;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.app-shell .dashboard-resume-row__details small {
+    margin-top: 3px;
+    color: #777d90;
+    font-size: 0.65rem;
+}
+
+.app-shell .dashboard-resume-row__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.app-shell .dashboard-resume-row__actions a {
+    padding: 6px 9px;
+    border: 1px solid #e6e1f3;
+    border-radius: 8px;
+    background: #fff;
+    color: #6045c6;
+    font-size: 0.64rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.app-shell .dashboard-resume-row__actions a:hover,
+.app-shell .dashboard-resume-row__actions a:focus-visible {
+    border-color: #b6a7e9;
+    background: #f8f6ff;
+}
+
+@media (max-width: 767.98px) {
+    .app-shell .dashboard-resume-builder {
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 10px 12px;
+        padding: 14px;
+    }
+
+    .app-shell .dashboard-resume-builder__icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .app-shell .dashboard-resume-builder__button {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .app-shell .dashboard-resume-builder-list {
+        padding: 14px;
+    }
+
+    .app-shell .dashboard-resume-row {
+        grid-template-columns: 38px minmax(0, 1fr);
+    }
+
+    .app-shell .dashboard-resume-row__actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 420px) {
+    .app-shell .dashboard-resume-builder-list__header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .app-shell .dashboard-resume-builder-list__header .dashboard-resume-builder__button {
+        width: 100%;
+    }
+}
